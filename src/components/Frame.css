@@ -1,0 +1,46 @@
+.Frame {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 300px;
+  margin: 50px auto 0 auto;
+}
+
+.Frame-empty {
+  border: 1px solid #fff;
+}
+
+.Frame img {
+  max-width: 300px;
+  max-height: 300px;
+  width: auto;
+  height: auto;
+}
+
+.Frame-animation-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  transform: translate(-30px, -30px);
+  border-radius: 50%;
+  background: transparent;
+  border: 5px solid #a9a9a9;
+  color: #a9a9a9;
+  outline: none !important;
+  cursor: pointer;
+  font-size: 1.5em;
+}
+
+.Frame-animation-button:hover {
+  color: #e79600;
+  border-color: #e79600;
+}
+
+.Frame-animation-button:focus {
+  color: #e79600;
+  border-color: #e79600;
+}

@@ -1,0 +1,40 @@
+.Settings {
+  position: absolute;
+  top: 40px;
+  left: 70px;
+  bottom: 0;
+  width: 200px;
+  padding-top: 20px;
+  background: #2e2e2e;
+  border-right: 1px solid black;
+  text-align: center;
+  transform: translateX(-100%);
+  transition: 0.2s transform;
+  color: #fff;
+}
+
+.Settings input[type='checkbox'] {
+  cursor: pointer;
+}
+
+.Settings-expanded {
+  transform: translateX(0);
+  transition: 0.2s transform;
+}
+
+.Settings-input {
+  height: 20px;
+  width: 100px;
+  margin-bottom: 15px;
+  margin-top: 5px;
+  border: 1px solid #000;
+  font-size: 1em;
+  border-radius: 5px;
+  padding: 5px;
+  outline: none !important;
+  text-align: center;
+}
+
+.Settings-input-error {
+  border-color: #cc0000;
+}

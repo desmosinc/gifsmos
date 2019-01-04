@@ -1,0 +1,68 @@
+.SidebarButton {
+  position: relative;
+  border: 1px solid transparent;
+  width: 40px;
+  height: 40px;
+  margin-top: 10px;
+  margin-left: 15px;
+  border-radius: 5px;
+  font-size: 1em;
+  background: #2e2e2e;
+  outline: none !important;
+  cursor: pointer;
+  animation: fade-in 0.5s;
+}
+
+.SidebarButton-expanded {
+  border-color: #fff;
+}
+
+.SidebarButton:hover,
+.SidebarButton:focus {
+  background: #484848;
+}
+
+.SidebarButton:active {
+  background: #3b3b3b;
+}
+
+.SidebarButton img {
+  display: block;
+  width: 40px;
+  height: 40px;
+  margin-left: -8px;
+  margin-top: -3px;
+}
+
+.SidebarButton-badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.4em;
+  height: 1.4em;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 0.6em;
+  font-weight: bold;
+  padding: 5px;
+}
+
+.SidebarButton-badge-orange {
+  background: #e79600;
+}
+
+.SidebarButton-badge-green {
+  background: #2ecc40;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,24 @@
+.ErrorToast {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: #d6d8d9;
+  font-weight: bold;
+  font-size: 1em;
+  animation: 0.2s fade-in;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
