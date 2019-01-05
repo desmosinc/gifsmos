@@ -3,6 +3,11 @@
 GIFsmos is a web app for creating animated GIFs from
 [Desmos](https://www.desmos.com/calculator) graphs.
 
+[![build status](https://img.shields.io/travis/ctlusto/gifsmos.svg?style=flat-square)](https://travis-ci.org/ctlusto/gifsmos)
+[![last commit to master](https://img.shields.io/github/last-commit/ctlusto/gifsmos/master.svg?style=flat-square)](https://github.com/ctlusto/gifsmos/commits/master)
+[![license](https://img.shields.io/github/license/ctlusto/gifsmos.svg?style=flat-square)](https://github.com/ctlusto/gifsmos/blob/master/LICENSE.md)
+[![code style](https://img.shields.io/badge/code%20style-Prettier-blue.svg?style=flat-square)](https://prettier.io/)
+
 ## Using GIFsmos
 
 ### Creating, importing and saving graphs
