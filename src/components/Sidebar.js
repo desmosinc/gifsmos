@@ -86,7 +86,7 @@ class Sidebar extends Component {
           />
         )}
 
-        <div class="Sidebar-help">
+        <div className="Sidebar-help">
           <a
             href="https://github.com/ctlusto/gifsmos/blob/master/README.md"
             target="_blank"
