@@ -1,14 +1,23 @@
 .Header {
   position: absolute;
+  display: flex;
+  justify-content: space-between;
   top: 0;
   left: 0;
   right: 0;
   height: 40px;
   background: #e79600;
+  color: #fff;
 }
 
 .Header-logo {
-  color: #fff;
   font-weight: bold;
   margin: 10px 0 0 10px;
+  width: 100px;
+}
+
+.Header-help {
+  margin: 10px 10px 0 0;
+  font-size: 0.75em;
+  font-style: italic;
 }

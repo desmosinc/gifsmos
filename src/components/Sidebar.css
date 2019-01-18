@@ -7,3 +7,19 @@
   border-right: 1px solid black;
   background: #2e2e2e;
 }
+
+.Sidebar-help {
+  position: absolute;
+  left: 18px;
+  bottom: 20px;
+}
+
+.Sidebar-help a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.Sidebar-help a:hover {
+  color: #fff;
+  text-decoration: underline;
+}

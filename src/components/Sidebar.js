@@ -85,6 +85,16 @@ class Sidebar extends Component {
             value={'\u2713'}
           />
         )}
+
+        <div className="Sidebar-help">
+          <a
+            href="https://github.com/ctlusto/gifsmos/blob/master/README.md"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Help
+          </a>
+        </div>
       </div>
     );
   }
