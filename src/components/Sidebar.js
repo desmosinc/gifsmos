@@ -90,6 +90,7 @@ class Sidebar extends Component {
           <a
             href="https://github.com/ctlusto/gifsmos/blob/master/README.md"
             target="_blank"
+            rel="noopener noreferrer"
           >
             Help
           </a>
