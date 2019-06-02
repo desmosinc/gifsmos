@@ -32,7 +32,6 @@ class Sidebar extends Component {
 
   handleDownload() {
     const { gifData } = this.props;
-    // TODO: user-editable filename?
     download(gifData, 'gifsmos.gif', 'image/gif');
   }
 

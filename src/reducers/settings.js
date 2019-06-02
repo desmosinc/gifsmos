@@ -41,7 +41,6 @@ const initialState = {
   strategy: 'contain'
 };
 
-// TODO: implement bounds and strategy
 const settings = (state = initialState, { type, payload }) => {
   switch (type) {
     case UPDATE_IMAGE_SETTING:
