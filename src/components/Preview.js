@@ -7,7 +7,6 @@ import './Preview.css';
 class Preview extends Component {
   constructor(props) {
     super(props);
-    this.state = { gifData: this.props.gifData };
     this.handlePreviewUpdate = this.handlePreviewUpdate.bind(this);
     this.handleGenerateGIF = this.handleGenerateGIF.bind(this);
     this.handleTogglePlaying = this.handleTogglePlaying.bind(this);
@@ -85,7 +84,7 @@ class Preview extends Component {
           {numFrames ? `${previewIdx + 1} / ${numFrames}` : '0 / 0'}
         </div>
         <div className="Preview-create">
-          {!!numFrames && this.state.gifData.length === 0 ? (
+          {!!numFrames && this.props.gifData.length === 0 ? (
             <GenerateGifForm handleGenerateGIF={this.handleGenerateGIF} />
           ) : null}
         </div>
