@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import Frame from './Frame';
+import GenerateGifForm from './GenerateGifForm';
 import './Preview.css';
 
 class Preview extends Component {
   constructor(props) {
     super(props);
+    this.state = { gifData: this.props.gifData };
     this.handlePreviewUpdate = this.handlePreviewUpdate.bind(this);
     this.handleGenerateGIF = this.handleGenerateGIF.bind(this);
     this.handleTogglePlaying = this.handleTogglePlaying.bind(this);
@@ -83,15 +85,9 @@ class Preview extends Component {
           {numFrames ? `${previewIdx + 1} / ${numFrames}` : '0 / 0'}
         </div>
         <div className="Preview-create">
-          {!!numFrames && (
-            <button
-              className="Preview-create-button"
-              onClick={this.handleGenerateGIF}
-              aria-label="generate gif"
-            >
-              Generate GIF
-            </button>
-          )}
+          {!!numFrames && this.state.gifData.length === 0 ? (
+            <GenerateGifForm handleGenerateGIF={this.handleGenerateGIF} />
+          ) : null}
         </div>
         <div className="Preview-progress-outer">
           <div
