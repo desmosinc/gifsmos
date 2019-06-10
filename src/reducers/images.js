@@ -12,6 +12,7 @@ import {
   ADD_FRAME,
   UPDATE_GIF_PROGRESS,
   ADD_GIF,
+  UPDATE_GIF_FILENAME,
   UPDATE_IMAGE_SETTING,
   UPDATE_BOUNDS_SETTING,
   UPDATE_STRATEGY,
@@ -22,7 +23,8 @@ const initialState = {
   frames: {},
   frameIDs: [],
   gifProgress: 0,
-  gifData: ''
+  gifData: '',
+  gifFileName: ''
 };
 
 const images = (state = initialState, { type, payload }) => {
@@ -61,6 +63,14 @@ const images = (state = initialState, { type, payload }) => {
         ...{
           gifProgress: 0,
           gifData: ''
+        }
+      };
+
+    case UPDATE_GIF_FILENAME:
+      return {
+        ...state,
+        ...{
+          gifFileName: payload.gifFileName
         }
       };
 

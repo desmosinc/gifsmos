@@ -12,7 +12,9 @@ class GenerateGifForm extends Component {
   handleSubmit(evt) {
     evt.preventDefault();
     this.props.handleGenerateGIF();
-    this.setState({ text: '' });
+    this.props.updateGifFileName(this.state.name);
+    // set title
+    this.setState({ name: '', titleText: '' });
   }
 
   handleInputUpdate(evt) {

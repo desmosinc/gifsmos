@@ -85,7 +85,10 @@ class Preview extends Component {
         </div>
         <div className="Preview-create">
           {!!numFrames && this.props.gifData.length === 0 ? (
-            <GenerateGifForm handleGenerateGIF={this.handleGenerateGIF} />
+            <GenerateGifForm
+              handleGenerateGIF={this.handleGenerateGIF}
+              updateGifFileName={this.props.updateGifFileName}
+            />
           ) : null}
         </div>
         <div className="Preview-progress-outer">

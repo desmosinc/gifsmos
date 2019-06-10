@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import Preview from '../components/Preview';
 import {
+  updateGifFileName,
   generateGIF,
   updatePreviewIdx,
   startAnimation,
@@ -31,7 +32,13 @@ const mapStateToProps = (state, ownProps) => {
 
 const PreviewContainer = connect(
   mapStateToProps,
-  { updatePreviewIdx, generateGIF, startAnimation, stopAnimation }
+  {
+    updatePreviewIdx,
+    generateGIF,
+    updateGifFileName,
+    startAnimation,
+    stopAnimation
+  }
 )(Preview);
 
 export default PreviewContainer;
