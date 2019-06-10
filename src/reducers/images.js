@@ -24,7 +24,7 @@ const initialState = {
   frameIDs: [],
   gifProgress: 0,
   gifData: '',
-  gifFileName: ''
+  gifFileName: 'gifsmos.gif'
 };
 
 const images = (state = initialState, { type, payload }) => {

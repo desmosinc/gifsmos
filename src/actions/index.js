@@ -56,7 +56,7 @@ export const updateGIFProgress = progress => ({
 export const updateGifFileName = name => {
   return {
     type: types.UPDATE_GIF_FILENAME,
-    payload: { gifFileName: name }
+    payload: { gifFileName: `${name}.gif` }
   };
 };
 
