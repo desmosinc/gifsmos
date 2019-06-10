@@ -100,6 +100,11 @@ class Preview extends Component {
             }}
           />
         </div>
+        {gifProgress === 1 ? (
+          <div className="Preview-progress-success">
+            GIF ready for download!
+          </div>
+        ) : null}
       </div>
     );
   }

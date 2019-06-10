@@ -45,7 +45,7 @@ class GenerateGifForm extends Component {
           aria-label="generate gif"
           type="submit"
         >
-          Generate GIF
+          Generate!
         </button>
       </form>
     );
