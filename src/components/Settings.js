@@ -7,6 +7,7 @@ class Settings extends Component {
   constructor(props) {
     super(props);
     this.handleInputUpdate = this.handleInputUpdate.bind(this);
+    this.handleStrategyUpdate = this.handleStrategyUpdate.bind(this);
   }
 
   handleInputUpdate(evt) {
@@ -18,8 +19,26 @@ class Settings extends Component {
     updateSetting(name, val);
   }
 
+  handleStrategyUpdate(evt) {
+    const {
+      target: { name, value }
+    } = evt;
+    const { updateSetting } = this.props;
+    updateSetting(name, value);
+  }
+
   render() {
-    const { expanded, width, height, oversample, interval } = this.props;
+    const {
+      expanded,
+      width,
+      height,
+      oversample,
+      interval,
+      left,
+      right,
+      top,
+      bottom
+    } = this.props;
 
     if (!expanded) return <div className="Settings" />;
 
@@ -38,6 +57,7 @@ class Settings extends Component {
           value={isNaN(width) ? '' : width}
           onChange={this.handleInputUpdate}
         />
+
         <div>Image Height</div>
         <input
           className={classNames('Settings-input', {
@@ -49,6 +69,7 @@ class Settings extends Component {
           value={isNaN(height) ? '' : height}
           onChange={this.handleInputUpdate}
         />
+
         <div>Interval (ms)</div>
         <input
           className={classNames('Settings-input', {
@@ -60,6 +81,7 @@ class Settings extends Component {
           value={isNaN(interval) ? '' : interval}
           onChange={this.handleInputUpdate}
         />
+
         <div>
           <input
             type="checkbox"
@@ -70,6 +92,71 @@ class Settings extends Component {
           />
           <span>Oversample</span>
         </div>
+
+        <hr />
+
+        <div>Left Bound</div>
+        <input
+          className={classNames('Settings-input', {
+            'Settings-input-error': !isPositiveInteger(width)
+          })}
+          type="number"
+          name="left"
+          aria-label="left bound"
+          value={isNaN(left) ? '' : left}
+          onChange={this.handleInputUpdate}
+        />
+
+        <div>Right Bound</div>
+        <input
+          className={classNames('Settings-input', {
+            'Settings-input-error': !isPositiveInteger(width)
+          })}
+          type="number"
+          name="right"
+          aria-label="right bound"
+          value={isNaN(right) ? '' : right}
+          onChange={this.handleInputUpdate}
+        />
+
+        <div>Top Bound</div>
+        <input
+          className={classNames('Settings-input', {
+            'Settings-input-error': !isPositiveInteger(width)
+          })}
+          type="number"
+          name="top"
+          aria-label="top bound"
+          value={isNaN(top) ? '' : top}
+          onChange={this.handleInputUpdate}
+        />
+
+        <div>Bottom Bound</div>
+        <input
+          className={classNames('Settings-input', {
+            'Settings-input-error': !isPositiveInteger(width)
+          })}
+          type="number"
+          name="bottom"
+          aria-label="bottom bound"
+          value={isNaN(bottom) ? '' : bottom}
+          onChange={this.handleInputUpdate}
+        />
+
+        <div>Strategy</div>
+        <select
+          name="strategy"
+          style={{ fontSize: '20px' }}
+          aria-label="strategy"
+          onChange={this.handleStrategyUpdate}
+        >
+          <option value="contain" defaultValue>
+            Contain
+          </option>
+          <option value="stretch">Stretch</option>
+          <option value="preserveX">PreserveX</option>
+          <option value="preserveY">PreserveY</option>
+        </select>
       </div>
     );
   }

@@ -10,7 +10,9 @@
     "react-redux": "^6.0.0",
     "react-scripts": "2.1.2",
     "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0"
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0",
+    "save-dev": "^2.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

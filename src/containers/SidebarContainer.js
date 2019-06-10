@@ -7,6 +7,8 @@ const mapStateToProps = (state, ownProps) => {
   const { expandedPane } = ui;
   const { gifData, frameIDs } = images;
   const { width, height, oversample } = settings.image;
+  const { left, right, top, bottom } = settings.bounds;
+  const { strategy } = settings;
 
   return {
     numFrames: frameIDs.length,
@@ -14,7 +16,12 @@ const mapStateToProps = (state, ownProps) => {
     gifData,
     width,
     height,
-    oversample
+    left,
+    right,
+    top,
+    bottom,
+    oversample,
+    strategy
   };
 };
 

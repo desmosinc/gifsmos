@@ -134,8 +134,8 @@ export const requestFrame = opts => async dispatch => {
     dispatch(flashError(badSettingsInput(settingsErrors)));
     return;
   }
-
   const imageData = await getImageData(opts);
+  console.log('imageData', imageData);
   dispatch(addFrame(imageData));
 };
 
