@@ -32,7 +32,7 @@ class Sidebar extends Component {
 
   handleDownload() {
     const { gifData } = this.props;
-    download(gifData, this.props.gifFileName, 'image/gif');
+    download(gifData, this.props.gifFileName || 'gifsmos.gif', 'image/gif');
   }
 
   handleRequestFrame() {
