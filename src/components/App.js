@@ -4,6 +4,7 @@ import SidebarContainer from '../containers/SidebarContainer';
 import PreviewContainer from '../containers/PreviewContainer';
 import BurstContainer from '../containers/BurstContainer';
 import SettingsContainer from '../containers/SettingsContainer';
+import FileCabinetContainer from '../containers/FileCabinetContainer';
 import ErrorToastContainer from '../containers/ErrorToastContainer';
 import CALCULATOR_OPTIONS from '../constants/calculator-options';
 import './App.css';
@@ -41,6 +42,7 @@ class App extends Component {
         <SettingsContainer />
         <PreviewContainer />
         <BurstContainer />
+        <FileCabinetContainer />
         <SidebarContainer />
         <ErrorToastContainer />
       </div>
