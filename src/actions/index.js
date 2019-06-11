@@ -53,6 +53,11 @@ export const updateGIFProgress = progress => ({
   payload: { progress }
 });
 
+export const addText = text => ({
+  type: types.ADD_TEXT,
+  payload: { text }
+});
+
 export const addGIF = imageData => ({
   type: types.ADD_GIF,
   payload: { imageData }

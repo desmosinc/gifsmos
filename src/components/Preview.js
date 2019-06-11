@@ -7,7 +7,6 @@ import './Preview.css';
 class Preview extends Component {
   constructor(props) {
     super(props);
-    this.state = { gifData: this.props.gifData };
     this.handlePreviewUpdate = this.handlePreviewUpdate.bind(this);
     this.handleGenerateGIF = this.handleGenerateGIF.bind(this);
     this.handleTogglePlaying = this.handleTogglePlaying.bind(this);
@@ -28,14 +27,16 @@ class Preview extends Component {
       height,
       oversample,
       interval,
-      generateGIF
+      generateGIF,
+      caption
     } = this.props;
     const images = frameIDs.map(id => frames[id]);
     const multiplier = oversample ? 2 : 1;
     const opts = {
       gifWidth: width * multiplier,
       gifHeight: height * multiplier,
-      interval: interval / 1000
+      interval: interval / 1000,
+      text: caption
     };
     generateGIF(images, opts);
   }
@@ -85,8 +86,11 @@ class Preview extends Component {
           {numFrames ? `${previewIdx + 1} / ${numFrames}` : '0 / 0'}
         </div>
         <div className="Preview-create">
-          {!!numFrames && this.state.gifData.length === 0 ? (
-            <GenerateGifForm handleGenerateGIF={this.handleGenerateGIF} />
+          {!!numFrames && this.props.gifData.length === 0 ? (
+            <GenerateGifForm
+              handleGenerateGIF={this.handleGenerateGIF}
+              addText={this.props.addText}
+            />
           ) : null}
         </div>
         <div className="Preview-progress-outer">

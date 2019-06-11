@@ -4,15 +4,16 @@ import './GenerateGifForm.css';
 class GenerateGifForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { name: '', titleText: '' };
+    this.state = { name: '', caption: '' };
     this.handleInputUpdate = this.handleInputUpdate.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(evt) {
     evt.preventDefault();
+    this.props.addText(this.state.caption);
     this.props.handleGenerateGIF();
-    this.setState({ text: '' });
+    this.setState({ name: '', caption: '' });
   }
 
   handleInputUpdate(evt) {
@@ -33,10 +34,10 @@ class GenerateGifForm extends Component {
         />
         <input
           className="GenerateGifForm-input"
-          name="titleText"
-          value={this.state.titleText}
+          name="caption"
+          value={this.state.caption}
           onChange={this.handleInputUpdate}
-          placeholder="add title text"
+          placeholder="add caption"
         />
         <button
           className="GenerateGifForm-button"

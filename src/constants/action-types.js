@@ -11,7 +11,7 @@
 export const ADD_FRAME = 'ADD_FRAME';
 export const UPDATE_GIF_PROGRESS = 'UPDATE_GIF_PROGRESS';
 export const ADD_GIF = 'ADD_GIF';
-
+export const ADD_TEXT = 'ADD_TEXT';
 // UI
 export const UPDATE_PREVIEW_IDX = 'UPDATE_PREVIEW_IDX';
 export const TOGGLE_PANE = 'TOGGLE_PANE';
