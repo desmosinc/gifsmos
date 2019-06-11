@@ -11,16 +11,19 @@ class GenerateGifForm extends Component {
   handleSubmit(evt) {
     evt.preventDefault();
     this.props.handleGenerateGIF();
-    this.props.addText('');
-    this.props.addTextColor('');
+    this.props.updateText('');
+    this.props.updateTextColor('');
   }
 
   handleInputUpdate(evt) {
     if (evt.target.name === 'caption') {
-      this.props.addText(evt.target.value);
+      this.props.updateText(evt.target.value);
     }
     if (evt.target.name === 'fontColor') {
-      this.props.addTextColor(evt.target.value);
+      this.props.updateTextColor(evt.target.value);
+    }
+    if (evt.target.name === 'name') {
+      this.props.updateGIFFileName(evt.target.value);
     }
   }
 
@@ -32,26 +35,28 @@ class GenerateGifForm extends Component {
           name="name"
           onChange={this.handleInputUpdate}
           placeholder="pick a name for your GIF"
+          value={this.props.gifFileName}
         />
         <input
           className="GenerateGifForm-input"
           name="caption"
           onChange={this.handleInputUpdate}
           placeholder="add caption"
+          value={this.props.caption}
         />
         <input
           className="GenerateGifForm-input"
           name="fontColor"
           type="color"
-          defaultValue="#E79600"
           onChange={this.handleInputUpdate}
+          value={this.props.fontColor}
         />
         <button
           className="GenerateGifForm-button"
           aria-label="generate gif"
           type="submit"
         >
-          Generate GIF
+          Generate!
         </button>
       </form>
     );

@@ -53,15 +53,21 @@ export const updateGIFProgress = progress => ({
   payload: { progress }
 });
 
-export const addText = text => ({
-  type: types.ADD_TEXT,
+export const updateText = text => ({
+  type: types.UPDATE_TEXT,
   payload: { text }
 });
 
-export const addTextColor = fontColor => ({
-  type: types.ADD_TEXT_COLOR,
+export const updateTextColor = fontColor => ({
+  type: types.UPDATE_TEXT_COLOR,
   payload: { fontColor }
 });
+export const updateGIFFileName = name => {
+  return {
+    type: types.UPDATE_GIF_FILENAME,
+    payload: { gifFileName: name }
+  };
+};
 
 export const addGIF = imageData => ({
   type: types.ADD_GIF,

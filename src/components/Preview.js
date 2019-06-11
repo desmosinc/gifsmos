@@ -91,9 +91,13 @@ class Preview extends Component {
           {!!numFrames && this.props.gifData.length === 0 ? (
             <GenerateGifForm
               handleGenerateGIF={this.handleGenerateGIF}
+              gifFileName={this.props.gifFileName}
+              caption={this.props.caption}
+              fontColor={this.props.fontColor}
               defaultColor={this.props.fontColor}
-              addText={this.props.addText}
-              addTextColor={this.props.addTextColor}
+              updateText={this.props.updateText}
+              updateTextColor={this.props.updateTextColor}
+              updateGIFFileName={this.props.updateGIFFileName}
             />
           ) : null}
         </div>
@@ -106,6 +110,11 @@ class Preview extends Component {
             }}
           />
         </div>
+        {gifProgress === 1 ? (
+          <div className="Preview-progress-success">
+            GIF ready for download!
+          </div>
+        ) : null}
       </div>
     );
   }

@@ -47,6 +47,13 @@
   border-radius: 3px;
 }
 
+.Preview-progress-success {
+  width: 200px;
+  margin: 15px auto 0;
+  text-align: center;
+  color: #fff;
+}
+
 @keyframes fade-in {
   0% {
     opacity: 0;
