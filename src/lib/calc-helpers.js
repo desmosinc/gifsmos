@@ -8,6 +8,7 @@
 
 import { calculator } from '../components/App';
 import { noSuchExpression, notASlider } from './error-messages';
+import { saveGraphToLocal, getGraphFromLocal } from './local-storage-helpers';
 
 /*
  * The calculator's async screenshot method takes a callback, but we'd prefer to
@@ -38,4 +39,20 @@ export const setSliderByIndex = (idx, val) => {
 
   const identifier = match[1];
   calculator.setExpression({ id, latex: `${identifier}=${val}` });
+};
+
+export const saveCurrentGraph = async name => {
+  const graph = calculator.getState();
+  const preview = await getImageData({
+    width: 160,
+    height: 160,
+    targetPixelRatio: 0.25
+  });
+
+  saveGraphToLocal(graph, name, preview);
+};
+
+export const loadSavedGraph = dateString => {
+  const graph = getGraphFromLocal(dateString);
+  calculator.setState(graph);
 };
