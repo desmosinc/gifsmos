@@ -58,6 +58,11 @@ export const addText = text => ({
   payload: { text }
 });
 
+export const addTextColor = fontColor => ({
+  type: types.ADD_TEXT_COLOR,
+  payload: { fontColor }
+});
+
 export const addGIF = imageData => ({
   type: types.ADD_GIF,
   payload: { imageData }

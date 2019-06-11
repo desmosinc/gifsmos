@@ -28,7 +28,8 @@ class Preview extends Component {
       oversample,
       interval,
       generateGIF,
-      caption
+      caption,
+      fontColor
     } = this.props;
     const images = frameIDs.map(id => frames[id]);
     const multiplier = oversample ? 2 : 1;
@@ -36,7 +37,8 @@ class Preview extends Component {
       gifWidth: width * multiplier,
       gifHeight: height * multiplier,
       interval: interval / 1000,
-      text: caption
+      text: caption,
+      fontColor: fontColor
     };
     generateGIF(images, opts);
   }
@@ -89,7 +91,9 @@ class Preview extends Component {
           {!!numFrames && this.props.gifData.length === 0 ? (
             <GenerateGifForm
               handleGenerateGIF={this.handleGenerateGIF}
+              defaultColor={this.props.fontColor}
               addText={this.props.addText}
+              addTextColor={this.props.addTextColor}
             />
           ) : null}
         </div>

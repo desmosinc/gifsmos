@@ -16,7 +16,8 @@ import {
   UPDATE_BOUNDS_SETTING,
   UPDATE_STRATEGY,
   RESET,
-  ADD_TEXT
+  ADD_TEXT,
+  ADD_TEXT_COLOR
 } from '../constants/action-types';
 
 const initialState = {
@@ -24,23 +25,22 @@ const initialState = {
   frameIDs: [],
   gifProgress: 0,
   gifData: '',
-  caption: ''
+  caption: '',
+  fontColor: '#E79600'
 };
 
 const images = (state = initialState, { type, payload }) => {
   switch (type) {
     case ADD_FRAME: {
       const { id, imageData } = payload;
-      const { frames, frameIDs, caption } = state;
+      const { frames, frameIDs } = state;
       return {
         ...state,
         ...{
           frames: { ...frames, [id]: imageData },
           frameIDs: [...frameIDs, id],
           gifProgress: 0,
-          gifData: '',
-          caption: caption,
-          fontColor: 'black'
+          gifData: ''
         }
       };
     }
@@ -71,7 +71,15 @@ const images = (state = initialState, { type, payload }) => {
     case ADD_TEXT:
       return {
         ...state,
-        caption: payload.text
+        ...{
+          caption: payload.text
+        }
+      };
+
+    case ADD_TEXT_COLOR:
+      return {
+        ...state,
+        fontColor: payload.fontColor
       };
 
     case RESET:
