@@ -13,6 +13,7 @@ class Sidebar extends Component {
     this.handleToggleSettings = this.handleToggleSettings.bind(this);
     this.handleRequestFrame = this.handleRequestFrame.bind(this);
     this.handleDownload = this.handleDownload.bind(this);
+    this.handleToggleFiles = this.handleToggleFiles.bind(this);
   }
 
   handleTogglePreview() {
@@ -45,6 +46,11 @@ class Sidebar extends Component {
     requestFrame(imageOpts);
   }
 
+  handleToggleFiles() {
+    const { togglePane } = this.props;
+    togglePane(panes.FILES);
+  }
+
   render() {
     const { reset, expandedPane, numFrames, gifData } = this.props;
 
@@ -71,6 +77,12 @@ class Sidebar extends Component {
           icon="settings"
           expanded={expandedPane === panes.SETTINGS}
           onClick={this.handleToggleSettings}
+        />
+
+        <SidebarButton
+          icon="fileCabinet"
+          expanded={expandedPane === panes.FILES}
+          onClick={this.handleToggleFiles}
         />
 
         {!!numFrames && <SidebarButton icon="reset" onClick={reset} />}
