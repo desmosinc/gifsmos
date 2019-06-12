@@ -74,7 +74,7 @@ class GenerateGifForm extends Component {
           onClick={this.renderColorPicker}
           className="colorPicker"
         >
-          <p>pick a color</p>
+          <p>pick a title color</p>
         </div>
         {this.state.color ? colorPicker : null}
         <button
