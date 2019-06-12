@@ -75,13 +75,13 @@ export const invalidBounds = errors => {
     let errBound = badProps[0];
     switch (errBound) {
       case 'left':
-        return 'Left Bound must be less than Right Bound to create a snapshot';
+        return 'Left Bound must be less than Right Bound to create a snapshot.';
       case 'bottom':
-        return 'Bottom Bound must be less than Top Bound to create a snapshot';
+        return 'Bottom Bound must be less than Top Bound to create a snapshot.';
       default:
-        return 'Left Bound must be less than Right Bound; Bottom Bound must be less than Top Bound';
+        return 'Left Bound must be less than Right Bound; Bottom Bound must be less than Top Bound.';
     }
   }
 
-  return 'Left Bound must be less than Right Bound; Bottom Bound must be less than Top Bound';
+  return 'Left Bound must be less than Right Bound; Bottom Bound must be less than Top Bound.';
 };
