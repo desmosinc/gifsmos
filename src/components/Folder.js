@@ -58,7 +58,6 @@ class Folder extends Component {
 
     if (!expanded) return <div className="Folder" />;
 
-    // const prevGraphs =
     const prevGraphs = getSavedGraphsList();
     const savedList = prevGraphs ? (
       <ul className="Folder-saved-list">
