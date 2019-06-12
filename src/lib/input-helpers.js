@@ -43,7 +43,5 @@ export const getBoundErrors = inputs => {
   if (left >= right) errors['left'] = true;
   if (bottom >= top) errors['bottom'] = true;
 
-  console.log('errors', errors);
-
   return errors;
 };

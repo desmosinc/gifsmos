@@ -148,7 +148,6 @@ export const requestFrame = opts => async dispatch => {
   }
 
   const imageData = await getImageData(opts);
-  console.log('imageData', imageData);
   dispatch(addFrame(imageData));
 };
 

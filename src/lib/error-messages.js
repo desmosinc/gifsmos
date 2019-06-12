@@ -66,26 +66,20 @@ export const badSettingsInput = errors => {
 };
 
 export const invalidBounds = errors => {
-  const propMap = {
-    left: 'Left Bound',
-    bottom: 'Bottom Bound'
-  };
-
   let badProps = [];
   for (let prop in errors) {
     if (!!errors[prop]) badProps.push(prop);
   }
 
-  console.log('badProp', badProps);
-
   if (badProps.length === 1) {
     let errBound = badProps[0];
-    console.log(errBound);
     switch (errBound) {
       case 'left':
         return 'Left Bound must be less than Right Bound to create a snapshot';
       case 'bottom':
         return 'Bottom Bound must be less than Top Bound to create a snapshot';
+      default:
+        return 'Left Bound must be less than Right Bound; Bottom Bound must be less than Top Bound';
     }
   }
 
