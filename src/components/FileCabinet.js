@@ -35,7 +35,8 @@ class FileCabinet extends Component {
   handleSaveCurrent() {
     const { name } = this.state;
     const { togglePane } = this.props;
-    saveCurrentGraph(name);
+    const { frames, frameIDs } = this.props.images;
+    saveCurrentGraph(name, frames, frameIDs);
 
     const { errors, ...newState } = this.state;
     newState.name = '';
@@ -46,8 +47,8 @@ class FileCabinet extends Component {
   }
 
   handleLoadGraph(date) {
-    const { togglePane } = this.props;
-    loadSavedGraph(date);
+    const { togglePane, loadFramesFromLocal } = this.props;
+    loadFramesFromLocal(date);
     togglePane(panes.files);
   }
 
@@ -71,7 +72,7 @@ class FileCabinet extends Component {
               <img src={preview} alt={name + '-preview'} />
               <div className="FileCabinet-item-text">
                 <div>{name}</div>
-                <div className="FileCabinet-small-date">
+                <div className="FileCabinet-small-text">
                   created on: {date.slice(0, date.lastIndexOf(' '))}
                 </div>
               </div>
@@ -80,7 +81,9 @@ class FileCabinet extends Component {
         }, this)}
       </ul>
     ) : (
-      <div>No Previous Graphs</div>
+      <div className="FileCabinet-small-text FileCabinet-previous-items">
+        <em>No Saved Graphs</em>
+      </div>
     );
 
     return (
@@ -96,6 +99,7 @@ class FileCabinet extends Component {
           })}
           type="text"
           name="name"
+          placeholder="graph name"
           aria-label="graph name"
           value={name}
           onChange={this.handleInputUpdate}
