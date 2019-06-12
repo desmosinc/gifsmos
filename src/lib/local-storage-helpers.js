@@ -6,7 +6,7 @@
  * takes a graph object & graph name, stringifies, and saves to local storage
  * in "saved" object with unique key of date string
  */
-export const saveGraphToLocal = (graph, name, preview) => {
+export const saveGraphToLocal = (graph, name, preview, frames, frameIDs) => {
   let savedGraphs = localStorage.getItem('gifsmos-saved-graphs');
   if (!savedGraphs) {
     savedGraphs = {
@@ -18,7 +18,9 @@ export const saveGraphToLocal = (graph, name, preview) => {
   const newGraph = {
     name,
     graph,
-    preview
+    preview,
+    frames,
+    frameIDs
   };
   let timeStamp = new Date().toString();
   timeStamp = timeStamp.slice(0, timeStamp.indexOf('(') - 1);
@@ -32,10 +34,8 @@ export const saveGraphToLocal = (graph, name, preview) => {
  */
 
 export const getGraphFromLocal = dateString => {
-  console.log(typeof dateString);
-
   let savedGraphs = JSON.parse(localStorage.getItem('gifsmos-saved-graphs'));
-  return savedGraphs.saved[dateString].graph;
+  return savedGraphs.saved[dateString];
 };
 
 /**
