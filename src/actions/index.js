@@ -62,6 +62,7 @@ export const updateTextColor = fontColor => ({
   type: types.UPDATE_TEXT_COLOR,
   payload: { fontColor }
 });
+
 export const updateGIFFileName = name => {
   return {
     type: types.UPDATE_GIF_FILENAME,

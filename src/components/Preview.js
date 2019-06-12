@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import Frame from './Frame';
-import GenerateGifForm from './GenerateGifForm';
+import GenerateGifFormContainer from '../containers/GenerateGifFormContainer';
 import './Preview.css';
 
 class Preview extends Component {
@@ -89,15 +89,8 @@ class Preview extends Component {
         </div>
         <div className="Preview-create">
           {!!numFrames && this.props.gifData.length === 0 ? (
-            <GenerateGifForm
+            <GenerateGifFormContainer
               handleGenerateGIF={this.handleGenerateGIF}
-              gifFileName={this.props.gifFileName}
-              caption={this.props.caption}
-              fontColor={this.props.fontColor}
-              defaultColor={this.props.fontColor}
-              updateText={this.props.updateText}
-              updateTextColor={this.props.updateTextColor}
-              updateGIFFileName={this.props.updateGIFFileName}
             />
           ) : null}
         </div>
@@ -121,3 +114,11 @@ class Preview extends Component {
 }
 
 export default Preview;
+
+// gifFileName={this.props.gifFileName}
+// caption={this.props.caption}
+// fontColor={this.props.fontColor}
+// defaultColor={this.props.fontColor}
+// updateText={this.props.updateText}
+// updateTextColor={this.props.updateTextColor}
+// updateGIFFileName={this.props.updateGIFFileName}

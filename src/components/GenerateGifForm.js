@@ -11,8 +11,6 @@ class GenerateGifForm extends Component {
   handleSubmit(evt) {
     evt.preventDefault();
     this.props.handleGenerateGIF();
-    this.props.updateText('');
-    this.props.updateTextColor('');
   }
 
   handleInputUpdate(evt) {
