@@ -145,8 +145,8 @@ class Settings extends Component {
 
         <div>Strategy</div>
         <select
+          className="settings-dropdown"
           name="strategy"
-          style={{ fontSize: '20px' }}
           aria-label="strategy"
           onChange={this.handleStrategyUpdate}
         >

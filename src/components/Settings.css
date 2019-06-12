@@ -38,3 +38,12 @@
 .Settings-input-error {
   border-color: #cc0000;
 }
+
+.settings-dropdown {
+  height: 33px;
+  width: 114px;
+  margin-bottom: 15px;
+  margin-top: 5px;
+  border: 1px solid #000;
+  font-size: 1em;
+}
