@@ -27,7 +27,11 @@
  */
 
 import * as types from '../constants/action-types';
-import { setSliderByIndex, getImageData } from '../lib/calc-helpers';
+import {
+  setSliderByIndex,
+  getImageData,
+  loadSavedGraph
+} from '../lib/calc-helpers';
 import { startTimer, clearTimer } from '../lib/timer';
 import {
   gifCreationProblem,
@@ -44,6 +48,14 @@ export const addFrame = imageData => ({
   type: types.ADD_FRAME,
   payload: {
     id: ++nextFrameID,
+    imageData
+  }
+});
+
+export const addSavedFrame = (imageData, id) => ({
+  type: types.ADD_FRAME,
+  payload: {
+    id,
     imageData
   }
 });
@@ -216,4 +228,17 @@ export const generateGIF = (images, opts) => (dispatch, getState) => {
       dispatch(addGIF(data.image));
     }
   });
+};
+
+// loads frames from local
+export const loadFramesFromLocal = dateString => (dispatch, getState) => {
+  dispatch(reset());
+  // sets state of calculator and return saved frames
+  const { frameIDs, frames } = loadSavedGraph(dateString);
+  for (let val = 0; val <= frameIDs.length; val += 1) {
+    // get corresponding image
+    let id = frameIDs[val];
+    let imageData = frames[id];
+    dispatch(addSavedFrame(imageData, id));
+  }
 };
