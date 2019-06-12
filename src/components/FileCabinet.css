@@ -2,7 +2,6 @@
   position: absolute;
   top: 40px;
   left: 70px;
-  /* left: 70px; */
   bottom: 0;
   width: 300px;
   padding-top: 20px;
@@ -20,7 +19,7 @@
 }
 
 .FileCabinet-saved-list {
-  margin-top: 30px;
+  margin-top: 10px;
   padding: 10px 10px;
 }
 
@@ -37,7 +36,7 @@
 }
 
 .FileCabinet-previous-items {
-  margin-top: 20px;
+  padding-top: 30px;
 }
 
 .FileCabinet-item-text {
@@ -46,7 +45,7 @@
   padding-left: 10px;
 }
 
-.FileCabinet-small-date {
+.FileCabinet-small-text {
   font-size: 0.75rem;
 }
 
@@ -60,7 +59,7 @@
   border-radius: 5px;
   padding: 5px;
   outline: none !important;
-  text-align: center;
+  text-align: start;
 }
 
 .FileCabinet-input-error {
