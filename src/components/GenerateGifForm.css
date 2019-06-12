@@ -25,19 +25,30 @@
   border-radius: 5px;
   color: #fff;
   cursor: pointer;
-  outline: none !important;
   animation: fade-in 0.5s;
+}
+
+.GenerateGifForm-container {
+  min-height: 100vh;
 }
 
 .colorPicker {
   display: block;
   width: 210px;
   margin: 15px auto 0;
-  color: rgb(138, 138, 138);
+  color: #fff;
   font-size: 1em;
   padding: 1px;
   border-radius: 5px;
-  outline: none !important;
+  text-align: center;
+  border: none;
+}
+
+.sketchPicker {
+  display: block;
+  margin: 15px auto 0;
+  font-size: 1em;
+  padding: 5px;
   text-align: center;
 }
 

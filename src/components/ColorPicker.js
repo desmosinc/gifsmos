@@ -11,7 +11,7 @@ class ColorPicker extends Component {
     return (
       <div>
         <SketchPicker
-          className="GenerateGifForm-input"
+          className="sketchPicker"
           onChange={this.handleInputUpdate}
           color={this.props.textColor}
         />
