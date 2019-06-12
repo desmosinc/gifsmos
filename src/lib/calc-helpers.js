@@ -41,7 +41,8 @@ export const setSliderByIndex = (idx, val) => {
   calculator.setExpression({ id, latex: `${identifier}=${val}` });
 };
 
-export const saveCurrentGraph = async name => {
+// saves the current graph and any gifs to local storage
+export const saveCurrentGraph = async (name, frames, frameIDs) => {
   const graph = calculator.getState();
   const preview = await getImageData({
     width: 160,
@@ -49,10 +50,12 @@ export const saveCurrentGraph = async name => {
     targetPixelRatio: 0.25
   });
 
-  saveGraphToLocal(graph, name, preview);
+  saveGraphToLocal(graph, name, preview, frames, frameIDs);
 };
 
+// retrieves saved graph
 export const loadSavedGraph = dateString => {
-  const graph = getGraphFromLocal(dateString);
+  const { graph, frames, frameIDs } = getGraphFromLocal(dateString);
   calculator.setState(graph);
+  return { frames, frameIDs };
 };
