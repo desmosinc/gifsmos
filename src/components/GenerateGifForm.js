@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import './GenerateGifForm.css';
+import ColorPicker from './ColorPicker';
 
 class GenerateGifForm extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      color: false
+    };
     this.handleInputUpdate = this.handleInputUpdate.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.renderColorPicker = this.renderColorPicker.bind(this);
+    this.removeColorPicker = this.removeColorPicker.bind(this);
   }
 
   handleSubmit(evt) {
@@ -19,15 +25,34 @@ class GenerateGifForm extends Component {
     if (evt.target.name === 'caption') {
       this.props.updateText(evt.target.value);
     }
-    if (evt.target.name === 'fontColor') {
-      this.props.updateTextColor(evt.target.value);
-    }
+
     if (evt.target.name === 'name') {
       this.props.updateGIFFileName(evt.target.value);
     }
   }
 
+  renderColorPicker() {
+    this.setState(state => ({
+      color: !state.color
+    }));
+  }
+
+  removeColorPicker() {
+    this.setState({
+      color: false
+    });
+  }
+
   render() {
+    console.log(this.state.color);
+    let colorPicker = (
+      <ColorPicker
+        updateTextColor={this.props.updateTextColor}
+        textColor={this.props.fontColor}
+        onMouseUp={this.removeColorPicker}
+      />
+    );
+    let colorPickerBg = { backgroundColor: this.props.fontColor };
     return (
       <form onSubmit={this.handleSubmit}>
         <input
@@ -44,13 +69,14 @@ class GenerateGifForm extends Component {
           placeholder="add caption"
           value={this.props.caption}
         />
-        <input
-          className="GenerateGifForm-input"
-          name="fontColor"
-          type="color"
-          onChange={this.handleInputUpdate}
-          value={this.props.fontColor}
-        />
+        <div
+          style={colorPickerBg}
+          onClick={this.renderColorPicker}
+          className="colorPicker"
+        >
+          <p>pick a color</p>
+        </div>
+        {this.state.color ? colorPicker : null}
         <button
           className="GenerateGifForm-button"
           aria-label="generate gif"

@@ -29,6 +29,18 @@
   animation: fade-in 0.5s;
 }
 
+.colorPicker {
+  display: block;
+  width: 210px;
+  margin: 15px auto 0;
+  color: rgb(138, 138, 138);
+  font-size: 1em;
+  padding: 1px;
+  border-radius: 5px;
+  outline: none !important;
+  text-align: center;
+}
+
 .GenerateGifForm-button:hover {
   background: #484848;
 }
