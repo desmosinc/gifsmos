@@ -32,9 +32,14 @@ import { startTimer, clearTimer } from '../lib/timer';
 import {
   gifCreationProblem,
   badBurstInput,
-  badSettingsInput
+  badSettingsInput,
+  invalidBounds
 } from '../lib/error-messages';
-import { getBurstErrors, getSettingsErrors } from '../lib/input-helpers';
+import {
+  getBurstErrors,
+  getSettingsErrors,
+  getBoundErrors
+} from '../lib/input-helpers';
 
 const ERROR_DELAY = 3000;
 let nextFrameID = 0;
@@ -128,12 +133,20 @@ export const flashError = message => dispatch => {
 
 export const requestFrame = opts => async dispatch => {
   const { width, height } = opts;
+  const { left, right, top, bottom } = opts.mathBounds;
 
   const settingsErrors = getSettingsErrors({ width, height });
   if (Object.keys(settingsErrors).length) {
     dispatch(flashError(badSettingsInput(settingsErrors)));
     return;
   }
+
+  const boundErrors = getBoundErrors({ left, right, top, bottom });
+  if (Object.keys(boundErrors).length) {
+    dispatch(flashError(invalidBounds(boundErrors)));
+    return;
+  }
+
   const imageData = await getImageData(opts);
   console.log('imageData', imageData);
   dispatch(addFrame(imageData));

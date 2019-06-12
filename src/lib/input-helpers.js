@@ -35,3 +35,15 @@ export const getSettingsErrors = inputs => {
 
   return errors;
 };
+
+export const getBoundErrors = inputs => {
+  const errors = {};
+  const { left, right, top, bottom } = inputs;
+
+  if (left >= right) errors['left'] = true;
+  if (bottom >= top) errors['bottom'] = true;
+
+  console.log('errors', errors);
+
+  return errors;
+};

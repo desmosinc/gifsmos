@@ -119,18 +119,6 @@ class Settings extends Component {
           onChange={this.handleInputUpdate}
         />
 
-        <div>Top Bound</div>
-        <input
-          className={classNames('Settings-input', {
-            'Settings-input-error': !isPositiveInteger(width)
-          })}
-          type="number"
-          name="top"
-          aria-label="top bound"
-          value={isNaN(top) ? '' : top}
-          onChange={this.handleInputUpdate}
-        />
-
         <div>Bottom Bound</div>
         <input
           className={classNames('Settings-input', {
@@ -140,6 +128,18 @@ class Settings extends Component {
           name="bottom"
           aria-label="bottom bound"
           value={isNaN(bottom) ? '' : bottom}
+          onChange={this.handleInputUpdate}
+        />
+
+        <div>Top Bound</div>
+        <input
+          className={classNames('Settings-input', {
+            'Settings-input-error': !isPositiveInteger(width)
+          })}
+          type="number"
+          name="top"
+          aria-label="top bound"
+          value={isNaN(top) ? '' : top}
           onChange={this.handleInputUpdate}
         />
 
