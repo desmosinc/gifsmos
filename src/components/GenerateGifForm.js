@@ -11,14 +11,12 @@ class GenerateGifForm extends Component {
     this.handleInputUpdate = this.handleInputUpdate.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.renderColorPicker = this.renderColorPicker.bind(this);
-    this.removeColorPicker = this.removeColorPicker.bind(this);
   }
 
   handleSubmit(evt) {
     evt.preventDefault();
     this.props.handleGenerateGIF();
     this.props.updateText('');
-    this.props.updateTextColor('#e79600');
   }
 
   handleInputUpdate(evt) {
@@ -37,21 +35,14 @@ class GenerateGifForm extends Component {
     }));
   }
 
-  removeColorPicker() {
-    this.setState({
-      color: false
-    });
-  }
-
   render() {
-    console.log(this.state.color);
     let colorPicker = (
       <ColorPicker
         updateTextColor={this.props.updateTextColor}
         textColor={this.props.fontColor}
-        onMouseUp={this.removeColorPicker}
       />
     );
+
     let colorPickerBg = { backgroundColor: this.props.fontColor };
     return (
       <form onSubmit={this.handleSubmit}>

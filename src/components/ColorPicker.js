@@ -3,7 +3,6 @@ import { SketchPicker } from 'react-color';
 
 class ColorPicker extends Component {
   handleInputUpdate = color => {
-    console.log(color);
     this.props.updateTextColor(color.hex);
   };
 
