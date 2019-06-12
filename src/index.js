@@ -9,12 +9,8 @@ import panes from './constants/pane-types';
 import { togglePane } from './actions';
 import greet from './lib/dev-greeting';
 import './index.css';
-import { composeWithDevTools } from 'redux-devtools-extension';
 
-const store = createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(thunkMiddleware))
-);
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
 const closePane = () => store.dispatch(togglePane(panes.NONE));
 
