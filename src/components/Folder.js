@@ -4,9 +4,9 @@ import { getBurstErrors } from '../lib/input-helpers';
 import { saveCurrentGraph, loadSavedGraph } from '../lib/calc-helpers';
 import { getSavedGraphsList } from '../lib/local-storage-helpers';
 import panes from '../constants/pane-types';
-import './FileCabinet.css';
+import './Folder.css';
 
-class FileCabinet extends Component {
+class Folder extends Component {
   constructor(props) {
     super(props);
 
@@ -56,23 +56,23 @@ class FileCabinet extends Component {
     const { name, errors } = this.state;
     const { expanded } = this.props;
 
-    if (!expanded) return <div className="FileCabinet" />;
+    if (!expanded) return <div className="Folder" />;
 
     // const prevGraphs =
     const prevGraphs = getSavedGraphsList();
     const savedList = prevGraphs ? (
-      <ul className="FileCabinet-saved-list">
+      <ul className="Folder-saved-list">
         {prevGraphs.map(function([date, name, preview]) {
           return (
             <div
-              className="FileCabinet-saved-item"
+              className="Folder-saved-item"
               onClick={() => this.handleLoadGraph(date)}
               key={`${date}-${name}`}
             >
               <img src={preview} alt={name + '-preview'} />
-              <div className="FileCabinet-item-text">
+              <div className="Folder-item-text">
                 <div>{name}</div>
-                <div className="FileCabinet-small-text">
+                <div className="Folder-small-text">
                   created on: {date.slice(0, date.lastIndexOf(' '))}
                 </div>
               </div>
@@ -81,21 +81,21 @@ class FileCabinet extends Component {
         }, this)}
       </ul>
     ) : (
-      <div className="FileCabinet-small-text FileCabinet-previous-items">
+      <div className="Folder-small-text Folder-previous-items">
         <em>No Saved Graphs</em>
       </div>
     );
 
     return (
       <div
-        className={classNames('FileCabinet', {
-          'FileCabinet-expanded': expanded
+        className={classNames('Folder', {
+          'Folder-expanded': expanded
         })}
       >
         <div>Name</div>
         <input
-          className={classNames('FileCabinet-input', {
-            'FileCabinet-input-error': !!errors.min
+          className={classNames('Folder-input', {
+            'Folder-input-error': !!errors.min
           })}
           type="text"
           name="name"
@@ -113,7 +113,7 @@ class FileCabinet extends Component {
             Save
           </button>
         </div>
-        <div className="FileCabinet-previous-items">
+        <div className="Folder-previous-items">
           <div>Saved Graphs</div>
           {savedList}
         </div>
@@ -122,4 +122,4 @@ class FileCabinet extends Component {
   }
 }
 
-export default FileCabinet;
+export default Folder;

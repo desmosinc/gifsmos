@@ -235,7 +235,7 @@ export const loadFramesFromLocal = dateString => (dispatch, getState) => {
   dispatch(reset());
   // sets state of calculator and return saved frames
   const { frameIDs, frames } = loadSavedGraph(dateString);
-  for (let val = 0; val <= frameIDs.length; val += 1) {
+  for (let val = 0; val < frameIDs.length; val += 1) {
     // get corresponding image
     let id = frameIDs[val];
     let imageData = frames[id];

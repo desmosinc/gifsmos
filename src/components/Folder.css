@@ -1,4 +1,4 @@
-.FileCabinet {
+.Folder {
   position: absolute;
   top: 40px;
   left: 70px;
@@ -13,43 +13,43 @@
   color: #fff;
 }
 
-.FileCabinet-expanded {
+.Folder-expanded {
   transform: translateX(0);
   transition: 0.2s transform;
 }
 
-.FileCabinet-saved-list {
+.Folder-saved-list {
   margin-top: 10px;
   padding: 10px 10px;
 }
 
 /* ul { padding: 0 }  */
 
-.FileCabinet-saved-item {
+.Folder-saved-item {
   display: flex;
   margin-top: 5px;
   text-align: start;
 }
 
-.FileCabinet-saved-item:hover {
+.Folder-saved-item:hover {
   cursor: pointer;
 }
 
-.FileCabinet-previous-items {
+.Folder-previous-items {
   padding-top: 30px;
 }
 
-.FileCabinet-item-text {
+.Folder-item-text {
   display: block;
   text-align: start;
   padding-left: 10px;
 }
 
-.FileCabinet-small-text {
+.Folder-small-text {
   font-size: 0.75rem;
 }
 
-.FileCabinet-input {
+.Folder-input {
   height: 20px;
   width: 150px;
   margin-bottom: 15px;
@@ -62,11 +62,11 @@
   text-align: start;
 }
 
-.FileCabinet-input-error {
+.Folder-input-error {
   border-color: #cc0000;
 }
 
-.FileCabinet-button {
+.Folder-button {
   width: 110px;
   height: 35px;
   margin-top: 10px;
@@ -79,15 +79,15 @@
   outline: none !important;
 }
 
-.FileCabinet-button:hover {
+.Folder-button:hover {
   background: #484848;
 }
 
-.FileCabinet-button:active {
+.Folder-button:active {
   background: #3b3b3b;
 }
 
-.FileCabinet-button:focus {
+.Folder-button:focus {
   background: #484848;
   border-color: #e79600;
 }

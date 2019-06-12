@@ -74,15 +74,15 @@ class Sidebar extends Component {
         />
 
         <SidebarButton
-          icon="settings"
-          expanded={expandedPane === panes.SETTINGS}
-          onClick={this.handleToggleSettings}
+          icon="folder"
+          expanded={expandedPane === panes.FILES}
+          onClick={this.handleToggleFiles}
         />
 
         <SidebarButton
-          icon="fileCabinet"
-          expanded={expandedPane === panes.FILES}
-          onClick={this.handleToggleFiles}
+          icon="settings"
+          expanded={expandedPane === panes.SETTINGS}
+          onClick={this.handleToggleSettings}
         />
 
         {!!numFrames && <SidebarButton icon="reset" onClick={reset} />}

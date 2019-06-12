@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import FileCabinet from '../components/FileCabinet';
+import Folder from '../components/Folder';
 import { togglePane, loadFramesFromLocal } from '../actions';
 import panes from '../constants/pane-types';
 
@@ -12,9 +12,9 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const FileCabinetContainer = connect(
+const FolderContainer = connect(
   mapStateToProps,
   { togglePane, loadFramesFromLocal }
-)(FileCabinet);
+)(Folder);
 
-export default FileCabinetContainer;
+export default FolderContainer;
