@@ -6,17 +6,17 @@ class GenerateGifForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      color: false
+      showColor: false
     };
-    this.handleInputUpdate = this.handleInputUpdate.bind(this);
+
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleInputUpdate = this.handleInputUpdate.bind(this);
     this.renderColorPicker = this.renderColorPicker.bind(this);
   }
 
   handleSubmit(evt) {
     evt.preventDefault();
     this.props.handleGenerateGIF();
-    this.props.updateText('');
   }
 
   handleInputUpdate(evt) {
@@ -31,7 +31,7 @@ class GenerateGifForm extends Component {
 
   renderColorPicker() {
     this.setState(state => ({
-      color: !state.color
+      showColor: !state.showColor
     }));
   }
 
@@ -67,7 +67,7 @@ class GenerateGifForm extends Component {
         >
           <p>pick a title color</p>
         </div>
-        {this.state.color ? colorPicker : null}
+        {this.state.showColor ? colorPicker : null}
         <button
           className="GenerateGifForm-button"
           aria-label="generate gif"

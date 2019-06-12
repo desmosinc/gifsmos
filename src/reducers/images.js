@@ -27,7 +27,7 @@ const initialState = {
   gifProgress: 0,
   gifData: '',
   caption: '',
-  fontColor: '#E79600',
+  fontColor: '#0000',
   gifFileName: ''
 };
 
