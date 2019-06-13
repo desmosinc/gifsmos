@@ -29,8 +29,12 @@ class Preview extends Component {
       interval,
       generateGIF,
       caption,
-      fontColor
+      fontColor,
+      textAlign,
+      textBaseline
     } = this.props;
+    console.log(textAlign, 'in preview');
+    console.log(textBaseline, 'in preview');
     const images = frameIDs.map(id => frames[id]);
     const multiplier = oversample ? 2 : 1;
     const opts = {
@@ -38,7 +42,9 @@ class Preview extends Component {
       gifHeight: height * multiplier,
       interval: interval / 1000,
       text: caption,
-      fontColor: fontColor
+      fontColor: fontColor,
+      textAlign: textAlign,
+      textBaseline: textBaseline
     };
     generateGIF(images, opts);
   }
@@ -114,11 +120,3 @@ class Preview extends Component {
 }
 
 export default Preview;
-
-// gifFileName={this.props.gifFileName}
-// caption={this.props.caption}
-// fontColor={this.props.fontColor}
-// defaultColor={this.props.fontColor}
-// updateText={this.props.updateText}
-// updateTextColor={this.props.updateTextColor}
-// updateGIFFileName={this.props.updateGIFFileName}

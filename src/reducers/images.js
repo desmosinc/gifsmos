@@ -18,8 +18,10 @@ import {
   UPDATE_STRATEGY,
   RESET,
   UPDATE_TEXT,
-  UPDATE_TEXT_COLOR
+  UPDATE_TEXT_COLOR,
+  UPDATE_TEXT_POSITION
 } from '../constants/action-types';
+import { startTimer } from '../lib/timer';
 
 const initialState = {
   frames: {},
@@ -28,7 +30,9 @@ const initialState = {
   gifData: '',
   caption: '',
   fontColor: '#000',
-  gifFileName: ''
+  gifFileName: '',
+  textAlign: 'center',
+  textBaseline: 'bottom'
 };
 
 const images = (state = initialState, { type, payload }) => {
@@ -89,6 +93,15 @@ const images = (state = initialState, { type, payload }) => {
         ...state,
         ...{
           gifFileName: payload.gifFileName
+        }
+      };
+
+    case UPDATE_TEXT_POSITION:
+      return {
+        ...state,
+        ...{
+          textAlign: payload.textAlign,
+          textBaseline: payload.textBaseline
         }
       };
 

@@ -4,18 +4,21 @@ import {
   updateGIFFileName,
   updateText,
   updateTextColor,
-  generateGIF
+  generateGIF,
+  updateTextPosition
 } from '../actions';
 
 const mapStateToProps = (state, ownProps) => {
   const { images } = state;
-  const { caption, fontColor, gifFileName } = images;
+  const { caption, fontColor, gifFileName, textAlign, textBaseline } = images;
 
   return {
     handleGenerateGIF: ownProps.handleGenerateGIF,
     caption,
     fontColor,
-    gifFileName
+    gifFileName,
+    textAlign,
+    textBaseline
   };
 };
 
@@ -25,7 +28,8 @@ const GenerateGifFormContainer = connect(
     updateText,
     updateTextColor,
     updateGIFFileName,
-    generateGIF
+    generateGIF,
+    updateTextPosition
   }
 )(GenerateGifForm);
 
