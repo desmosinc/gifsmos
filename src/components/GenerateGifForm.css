@@ -52,6 +52,14 @@
   text-align: center;
 }
 
+.GenerateGifForm-select {
+  width: 210px;
+  margin: 15px auto 0;
+  height: 30px;
+  border: none;
+  color: #5c5c5c;
+}
+
 .GenerateGifForm-button:hover {
   background: #484848;
 }

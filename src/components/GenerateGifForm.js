@@ -9,10 +9,10 @@ class GenerateGifForm extends Component {
     this.state = {
       showColor: false
     };
-
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputUpdate = this.handleInputUpdate.bind(this);
     this.renderColorPicker = this.renderColorPicker.bind(this);
+    this.closeColorPicker = this.closeColorPicker.bind(this);
   }
 
   handleSubmit(evt) {
@@ -46,11 +46,16 @@ class GenerateGifForm extends Component {
     }));
   }
 
+  closeColorPicker() {
+    this.setState({ showColor: false });
+  }
+
   render() {
     let colorPicker = (
       <ColorPicker
         updateTextColor={this.props.updateTextColor}
         textColor={this.props.fontColor}
+        closeColorPicker={this.closeColorPicker}
       />
     );
 
@@ -73,7 +78,7 @@ class GenerateGifForm extends Component {
         />
         <select
           type="select"
-          className="GenerateGifForm-input"
+          className="GenerateGifForm-select"
           name="placement"
           onChange={this.handleInputUpdate}
           defaultValue={'DEFAULT'}
