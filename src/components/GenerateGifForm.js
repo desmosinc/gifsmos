@@ -68,7 +68,7 @@ class GenerateGifForm extends Component {
         />
         <select
           type="select"
-          className="GenerateGifForm-input"
+          className="GenerateGifForm-select"
           name="placement"
           // onChange={this.handleInputUpdate}
           // placeholder="add caption"
