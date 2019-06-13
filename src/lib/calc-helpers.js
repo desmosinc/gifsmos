@@ -6,7 +6,7 @@
  * and concise.
  */
 
-import { calculator } from '../components/App';
+import { calculator } from './calculator';
 import { noSuchExpression, notASlider } from './error-messages';
 
 /*

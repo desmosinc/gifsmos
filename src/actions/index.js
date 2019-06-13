@@ -40,6 +40,10 @@ const ERROR_DELAY = 3000;
 let nextFrameID = 0;
 let errorTimeout;
 
+/********************************************************************************/
+/*** Synchronous ****************************************************************/
+/********************************************************************************/
+
 export const addFrame = imageData => ({
   type: types.ADD_FRAME,
   payload: {
@@ -166,6 +170,7 @@ export const requestBurst = opts => async (dispatch, getState) => {
   for (let val = min; val <= max; val += step) {
     sliderErrorMessage = setSliderByIndex(idx, val);
     if (sliderErrorMessage) {
+      dispatch(addFrame(sliderErrorMessage));
       dispatch(flashError(sliderErrorMessage));
       return;
     }
@@ -195,7 +200,10 @@ export const startAnimation = () => (dispatch, getState) => {
 
 // The gifshot library is loaded in index.html
 const gifshot = window.gifshot;
-export const generateGIF = (images, opts) => (dispatch, getState) => {
+export const generateGIF = (images, opts, library = gifshot) => (
+  dispatch,
+  getState
+) => {
   // Have to check state interval and not opts because opts is in seconds
   const { interval } = getState().settings.image;
   const settingsErrors = getSettingsErrors({ interval });
@@ -209,7 +217,7 @@ export const generateGIF = (images, opts) => (dispatch, getState) => {
     ...opts,
     progressCallback: progress => dispatch(updateGIFProgress(progress))
   };
-  gifshot.createGIF(gifshotArgs, data => {
+  library.createGIF(gifshotArgs, data => {
     if (data.error) {
       dispatch(flashError(gifCreationProblem()));
     } else {
