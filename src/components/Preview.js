@@ -7,8 +7,8 @@ import './Preview.css';
 class Preview extends Component {
   constructor(props) {
     super(props);
-    this.handlePreviewUpdate = this.handlePreviewUpdate.bind(this);
     this.handleGenerateGIF = this.handleGenerateGIF.bind(this);
+    this.handlePreviewUpdate = this.handlePreviewUpdate.bind(this);
     this.handleTogglePlaying = this.handleTogglePlaying.bind(this);
   }
 

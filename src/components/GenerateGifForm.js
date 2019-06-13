@@ -5,6 +5,7 @@ import ColorPicker from './ColorPicker';
 class GenerateGifForm extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       showColor: false
     };
@@ -60,6 +61,21 @@ class GenerateGifForm extends Component {
           placeholder="add caption"
           value={this.props.caption}
         />
+        <select
+          type="select"
+          className="GenerateGifForm-input"
+          name="placement"
+          // onChange={this.handleInputUpdate}
+          // placeholder="add caption"
+          // value={this.props.caption}
+        >
+          <option value="topLeft">Top Left</option>
+          <option value="topRight"> Top Right</option>
+          <option value="bottomLeft">Bottom Left</option>
+          <option value="bottomRight">Bottom Right</option>
+          <option value="topCenter">Top Center</option>
+          <option value="bottomCenter">Bottom Center</option>
+        </select>
         <div
           style={colorPickerBg}
           onClick={this.renderColorPicker}

@@ -1,6 +1,11 @@
 import { connect } from 'react-redux';
 import GenerateGifForm from '../components/GenerateGifForm';
-import { updateGIFFileName, updateText, updateTextColor } from '../actions';
+import {
+  updateGIFFileName,
+  updateText,
+  updateTextColor,
+  generateGIF
+} from '../actions';
 
 const mapStateToProps = (state, ownProps) => {
   const { images } = state;
@@ -19,7 +24,8 @@ const GenerateGifFormContainer = connect(
   {
     updateText,
     updateTextColor,
-    updateGIFFileName
+    updateGIFFileName,
+    generateGIF
   }
 )(GenerateGifForm);
 

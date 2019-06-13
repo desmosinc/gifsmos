@@ -226,6 +226,7 @@ export const generateGIF = (images, opts) => (dispatch, getState) => {
     ...opts,
     progressCallback: progress => dispatch(updateGIFProgress(progress))
   };
+
   gifshot.createGIF(gifshotArgs, data => {
     if (data.error) {
       dispatch(flashError(gifCreationProblem()));
