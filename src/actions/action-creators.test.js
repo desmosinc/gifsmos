@@ -6,7 +6,7 @@ import panes from '../constants/pane-types';
 import { initializeCalculator } from '../lib/calculator';
 
 const middlewares = [thunkMiddleware];
-let mockStore = configureMockStore(middlewares);
+const mockStore = configureMockStore(middlewares);
 
 describe('Action creators', () => {
   /***** sync *****/

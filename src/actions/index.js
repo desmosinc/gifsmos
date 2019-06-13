@@ -40,10 +40,6 @@ const ERROR_DELAY = 3000;
 let nextFrameID = 0;
 let errorTimeout;
 
-/********************************************************************************/
-/*** Synchronous ****************************************************************/
-/********************************************************************************/
-
 export const addFrame = imageData => ({
   type: types.ADD_FRAME,
   payload: {
@@ -170,7 +166,6 @@ export const requestBurst = opts => async (dispatch, getState) => {
   for (let val = min; val <= max; val += step) {
     sliderErrorMessage = setSliderByIndex(idx, val);
     if (sliderErrorMessage) {
-      dispatch(addFrame(sliderErrorMessage));
       dispatch(flashError(sliderErrorMessage));
       return;
     }
