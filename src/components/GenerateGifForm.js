@@ -14,14 +14,20 @@ class GenerateGifForm extends Component {
   }
 
   handleInputUpdate(evt) {
-    if (evt.target.name === 'caption') {
-      this.props.updateText(evt.target.value);
-    }
-    if (evt.target.name === 'fontColor') {
-      this.props.updateTextColor(evt.target.value);
-    }
-    if (evt.target.name === 'name') {
-      this.props.updateGIFFileName(evt.target.value);
+    switch (evt.target.name) {
+      case 'caption':
+        this.props.updateText(evt.target.value);
+        break;
+      case 'fontColor':
+        this.props.updateTextColor(evt.target.value);
+        break;
+
+      case 'name':
+        this.props.updateGIFFileName(evt.target.value);
+        break;
+
+      default:
+        break;
     }
   }
 
