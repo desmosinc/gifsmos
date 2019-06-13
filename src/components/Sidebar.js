@@ -99,4 +99,8 @@ class Sidebar extends Component {
   }
 }
 
+Sidebar.defaultProps = {
+  gifData: ''
+};
+
 export default Sidebar;

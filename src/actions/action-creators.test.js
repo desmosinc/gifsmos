@@ -9,7 +9,7 @@ const mockStore = configureMockStore(middlewares);
 
 describe('Action creators', () => {
   describe('synchronous action creators', () => {
-    it('return an action to add a frame', () => {
+    xit('return an action to add a frame', () => {
       const imageData = 'URI';
       const expected = {
         type: types.ADD_FRAME,
@@ -21,7 +21,7 @@ describe('Action creators', () => {
       expect(actions.addFrame(imageData)).toEqual(expected);
     });
 
-    it('return an action to update GIF creation progress', () => {
+    xit('return an action to update GIF creation progress', () => {
       const progress = 0.5;
       const expected = {
         type: types.UPDATE_GIF_PROGRESS,
@@ -30,7 +30,7 @@ describe('Action creators', () => {
       expect(actions.updateGIFProgress(progress)).toEqual(expected);
     });
 
-    it('return an action to add processed GIF data', () => {
+    xit('return an action to add processed GIF data', () => {
       const imageData = 'URI';
       const expected = {
         type: types.ADD_GIF,
@@ -39,7 +39,7 @@ describe('Action creators', () => {
       expect(actions.addGIF(imageData)).toEqual(expected);
     });
 
-    it('return an action to toggle the visible pane', () => {
+    xit('return an action to toggle the visible pane', () => {
       const pane = panes.PREVIEW;
       const expected = {
         type: types.TOGGLE_PANE,
@@ -48,7 +48,7 @@ describe('Action creators', () => {
       expect(actions.togglePane(panes.PREVIEW)).toEqual(expected);
     });
 
-    it('return an action to update the preview index', () => {
+    xit('return an action to update the preview index', () => {
       const idx = 2;
       const expected = {
         type: types.UPDATE_PREVIEW_IDX,
@@ -57,7 +57,7 @@ describe('Action creators', () => {
       expect(actions.updatePreviewIdx(idx)).toEqual(expected);
     });
 
-    it('return an action to update a setting', () => {
+    xit('return an action to update a setting', () => {
       const imageSettings = {
         width: 400,
         height: 200,
@@ -100,15 +100,15 @@ describe('Action creators', () => {
       });
     });
 
-    it('return an action to play the preview animation', () => {
+    xit('return an action to play the preview animation', () => {
       expect(actions.playPreview()).toEqual({ type: types.PLAY_PREVIEW });
     });
 
-    it('return an action to pause the preview animation', () => {
+    xit('return an action to pause the preview animation', () => {
       expect(actions.stopAnimation()).toEqual({ type: types.PAUSE_PREVIEW });
     });
 
-    it('return an action to set an error', () => {
+    xit('return an action to set an error', () => {
       const message = 'error';
       const expected = {
         type: types.SET_ERROR,
@@ -117,11 +117,11 @@ describe('Action creators', () => {
       expect(actions.setError(message)).toEqual(expected);
     });
 
-    it('return an action to clear an error', () => {
+    xit('return an action to clear an error', () => {
       expect(actions.clearError()).toEqual({ type: types.CLEAR_ERROR });
     });
 
-    it('return an action to reset the frames', () => {
+    xit('return an action to reset the frames', () => {
       expect(actions.reset()).toEqual({ type: types.RESET });
     });
   });

@@ -107,4 +107,9 @@ class Preview extends Component {
   }
 }
 
+Preview.defaultProps = {
+  frames: {},
+  frameIDs: []
+};
+
 export default Preview;
