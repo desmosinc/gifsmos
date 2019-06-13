@@ -33,8 +33,7 @@ class Preview extends Component {
       textAlign,
       textBaseline
     } = this.props;
-    console.log(textAlign, 'in preview');
-    console.log(textBaseline, 'in preview');
+
     const images = frameIDs.map(id => frames[id]);
     const multiplier = oversample ? 2 : 1;
     const opts = {

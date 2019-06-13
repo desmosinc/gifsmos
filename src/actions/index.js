@@ -72,8 +72,6 @@ export const updateGIFFileName = name => {
 
 export const updateTextPosition = textOpts => {
   let { textAlign, textBaseline } = textOpts;
-  console.log(textOpts, 'in index.js');
-  console.log({ textAlign, textBaseline }, 'IN INDEX.JS IN ACTIONS FOLDER');
 
   return {
     type: types.UPDATE_TEXT_POSITION,

@@ -77,9 +77,7 @@ const images = (state = initialState, { type, payload }) => {
     case UPDATE_TEXT:
       return {
         ...state,
-        ...{
-          caption: payload.text
-        }
+        caption: payload.text
       };
 
     case UPDATE_TEXT_COLOR:

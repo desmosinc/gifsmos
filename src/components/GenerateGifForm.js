@@ -18,6 +18,10 @@ class GenerateGifForm extends Component {
   handleSubmit(evt) {
     evt.preventDefault();
     this.props.handleGenerateGIF();
+    this.props.updateTextPosition({
+      textAlign: 'center',
+      textBaseline: 'bottom'
+    });
   }
 
   handleInputUpdate(evt) {
@@ -86,19 +90,19 @@ class GenerateGifForm extends Component {
           <option disabled value="DEFAULT">
             pick a text position
           </option>
-          <option value="bottom-center">Bottom Center</option>
-          <option value="top-center">Top Center</option>
-          <option value="bottom-left">Bottom Left</option>
           <option value="top-left">Top Left</option>
-          <option value="bottom-right">Bottom Right</option>
+          <option value="top-center">Top Center</option>
           <option value="top-right"> Top Right</option>
+          <option value="bottom-left">Bottom Left</option>
+          <option value="bottom-center">Bottom Center</option>
+          <option value="bottom-right">Bottom Right</option>
         </select>
         <div
           style={colorPickerBg}
           onClick={this.renderColorPicker}
           className="colorPicker"
         >
-          <p>pick a title color</p>
+          <p>pick a caption color</p>
         </div>
         {this.state.showColor ? colorPicker : null}
         <button
