@@ -195,7 +195,7 @@ export const startAnimation = () => (dispatch, getState) => {
 
 // The gifshot library is loaded in index.html
 const gifshot = window.gifshot;
-export const generateGIF = (images, opts, library = gifshot) => (
+export const generateGIF = (images, opts, gifMaker = gifshot) => (
   dispatch,
   getState
 ) => {
@@ -212,7 +212,7 @@ export const generateGIF = (images, opts, library = gifshot) => (
     ...opts,
     progressCallback: progress => dispatch(updateGIFProgress(progress))
   };
-  library.createGIF(gifshotArgs, data => {
+  gifMaker.createGIF(gifshotArgs, data => {
     if (data.error) {
       dispatch(flashError(gifCreationProblem()));
     } else {

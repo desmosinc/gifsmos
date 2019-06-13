@@ -8,8 +8,51 @@ import { initializeCalculator } from '../lib/calculator';
 const middlewares = [thunkMiddleware];
 const mockStore = configureMockStore(middlewares);
 
+const initialState = {
+  images: {
+    frames: {},
+    frameIDs: [],
+    gifProgress: 0,
+    gifData: ''
+  },
+  settings: {
+    image: {
+      width: 300,
+      height: 300,
+      interval: 100,
+      oversample: false
+    },
+    bounds: {
+      left: -10,
+      right: 10,
+      bottom: -10,
+      top: 10
+    },
+    strategy: 'contain'
+  },
+  ui: {
+    expandedPane: 'NONE',
+    previewIdx: 0,
+    playing: false,
+    error: ''
+  }
+};
+
+const desmosMock = {
+  GraphingCalculator: jest.fn(() => {
+    return {
+      asyncScreenshot: (opts, cb) => cb(''),
+      getExpressions: () => [{ id: 1, latex: 'x = 3' }, { id: 2, latex: '' }],
+      setExpression: () => null
+    };
+  })
+};
+
+const calcContainerMock = { current: undefined };
+
+// Tests
+
 describe('Action creators', () => {
-  /***** sync *****/
   describe('synchronous action creators', () => {
     it('return an action to add a frame', () => {
       const imageData = 'URI';
@@ -128,42 +171,13 @@ describe('Action creators', () => {
     });
   });
 
-  /***** async *****/
   describe('async action creators', () => {
     let store;
+
     beforeEach(() => {
-      store = mockStore({
-        images: {
-          frames: {},
-          frameIDs: [],
-          gifProgress: 0,
-          gifData: ''
-        },
-        settings: {
-          image: {
-            width: 300,
-            height: 300,
-            interval: 100,
-            oversample: false
-          },
-          bounds: {
-            left: -10,
-            right: 10,
-            bottom: -10,
-            top: 10
-          },
-          strategy: 'contain'
-        },
-        ui: {
-          expandedPane: 'NONE',
-          previewIdx: 0,
-          playing: false,
-          error: ''
-        }
-      });
+      store = mockStore(initialState);
     });
 
-    // flashError
     it('return an action to temporarily display error message', () => {
       jest.useFakeTimers();
       const expectedActions = [
@@ -175,7 +189,6 @@ describe('Action creators', () => {
       expect(store.getActions()).toEqual(expectedActions);
     });
 
-    // requestFrame
     it('return an action to request a frame from the calculator', () => {
       const expectedActions = [
         {
@@ -188,22 +201,12 @@ describe('Action creators', () => {
         targetPixelRatio: 1,
         width: 300
       };
-      initializeCalculator(
-        // desmos mock
-        {
-          GraphingCalculator: jest.fn(() => ({
-            asyncScreenshot: (opts, cb) => cb('')
-          }))
-        },
-        // calcContainer mock
-        { current: undefined }
-      );
+      initializeCalculator(desmosMock, calcContainerMock);
       return store.dispatch(actions.requestFrame(opts)).then(() => {
         expect(store.getActions()).toEqual(expectedActions);
       });
     });
 
-    // requestBurst
     it('return an action to request a burst of frames from the calculator', () => {
       const opts = {
         height: 300,
@@ -214,30 +217,13 @@ describe('Action creators', () => {
         step: 1,
         width: 300
       };
-      initializeCalculator(
-        // desmos mock
-        {
-          GraphingCalculator: jest.fn(() => {
-            return {
-              asyncScreenshot: (opts, cb) => cb(''),
-              getExpressions: () => [
-                { id: 1, latex: 'x =3' },
-                { id: 2, latex: '' }
-              ],
-              setExpression: () => null
-            };
-          })
-        },
-        // calcContainer mock
-        { current: undefined }
-      );
+      initializeCalculator(desmosMock, calcContainerMock);
       return store.dispatch(actions.requestBurst(opts)).then(() => {
         // slide with min/max of -3/3 should dispatch addFrame 7 times
         expect(store.getActions().length).toEqual(7);
       });
     });
 
-    // startAnimation
     it('return actions to play animation via frames in state', () => {
       const expectedActions = [
         { type: types.PLAY_PREVIEW },
@@ -247,7 +233,6 @@ describe('Action creators', () => {
       expect(store.getActions()).toEqual(expectedActions);
     });
 
-    // generateGIF
     it('return action to generate a GIF via frames in state', () => {
       const expectedActions = [
         { type: types.UPDATE_GIF_PROGRESS, payload: { progress: 100 } },
