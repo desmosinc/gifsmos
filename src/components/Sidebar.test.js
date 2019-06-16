@@ -1,17 +1,23 @@
 import React from 'react';
 import Sidebar from './Sidebar';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
 
 describe('Sidebar', () => {
-  it('renders without crashing', () => {
+  xit('renders without crashing', () => {
     global.renderWithRedux(<Sidebar />);
   });
 
-  it('', () => {
-    let wrapper = shallow(<Sidebar />);
-    // let serialized = toJson(wrapper);
-    expect(wrapper.find('SidebarButton')).toHaveLength(3);
-    expect(wrapper.find('SidebarButtonWithBadge')).toHaveLength(1);
+  xit('renders text content', () => {
+    const { container } = global.renderWithRedux(<Sidebar />);
+    expect(container).toHaveTextContent('Help');
+  });
+
+  xit('', () => {
+    const { container } = global.renderWithRedux(<Sidebar />);
+    expect(container.firstChild.classList.contains('SidebarButton')).toBe(true);
   });
 });
+
+// expect(axiosMock.get).toHaveBeenCalledTimes(1)
+// expect(axiosMock.get).toHaveBeenCalledWith(url)
+// expect(getByTestId('greeting-text')).toHaveTextContent('hello there')
+// expect(getByTestId('ok-button')).toHaveAttribute('disabled')
