@@ -25,7 +25,9 @@ export const saveGraphToLocal = (graph, name, preview, frames, frameIDs) => {
   let timeStamp = new Date().toString();
   timeStamp = timeStamp.slice(0, timeStamp.indexOf('(') - 1);
   savedGraphs.saved[timeStamp] = newGraph;
+
   localStorage.setItem('gifsmos-saved-graphs', JSON.stringify(savedGraphs));
+  return [timeStamp, name, preview];
 };
 
 /**
@@ -51,5 +53,14 @@ export const getSavedGraphsList = () => {
         obj.name,
         obj.preview
       ])
-    : null;
+    : [];
+};
+
+/**
+ * takes a date string and removes the target graph from local storage
+ */
+export const removeGraphFromLocal = dateString => {
+  let savedGraphs = JSON.parse(localStorage.getItem('gifsmos-saved-graphs'));
+  delete savedGraphs.saved[dateString];
+  localStorage.setItem('gifsmos-saved-graphs', JSON.stringify(savedGraphs));
 };

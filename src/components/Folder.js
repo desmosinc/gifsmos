@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import { getSaveGraphErrors } from '../lib/input-helpers';
-import { saveCurrentGraph } from '../lib/calc-helpers';
-import { getSavedGraphsList } from '../lib/local-storage-helpers';
+import {
+  getSavedGraphsList,
+  removeGraphFromLocal
+} from '../lib/local-storage-helpers';
 import panes from '../constants/pane-types';
 import './Folder.css';
 
@@ -12,12 +13,14 @@ class Folder extends Component {
 
     this.state = {
       name: '',
+      prevGraphs: getSavedGraphsList(),
       errors: {}
     };
 
     this.handleInputUpdate = this.handleInputUpdate.bind(this);
     this.handleSaveCurrent = this.handleSaveCurrent.bind(this);
     this.handleLoadGraph = this.handleLoadGraph.bind(this);
+    this.handleDeleteSavedGraph = this.handleDeleteSavedGraph.bind(this);
   }
 
   handleInputUpdate(evt) {
@@ -30,16 +33,23 @@ class Folder extends Component {
     });
   }
 
-  handleSaveCurrent() {
+  handleDeleteSavedGraph(date) {
+    removeGraphFromLocal(date);
+    this.setState(st => ({
+      prevGraphs: st.prevGraphs.filter(graph => graph[0] !== date)
+    }));
+  }
+
+  async handleSaveCurrent() {
     const { name } = this.state;
-    const { togglePane } = this.props;
+    const { togglePane, saveGraph } = this.props;
     const { frames, frameIDs } = this.props.images;
     const { errors, ...newState } = this.state;
-    newState.errors = getSaveGraphErrors(name);
+    let newGraph = await saveGraph(name, frames, frameIDs);
 
-    if (!newState.errors.name) {
-      saveCurrentGraph(name, frames, frameIDs);
+    if (newGraph) {
       newState.name = '';
+      newState.prevGraphs = [...newState.prevGraphs, newGraph];
       togglePane(panes.FILES);
     }
 
@@ -53,28 +63,34 @@ class Folder extends Component {
   }
 
   render() {
-    const { name, errors } = this.state;
+    const { name, errors, prevGraphs } = this.state;
     const { expanded } = this.props;
 
     if (!expanded) return <div className="Folder" />;
 
-    const prevGraphs = getSavedGraphsList();
     const savedList = prevGraphs ? (
       <ul className="Folder-saved-list">
         {prevGraphs.map(function([date, name, preview]) {
           return (
-            <div
-              className="Folder-saved-item"
-              onClick={() => this.handleLoadGraph(date)}
-              key={`${date}-${name}`}
-            >
-              <img src={preview} alt={name + '-preview'} />
-              <div className="Folder-item-text">
-                <div>{name}</div>
-                <div className="Folder-small-text">
-                  created on: {date.slice(0, date.lastIndexOf(' '))}
+            <div className="Folder-saved-item" key={`${date}-${name}`}>
+              <div
+                className="Folder-saved-graph"
+                onClick={() => this.handleLoadGraph(date)}
+              >
+                <img src={preview} alt={name + '-preview'} />
+                <div className="Folder-item-text">
+                  <div>{name}</div>
+                  <div className="Folder-small-text">
+                    created on: {date.slice(0, date.lastIndexOf(' '))}
+                  </div>
                 </div>
               </div>
+              <button
+                onClick={() => this.handleDeleteSavedGraph(date)}
+                className="Folder-button Folder-delete-graph"
+              >
+                <div className="Folder-delete-text">+</div>
+              </button>
             </div>
           );
         }, this)}
@@ -106,7 +122,7 @@ class Folder extends Component {
           />
           <div>
             <button
-              className="Folder-button"
+              className="Folder-button Folder-save"
               onClick={this.handleSaveCurrent}
               aria-label="save this graph"
             >

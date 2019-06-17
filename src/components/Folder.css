@@ -3,7 +3,7 @@
   top: 40px;
   left: 70px;
   bottom: 0;
-  width: 408px;
+  width: 378px;
   background: #2e2e2e;
   border-right: 1px solid black;
   text-align: center;
@@ -17,27 +17,54 @@
   transition: 0.2s transform;
 }
 
+.Folder-input {
+  height: 20px;
+  width: 150px;
+  margin-bottom: 15px;
+  margin-top: 5px;
+  border: 1px solid #000;
+  font-size: 1em;
+  border-radius: 5px;
+  padding: 5px;
+  outline: none !important;
+  text-align: start;
+}
+
+.Folder-input-error {
+  border-color: #cc0000;
+}
+
 .Folder-saved-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  padding: 0;
 }
 
 .Folder-saved-item {
-  display: flex;
-  margin-bottom: 5px;
-  width: 300px;
-  padding-left: auto;
-  padding-right: auto;
-  text-align: start;
-}
-
-.Folder-saved-item > img {
-  border-radius: 5px;
+  position: relative;
+  width: 100%;
+  z-index: 1;
 }
 
 .Folder-saved-item:hover {
   cursor: pointer;
+}
+
+.Folder-saved-item:hover > .Folder-delete-graph {
+  visibility: visible;
+}
+
+.Folder-saved-graph {
+  display: flex;
+  margin-bottom: 5px;
+  padding-left: 45px;
+  padding-right: 45px;
+  text-align: start;
+}
+
+.Folder-saved-graph > img {
+  border-radius: 5px;
 }
 
 .Folder-previous-items {
@@ -60,34 +87,33 @@
   font-size: 0.75rem;
 }
 
-.Folder-input {
-  height: 20px;
-  width: 150px;
-  margin-bottom: 15px;
-  margin-top: 5px;
-  border: 1px solid #000;
-  font-size: 1em;
-  border-radius: 5px;
-  padding: 5px;
-  outline: none !important;
-  text-align: start;
-}
-
-.Folder-input-error {
-  border-color: #cc0000;
-}
-
 .Folder-button {
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  outline: none !important;
+  border-radius: 5px;
+}
+
+.Folder-save {
+  border: 1px solid #fff;
   width: 110px;
   height: 35px;
   margin-top: 10px;
   font-size: 1em;
-  background: transparent;
-  border: 1px solid #fff;
-  border-radius: 5px;
-  color: #fff;
-  cursor: pointer;
-  outline: none !important;
+}
+
+.Folder-delete-graph {
+  border: transparent;
+  visibility: hidden;
+  position: absolute;
+  top: 0px;
+  right: 20px;
+}
+
+.Folder-delete-text {
+  transform: rotate(45deg);
+  font-size: 1.25rem;
 }
 
 .Folder-button:hover {
