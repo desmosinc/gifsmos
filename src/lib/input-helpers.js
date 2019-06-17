@@ -35,3 +35,13 @@ export const getSettingsErrors = inputs => {
 
   return errors;
 };
+
+export const getSaveGraphErrors = name => {
+  const errors = {};
+  if (!name.length) {
+    errors.name = 'Name required';
+  }
+  console.log(errors);
+
+  return errors;
+};

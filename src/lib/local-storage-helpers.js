@@ -51,5 +51,5 @@ export const getSavedGraphsList = () => {
         obj.name,
         obj.preview
       ])
-    : savedGraphs;
+    : null;
 };

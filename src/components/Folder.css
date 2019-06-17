@@ -3,7 +3,7 @@
   top: 40px;
   left: 70px;
   bottom: 0;
-  width: 300px;
+  width: 408px;
   padding-top: 20px;
   background: #2e2e2e;
   border-right: 1px solid black;
@@ -19,6 +19,9 @@
 }
 
 .Folder-saved-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   margin-top: 10px;
   padding: 10px 10px;
 }
@@ -26,7 +29,14 @@
 .Folder-saved-item {
   display: flex;
   margin-top: 5px;
+  width: 300px;
+  padding-left: auto;
+  padding-right: auto;
   text-align: start;
+}
+
+.Folder-saved-item > img {
+  border-radius: 5px;
 }
 
 .Folder-saved-item:hover {

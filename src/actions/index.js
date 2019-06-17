@@ -230,10 +230,8 @@ export const generateGIF = (images, opts) => (dispatch, getState) => {
   });
 };
 
-// loads frames from local
 export const loadFramesFromLocal = dateString => (dispatch, getState) => {
   dispatch(reset());
-  // sets state of calculator and return saved frames
   const { frameIDs, frames } = loadSavedGraph(dateString);
   for (let val = 0; val < frameIDs.length; val += 1) {
     // get corresponding image

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import { getBurstErrors } from '../lib/input-helpers';
-import { saveCurrentGraph, loadSavedGraph } from '../lib/calc-helpers';
+import { getSaveGraphErrors } from '../lib/input-helpers';
+import { saveCurrentGraph } from '../lib/calc-helpers';
 import { getSavedGraphsList } from '../lib/local-storage-helpers';
 import panes from '../constants/pane-types';
 import './Folder.css';
@@ -25,9 +25,7 @@ class Folder extends Component {
       target: { name, value }
     } = evt;
     const { errors, ...newState } = this.state;
-
     newState[name] = value;
-    newState.errors = getBurstErrors(newState);
 
     this.setState(newState);
   }
@@ -36,14 +34,16 @@ class Folder extends Component {
     const { name } = this.state;
     const { togglePane } = this.props;
     const { frames, frameIDs } = this.props.images;
-    saveCurrentGraph(name, frames, frameIDs);
-
     const { errors, ...newState } = this.state;
-    newState.name = '';
-    newState.errors = getBurstErrors(newState);
+    newState.errors = getSaveGraphErrors(name);
+
+    if (!newState.errors.name) {
+      saveCurrentGraph(name, frames, frameIDs);
+      newState.name = '';
+      togglePane(panes.FILES);
+    }
 
     this.setState(newState);
-    togglePane(panes.FILES);
   }
 
   handleLoadGraph(date) {
@@ -94,18 +94,18 @@ class Folder extends Component {
         <div>Name</div>
         <input
           className={classNames('Folder-input', {
-            'Folder-input-error': !!errors.min
+            'Folder-input-error': !!errors.name
           })}
           type="text"
           name="name"
-          placeholder="graph name"
+          placeholder={errors.name ? errors.name : 'Graph name'}
           aria-label="graph name"
           value={name}
           onChange={this.handleInputUpdate}
         />
         <div>
           <button
-            className="Burst-button"
+            className="Folder-button"
             onClick={this.handleSaveCurrent}
             aria-label="save this graph"
           >
