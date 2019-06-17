@@ -1,4 +1,5 @@
 import 'jest-dom/extend-expect';
+import '@testing-library/react/cleanup-after-each';
 import React from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
