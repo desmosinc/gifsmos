@@ -18,10 +18,6 @@ class GenerateGifForm extends Component {
   handleSubmit(evt) {
     evt.preventDefault();
     this.props.handleGenerateGIF();
-    this.props.updateTextPosition({
-      textAlign: 'center',
-      textBaseline: 'bottom'
-    });
   }
 
   handleInputUpdate(evt) {
@@ -39,6 +35,10 @@ class GenerateGifForm extends Component {
         textAlign: values[1],
         textBaseline: values[0]
       };
+      let selectValue = document.getElementById('GenerateGifForm-select');
+      selectValue = selectValue.options[selectValue.selectedIndex].value;
+
+      localStorage.setItem('selectValue', selectValue);
 
       this.props.updateTextPosition(positionObj);
     }
@@ -46,7 +46,8 @@ class GenerateGifForm extends Component {
 
   renderColorPicker() {
     this.setState(state => ({
-      showColor: !state.showColor
+      showColor: !state.showColor,
+      selectField: null
     }));
   }
 
@@ -55,6 +56,8 @@ class GenerateGifForm extends Component {
   }
 
   render() {
+    console.log(this.props, 'HALEYS MAKING ME CHANGE THIS!!');
+    let currentValue = localStorage.getItem('selectValue') || 'DEFAULT';
     let colorPicker = (
       <ColorPicker
         updateTextColor={this.props.updateTextColor}
@@ -82,10 +85,10 @@ class GenerateGifForm extends Component {
         />
         <select
           type="select"
-          className="GenerateGifForm-select"
+          id="GenerateGifForm-select"
           name="placement"
           onChange={this.handleInputUpdate}
-          defaultValue={'DEFAULT'}
+          defaultValue={currentValue}
         >
           <option disabled value="DEFAULT">
             pick a text position

@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import Frame from './Frame';
 import GenerateGifFormContainer from '../containers/GenerateGifFormContainer';
 import './Preview.css';
+import getTextPosition from '../lib/text-preview-helper';
 
 class Preview extends Component {
   constructor(props) {
@@ -64,10 +65,16 @@ class Preview extends Component {
       frames,
       frameIDs,
       gifProgress,
-      playing
+      playing,
+      caption,
+      fontColor,
+      textAlign,
+      textBaseline
     } = this.props;
     const numFrames = frameIDs.length;
     const imageSrc = frames[frameIDs[previewIdx]];
+
+    let textPosition = getTextPosition(textAlign, textBaseline);
 
     if (!expanded) return <div className="Preview" />;
 
@@ -77,6 +84,9 @@ class Preview extends Component {
           imageSrc={imageSrc}
           playing={playing}
           togglePlaying={this.handleTogglePlaying}
+          caption={caption}
+          fontColor={fontColor}
+          textPosition={textPosition}
         />
         <div className="Preview-scrubber">
           <input

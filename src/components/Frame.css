@@ -44,3 +44,48 @@
   color: #e79600;
   border-color: #e79600;
 }
+
+.frame-container {
+  position: relative;
+  height: 300px;
+  width: 300px;
+}
+
+.top-left {
+  position: absolute;
+  top: -15px;
+  left: 0px;
+}
+
+.top-center {
+  position: absolute;
+  text-align: center;
+  top: -15px;
+
+  width: 100%;
+}
+
+.top-right {
+  position: absolute;
+  top: -15px;
+  right: 2px;
+}
+
+.bottom-left {
+  position: absolute;
+  bottom: -15px;
+  left: 0px;
+}
+
+.bottom-center {
+  position: absolute;
+  text-align: center;
+  bottom: -15px;
+  width: 100%;
+}
+
+.bottom-right {
+  position: absolute;
+  right: 2px;
+  bottom: -15px;
+}

@@ -52,7 +52,7 @@
   text-align: center;
 }
 
-.GenerateGifForm-select {
+#GenerateGifForm-select {
   width: 210px;
   margin: 15px auto 0;
   height: 30px;
