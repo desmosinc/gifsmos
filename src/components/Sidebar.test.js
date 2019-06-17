@@ -1,20 +1,21 @@
 import React from 'react';
 import Sidebar from './Sidebar';
+import { render } from '@testing-library/react';
 
 describe('Sidebar', () => {
-  xit('renders without crashing', () => {
+  it('renders without crashing', () => {
     global.renderWithRedux(<Sidebar />);
   });
 
-  xit('renders text content', () => {
-    const { container } = global.renderWithRedux(<Sidebar />);
-    expect(container).toHaveTextContent('Help');
+  it('renders appropriate content', () => {
+    const { getByTestId, debug } = render(<Sidebar />);
+    debug();
+    // expect(getByTestId('').tagName).toBe('');
   });
 
-  xit('', () => {
-    const { container } = global.renderWithRedux(<Sidebar />);
-    expect(container.firstChild.classList.contains('SidebarButton')).toBe(true);
-  });
+  // it('changes depending on state', () => {
+  //   const { getByTestId, debug } = global.renderWithRedux(<Sidebar />);
+  // });
 });
 
 // expect(axiosMock.get).toHaveBeenCalledTimes(1)
