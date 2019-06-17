@@ -34,7 +34,6 @@ const SidebarButton = ({ children, icon, onClick, expanded }) => (
     onClick={onClick}
     aria-label={ariaMap[icon]}
     aria-expanded={expanded}
-    title={ariaMap[icon]}
   >
     <img src={iconMap[icon]} alt={`${icon} icon`} />
     {children}
