@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Folder from '../components/Folder';
-import { togglePane, loadFramesFromLocal } from '../actions';
+import { togglePane, loadFramesFromLocal, saveGraph } from '../actions';
 import panes from '../constants/pane-types';
 
 const mapStateToProps = (state, ownProps) => {
@@ -14,7 +14,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const FolderContainer = connect(
   mapStateToProps,
-  { togglePane, loadFramesFromLocal }
+  { togglePane, loadFramesFromLocal, saveGraph }
 )(Folder);
 
 export default FolderContainer;

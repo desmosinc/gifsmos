@@ -30,15 +30,22 @@ import * as types from '../constants/action-types';
 import {
   setSliderByIndex,
   getImageData,
-  loadSavedGraph
+  loadSavedGraph,
+  saveCurrentGraph
 } from '../lib/calc-helpers';
 import { startTimer, clearTimer } from '../lib/timer';
 import {
   gifCreationProblem,
   badBurstInput,
-  badSettingsInput
+  badSettingsInput,
+  badNameInput
 } from '../lib/error-messages';
-import { getBurstErrors, getSettingsErrors } from '../lib/input-helpers';
+import {
+  getBurstErrors,
+  getSettingsErrors,
+  getSaveGraphErrors
+} from '../lib/input-helpers';
+import {} from '../lib/input-helpers';
 
 const ERROR_DELAY = 3000;
 let nextFrameID = 0;
@@ -239,4 +246,14 @@ export const loadFramesFromLocal = dateString => (dispatch, getState) => {
     let imageData = frames[id];
     dispatch(addSavedFrame(imageData, id));
   }
+};
+
+export const saveGraph = (name, frames, frameIDs) => async dispatch => {
+  const saveErrors = getSaveGraphErrors(name);
+  if (saveErrors.name) {
+    dispatch(flashError(badNameInput(saveErrors.name)));
+    return null;
+  }
+  let newGraph = await saveCurrentGraph(name, frames, frameIDs);
+  return newGraph;
 };

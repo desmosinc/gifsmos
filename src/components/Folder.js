@@ -115,7 +115,7 @@ class Folder extends Component {
             })}
             type="text"
             name="name"
-            placeholder={errors.name ? errors.name : 'Graph name'}
+            placeholder="Graph name"
             aria-label="graph name"
             value={name}
             onChange={this.handleInputUpdate}
