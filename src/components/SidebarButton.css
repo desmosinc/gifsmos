@@ -3,7 +3,7 @@
   border: 1px solid transparent;
   width: 40px;
   height: 40px;
-  margin-top: 10px;
+  margin-top: 15px;
   margin-left: 15px;
   border-radius: 5px;
   font-size: 1em;
@@ -65,4 +65,30 @@
   100% {
     opacity: 1;
   }
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: grey;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  left: 105%;
+  opacity: 0;
+  transition: opacity 0.8s;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
 }
