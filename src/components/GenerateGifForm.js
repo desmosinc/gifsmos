@@ -18,6 +18,7 @@ class GenerateGifForm extends Component {
   handleSubmit(evt) {
     evt.preventDefault();
     this.props.handleGenerateGIF();
+    localStorage.clear();
   }
 
   handleInputUpdate(evt) {
