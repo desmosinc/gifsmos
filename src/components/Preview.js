@@ -89,7 +89,7 @@ class Preview extends Component {
               onClick={this.handleGenerateGIF}
               aria-label="generate gif"
             >
-              Generate GIF
+              Download GIF
             </button>
           )}
         </div>

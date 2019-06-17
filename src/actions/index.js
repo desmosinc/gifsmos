@@ -35,6 +35,7 @@ import {
   badSettingsInput
 } from '../lib/error-messages';
 import { getBurstErrors, getSettingsErrors } from '../lib/input-helpers';
+import download from 'downloadjs';
 
 const ERROR_DELAY = 3000;
 let nextFrameID = 0;
@@ -214,6 +215,7 @@ export const generateGIF = (images, opts) => (dispatch, getState) => {
       dispatch(flashError(gifCreationProblem()));
     } else {
       dispatch(addGIF(data.image));
+      download(data.image, 'gifsmos.gif', 'image/gif');
     }
   });
 };
