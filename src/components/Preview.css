@@ -9,6 +9,12 @@
   transition: 0.2s transform;
 }
 
+.Preview h1 {
+  text-align: center;
+  color: #fff;
+  margin-top: 40px;
+}
+
 .Preview-expanded {
   transform: translateX(0);
   transition: 0.2s transform;

@@ -27,6 +27,9 @@ class Settings extends Component {
       <div
         className={classNames('Settings', { 'Settings-expanded': expanded })}
       >
+        <div>
+          <h1>Settings</h1>
+        </div>
         <div>Image Width</div>
         <input
           className={classNames('Settings-input', {

@@ -45,6 +45,9 @@ class Burst extends Component {
 
     return (
       <div className={classNames('Burst', { 'Burst-expanded': expanded })}>
+        <div>
+          <h1>Burst</h1>
+        </div>
         <div>Slider Index</div>
         <input
           className={classNames('Burst-input', {

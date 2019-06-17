@@ -63,6 +63,9 @@ class Preview extends Component {
 
     return (
       <div className={classNames('Preview', { 'Preview-expanded': expanded })}>
+        <div>
+          <h1>Preview</h1>
+        </div>
         <Frame
           imageSrc={imageSrc}
           playing={playing}
