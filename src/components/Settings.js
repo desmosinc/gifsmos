@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import { isPositiveInteger } from '../lib/input-helpers';
+import { isPositiveInteger, isProperBound } from '../lib/input-helpers';
 import './Settings.css';
 
 class Settings extends Component {
@@ -14,6 +14,7 @@ class Settings extends Component {
     const {
       target: { name, value, checked }
     } = evt;
+
     const { updateSetting } = this.props;
     const val = name === 'oversample' ? checked : parseInt(value, 10);
     updateSetting(name, val);
@@ -93,12 +94,12 @@ class Settings extends Component {
           <span>Oversample</span>
         </div>
 
-        <hr />
+        <hr style={{ margin: '1rem' }} />
 
         <div>Top Bound</div>
         <input
           className={classNames('Settings-input', {
-            'Settings-input-error': !isPositiveInteger(width)
+            'Settings-input-error': !isProperBound(bottom, top, top)
           })}
           type="number"
           name="top"
@@ -110,7 +111,7 @@ class Settings extends Component {
         <div>Bottom Bound</div>
         <input
           className={classNames('Settings-input', {
-            'Settings-input-error': !isPositiveInteger(width)
+            'Settings-input-error': !isProperBound(bottom, top, bottom)
           })}
           type="number"
           name="bottom"
@@ -122,7 +123,7 @@ class Settings extends Component {
         <div>Left Bound</div>
         <input
           className={classNames('Settings-input', {
-            'Settings-input-error': !isPositiveInteger(width)
+            'Settings-input-error': !isProperBound(left, right, left)
           })}
           type="number"
           name="left"
@@ -134,7 +135,7 @@ class Settings extends Component {
         <div>Right Bound</div>
         <input
           className={classNames('Settings-input', {
-            'Settings-input-error': !isPositiveInteger(width)
+            'Settings-input-error': !isProperBound(left, right, right)
           })}
           type="number"
           name="right"
@@ -145,7 +146,7 @@ class Settings extends Component {
 
         <div>Strategy</div>
         <select
-          className="settings-dropdown"
+          className="Settings-dropdown"
           name="strategy"
           aria-label="strategy"
           onChange={this.handleStrategyUpdate}

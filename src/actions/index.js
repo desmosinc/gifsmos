@@ -142,6 +142,7 @@ export const requestFrame = opts => async dispatch => {
   }
 
   const boundErrors = getBoundErrors({ left, right, top, bottom });
+
   if (Object.keys(boundErrors).length) {
     dispatch(flashError(invalidBounds(boundErrors)));
     return;
@@ -152,10 +153,26 @@ export const requestFrame = opts => async dispatch => {
 };
 
 export const requestBurst = opts => async (dispatch, getState) => {
-  const { idx, min, max, step, width, height, oversample } = opts;
+  const {
+    idx,
+    min,
+    max,
+    step,
+    width,
+    height,
+    oversample,
+    left,
+    right,
+    top,
+    bottom
+  } = opts;
   const imageOpts = {
     width,
     height,
+    left,
+    right,
+    top,
+    bottom,
     targetPixelRatio: oversample ? 2 : 1
   };
 

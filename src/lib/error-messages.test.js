@@ -53,14 +53,23 @@ describe('error messages', () => {
   });
 
   it('return a message for an invalid bounds errors', () => {
-    expect(errors.invalidBounds({ left: true })).toEqual(
+    expect(errors.invalidBounds({ leftless: true })).toEqual(
       'Left Bound must be less than Right Bound to create a snapshot.'
     );
-    expect(errors.invalidBounds({ bottom: true })).toEqual(
+    expect(errors.invalidBounds({ bottomless: true })).toEqual(
       'Bottom Bound must be less than Top Bound to create a snapshot.'
     );
-    expect(errors.invalidBounds({ left: true, bottom: true })).toEqual(
-      'Left Bound must be less than Right Bound and Bottom Bound must be less than Top Bound to create a snapshot.'
+    expect(errors.invalidBounds({ top: true })).toEqual(
+      'Top Bound must be a valid integer.'
+    );
+    expect(errors.invalidBounds({ bottom: true })).toEqual(
+      'Bottom Bound must be a valid integer.'
+    );
+    expect(errors.invalidBounds({ left: true })).toEqual(
+      'Left Bound must be a valid integer.'
+    );
+    expect(errors.invalidBounds({ right: true })).toEqual(
+      'Right Bound must be a valid integer.'
     );
   });
 });

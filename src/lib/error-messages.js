@@ -71,17 +71,36 @@ export const invalidBounds = errors => {
     if (!!errors[prop]) badProps.push(prop);
   }
 
-  if (badProps.length === 1) {
-    let errBound = badProps[0];
+  let errorString = [];
+
+  for (let i = 0; i < badProps.length; i++) {
+    let errBound = badProps[i];
+
     switch (errBound) {
-      case 'left':
-        return 'Left Bound must be less than Right Bound to create a snapshot.';
+      case 'leftless':
+        errorString.push(
+          'Left Bound must be less than Right Bound to create a snapshot.'
+        );
+        break;
+      case 'bottomless':
+        errorString.push(
+          'Bottom Bound must be less than Top Bound to create a snapshot.'
+        );
+        break;
+      case 'top':
+        errorString.push('Top Bound must be a valid integer.');
+        break;
       case 'bottom':
-        return 'Bottom Bound must be less than Top Bound to create a snapshot.';
-      default:
-        return 'Left Bound must be less than Right Bound; Bottom Bound must be less than Top Bound.';
+        errorString.push('Bottom Bound must be a valid integer.');
+        break;
+      case 'left':
+        errorString.push('Left Bound must be a valid integer.');
+        break;
+      case 'right':
+        errorString.push('Right Bound must be a valid integer.');
+        break;
     }
   }
 
-  return 'Left Bound must be less than Right Bound; Bottom Bound must be less than Top Bound.';
+  return errorString.join('   ');
 };

@@ -3,6 +3,6 @@ import App from './App';
 
 describe('App', () => {
   it('renders without crashing', () => {
-    renderWithRedux(<App />);
+    let wrapper = global.renderWithRedux(<App />);
   });
 });

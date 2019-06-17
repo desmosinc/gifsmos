@@ -30,6 +30,8 @@ class App extends Component {
       CALCULATOR_OPTIONS
     );
 
+    //allows us to see calculator object in window
+    window.calculator = calculator;
     window.addEventListener('keydown', this.handleKeyDown);
   }
 
