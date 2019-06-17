@@ -4,7 +4,6 @@
   left: 70px;
   bottom: 0;
   width: 408px;
-  padding-top: 20px;
   background: #2e2e2e;
   border-right: 1px solid black;
   text-align: center;
@@ -22,13 +21,11 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 10px;
-  padding: 10px 10px;
 }
 
 .Folder-saved-item {
   display: flex;
-  margin-top: 5px;
+  margin-bottom: 5px;
   width: 300px;
   padding-left: auto;
   padding-right: auto;
@@ -44,6 +41,12 @@
 }
 
 .Folder-previous-items {
+  height: calc(88vh - 175px);
+  margin-top: 15px;
+  overflow: scroll;
+}
+
+.Folder-titles {
   padding-top: 30px;
 }
 

@@ -91,31 +91,31 @@ class Folder extends Component {
           'Folder-expanded': expanded
         })}
       >
-        <div>Name</div>
-        <input
-          className={classNames('Folder-input', {
-            'Folder-input-error': !!errors.name
-          })}
-          type="text"
-          name="name"
-          placeholder={errors.name ? errors.name : 'Graph name'}
-          aria-label="graph name"
-          value={name}
-          onChange={this.handleInputUpdate}
-        />
         <div>
-          <button
-            className="Folder-button"
-            onClick={this.handleSaveCurrent}
-            aria-label="save this graph"
-          >
-            Save
-          </button>
+          <div className="Folder-titles">Name</div>
+          <input
+            className={classNames('Folder-input', {
+              'Folder-input-error': !!errors.name
+            })}
+            type="text"
+            name="name"
+            placeholder={errors.name ? errors.name : 'Graph name'}
+            aria-label="graph name"
+            value={name}
+            onChange={this.handleInputUpdate}
+          />
+          <div>
+            <button
+              className="Folder-button"
+              onClick={this.handleSaveCurrent}
+              aria-label="save this graph"
+            >
+              Save
+            </button>
+          </div>
         </div>
-        <div className="Folder-previous-items">
-          <div>Saved Graphs</div>
-          {savedList}
-        </div>
+        <div className="Folder-titles">Saved Graphs</div>
+        <div className="Folder-previous-items">{savedList}</div>
       </div>
     );
   }
