@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Folder from '../components/Folder';
+import Save from '../components/Save';
 import { togglePane, loadFramesFromLocal, saveGraph } from '../actions';
 import panes from '../constants/pane-types';
 
@@ -12,9 +12,9 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const FolderContainer = connect(
+const SaveContainer = connect(
   mapStateToProps,
   { togglePane, loadFramesFromLocal, saveGraph }
-)(Folder);
+)(Save);
 
-export default FolderContainer;
+export default SaveContainer;

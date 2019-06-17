@@ -1,4 +1,4 @@
-.Folder {
+.Save {
   position: absolute;
   top: 40px;
   left: 70px;
@@ -12,12 +12,12 @@
   color: #fff;
 }
 
-.Folder-expanded {
+.Save-expanded {
   transform: translateX(0);
   transition: 0.2s transform;
 }
 
-.Folder-input {
+.Save-input {
   height: 20px;
   width: 150px;
   margin-bottom: 15px;
@@ -30,32 +30,32 @@
   text-align: start;
 }
 
-.Folder-input-error {
+.Save-input-error {
   border-color: #cc0000;
 }
 
-.Folder-saved-list {
+.Save-saved-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   padding: 0;
 }
 
-.Folder-saved-item {
+.Save-saved-item {
   position: relative;
   width: 100%;
   z-index: 1;
 }
 
-.Folder-saved-item:hover {
+.Save-saved-item:hover {
   cursor: pointer;
 }
 
-.Folder-saved-item:hover > .Folder-delete-graph {
+.Save-saved-item:hover > .Save-delete-graph {
   visibility: visible;
 }
 
-.Folder-saved-graph {
+.Save-saved-graph {
   display: flex;
   margin-bottom: 5px;
   padding-left: 45px;
@@ -63,31 +63,31 @@
   text-align: start;
 }
 
-.Folder-saved-graph > img {
+.Save-saved-graph > img {
   border-radius: 5px;
 }
 
-.Folder-previous-items {
+.Save-previous-items {
   height: calc(88vh - 175px);
   margin-top: 15px;
   overflow: scroll;
 }
 
-.Folder-titles {
+.Save-titles {
   padding-top: 30px;
 }
 
-.Folder-item-text {
+.Save-item-text {
   display: block;
   text-align: start;
   padding-left: 10px;
 }
 
-.Folder-small-text {
+.Save-small-text {
   font-size: 0.75rem;
 }
 
-.Folder-button {
+.Save-button {
   background: transparent;
   color: #fff;
   cursor: pointer;
@@ -95,7 +95,7 @@
   border-radius: 5px;
 }
 
-.Folder-save {
+.Save-save {
   border: 1px solid #fff;
   width: 110px;
   height: 35px;
@@ -103,7 +103,7 @@
   font-size: 1em;
 }
 
-.Folder-delete-graph {
+.Save-delete-graph {
   border: transparent;
   visibility: hidden;
   position: absolute;
@@ -111,20 +111,20 @@
   right: 20px;
 }
 
-.Folder-delete-text {
+.Save-delete-text {
   transform: rotate(45deg);
   font-size: 1.25rem;
 }
 
-.Folder-button:hover {
+.Save-button:hover {
   background: #484848;
 }
 
-.Folder-button:active {
+.Save-button:active {
   background: #3b3b3b;
 }
 
-.Folder-button:focus {
+.Save-button:focus {
   background: #484848;
   border-color: #e79600;
 }
