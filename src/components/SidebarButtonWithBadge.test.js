@@ -1,12 +1,15 @@
 import React from 'react';
 import SidebarButtonWithBadge from './SidebarButtonWithBadge';
+import { cleanup } from '@testing-library/react';
 
-describe('SidebarButtonWithBadge', () => {
-  xit('renders without crashing', () => {
+afterEach(cleanup);
+
+describe('<SidebarButtonWithBadge/>', () => {
+  it('renders without crashing', () => {
     global.renderWithRedux(<SidebarButtonWithBadge />);
   });
 
-  xit('renders appropriate content', () => {
+  it('renders appropriate content', () => {
     const { getByTestId } = global.renderWithRedux(
       <SidebarButtonWithBadge showBadge={true} color="color" />
     );

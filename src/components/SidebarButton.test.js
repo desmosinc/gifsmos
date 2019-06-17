@@ -1,12 +1,15 @@
 import React from 'react';
 import SidebarButton from './SidebarButton';
+import { cleanup } from '@testing-library/react';
 
-describe('SidebarButton', () => {
-  xit('renders without crashing', () => {
+afterEach(cleanup);
+
+describe('<SidebarButton/>', () => {
+  it('renders without crashing', () => {
     global.renderWithRedux(<SidebarButton />);
   });
 
-  xit('renders appropriate content', () => {
+  it('renders appropriate content', () => {
     const { getByTestId } = global.renderWithRedux(
       <SidebarButton icon="icon" />
     );

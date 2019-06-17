@@ -1,13 +1,15 @@
 import React from 'react';
 import Sidebar from './Sidebar';
-import { fireEvent } from '@testing-library/react';
+import { cleanup, fireEvent } from '@testing-library/react';
 
-describe('Sidebar', () => {
-  xit('renders without crashing', () => {
+afterEach(cleanup);
+
+describe('<Sidebar/>', () => {
+  it('renders without crashing', () => {
     global.renderWithRedux(<Sidebar />);
   });
 
-  xit('renders appropriate content', () => {
+  it('renders appropriate content', () => {
     const { getByTestId } = global.renderWithRedux(<Sidebar />);
     // check that all 4 buttons render icons as children
     expect(getByTestId('SidebarButton-camera-button').firstChild.alt).toBe(
@@ -39,13 +41,12 @@ describe('Sidebar', () => {
     const burstButton = getByTestId('SidebarButton-burst-button');
     const previewButton = getByTestId('SidebarButton-preview-button');
     const settingsButton = getByTestId('SidebarButton-settings-button');
-    // click buttons
+    // click buttons and check event counts
     fireEvent.click(cameraButton);
+    expect(requestFrame).toHaveBeenCalledTimes(1);
     fireEvent.click(burstButton);
     fireEvent.click(previewButton);
     fireEvent.click(settingsButton);
-    // check event counts
-    expect(requestFrame).toHaveBeenCalledTimes(1);
     expect(togglePane).toHaveBeenCalledTimes(3);
   });
 });

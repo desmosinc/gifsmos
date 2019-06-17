@@ -68,7 +68,7 @@ class Preview extends Component {
           playing={playing}
           togglePlaying={this.handleTogglePlaying}
         />
-        <div className="Preview-scrubber">
+        <div className="Preview-scrubber" data-testid="Preview-scrubber">
           <input
             type="range"
             min="0"
@@ -79,10 +79,16 @@ class Preview extends Component {
             aria-label="preview frame index"
           />
         </div>
-        <div className="Preview-scrubber-counter">
+        <div
+          className="Preview-scrubber-counter"
+          data-testid="Preview-scrubber-counter"
+        >
           {numFrames ? `${previewIdx + 1} / ${numFrames}` : '0 / 0'}
         </div>
-        <div className="Preview-create">
+        <div
+          className="Preview-create"
+          data-testid="Preview-create-button-container"
+        >
           {!!numFrames && (
             <button
               className="Preview-create-button"
@@ -108,6 +114,7 @@ class Preview extends Component {
 }
 
 Preview.defaultProps = {
+  previewIdx: 0,
   frames: {},
   frameIDs: []
 };
