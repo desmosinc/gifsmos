@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import { getBurstErrors } from '../lib/input-helpers';
 import './Burst.css';
+import panes from '../constants/pane-types';
 
 class Burst extends Component {
   constructor(props) {
@@ -97,14 +98,6 @@ class Burst extends Component {
           >
             Capture
           </button>
-        </div>
-        <div>TOP: {isNaN(this.props.top) ? 'INVALID' : this.props.top} </div>
-        <div>
-          BOTTOM: {isNaN(this.props.bottom) ? 'INVALID' : this.props.bottom}{' '}
-        </div>
-        <div>LEFT: {isNaN(this.props.left) ? 'INVALID' : this.props.left} </div>
-        <div>
-          RIGHT: {isNaN(this.props.right) ? 'INVALID' : this.props.right}{' '}
         </div>
       </div>
     );

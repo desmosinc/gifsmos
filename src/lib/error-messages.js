@@ -39,8 +39,9 @@ export const badBurstInput = errors => {
       propText = 'input';
   }
 
-  if (propText === propMap.idx)
+  if (propText === propMap.idx) {
     return `Your ${propText} must be a positive integer.`;
+  }
 
   return `Your ${propText} isn't quite right.`;
 };

@@ -182,6 +182,7 @@ export const requestBurst = opts => async (dispatch, getState) => {
   // Check for errors in the current pane first.
   const burstErrors = getBurstErrors({ idx, min, max, step });
   if (Object.keys(burstErrors).length) {
+    console.log('burst error');
     dispatch(flashError(badBurstInput(burstErrors)));
     return;
   }
@@ -189,13 +190,15 @@ export const requestBurst = opts => async (dispatch, getState) => {
   // Then check for errors in the settings pane.
   const settingsErrors = getSettingsErrors({ width, height });
   if (Object.keys(settingsErrors).length) {
+    console.log('setting error');
     dispatch(flashError(badSettingsInput(settingsErrors)));
     return;
   }
 
   const boundErrors = getBoundErrors({ top, bottom, left, right });
   if (Object.keys(boundErrors).length) {
-    dispatch(flashError(badSettingsInput(boundErrors)));
+    console.log('bound error', top, bottom, left, right);
+    dispatch(flashError(invalidBounds(boundErrors)));
     return;
   }
 
