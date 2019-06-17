@@ -142,6 +142,7 @@ export const clearError = () => ({ type: types.CLEAR_ERROR });
 
 export const reset = () => {
   clearTimer();
+  localStorage.clear();
   return { type: types.RESET };
 };
 
