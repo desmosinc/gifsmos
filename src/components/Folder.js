@@ -21,13 +21,13 @@ class Folder extends Component {
   }
 
   handleInputUpdate(evt) {
-    const {
-      target: { name, value }
-    } = evt;
-    const { errors, ...newState } = this.state;
-    newState[name] = value;
+    const { name, value } = evt.target;
 
-    this.setState(newState);
+    this.setState(st => {
+      const { ...nextState } = st;
+      nextState[name] = value;
+      return nextState;
+    });
   }
 
   handleSaveCurrent() {
