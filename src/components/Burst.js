@@ -98,6 +98,14 @@ class Burst extends Component {
             Capture
           </button>
         </div>
+        <div>TOP: {isNaN(this.props.top) ? 'INVALID' : this.props.top} </div>
+        <div>
+          BOTTOM: {isNaN(this.props.bottom) ? 'INVALID' : this.props.bottom}{' '}
+        </div>
+        <div>LEFT: {isNaN(this.props.left) ? 'INVALID' : this.props.left} </div>
+        <div>
+          RIGHT: {isNaN(this.props.right) ? 'INVALID' : this.props.right}{' '}
+        </div>
       </div>
     );
   }
