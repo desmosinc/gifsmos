@@ -23,3 +23,8 @@
   color: #fff;
   text-decoration: underline;
 }
+
+.info {
+  color: white;
+  display: inline;
+}

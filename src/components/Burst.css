@@ -60,3 +60,35 @@
   background: #484848;
   border-color: #e79600;
 }
+
+.burstInfoButton {
+  height: 20px;
+  margin: 20px;
+}
+
+.busrtInfoButton:hover {
+  cursor: pointer;
+}
+
+.burstInformation {
+  background-color: #fff;
+  color: black;
+  font-size: 12px;
+  padding: 10px;
+  border-radius: 5px;
+  overflow: scroll;
+  margin: 0px 20px;
+  height: 80px;
+}
+
+.burstInformation li {
+  text-align: left;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import { getBurstErrors } from '../lib/input-helpers';
+import Info from './Info';
 import './Burst.css';
+import burstBlurb from './infoBlurbs/burstBlurb.js';
 
 class Burst extends Component {
   constructor(props) {
@@ -12,11 +14,13 @@ class Burst extends Component {
       min: -10,
       max: 10,
       step: 1,
-      errors: {}
+      errors: {},
+      showInfo: false
     };
 
     this.handleInputUpdate = this.handleInputUpdate.bind(this);
     this.handleRequestBurst = this.handleRequestBurst.bind(this);
+    this.toggleInfo = this.toggleInfo.bind(this);
   }
 
   handleInputUpdate(evt) {
@@ -37,9 +41,16 @@ class Burst extends Component {
     requestBurst({ ...this.state, ...imgOpts });
   }
 
+  toggleInfo() {
+    this.setState({
+      showInfo: !this.state.showInfo
+    });
+  }
+
   render() {
     const { idx, min, max, step, errors } = this.state;
     const { expanded } = this.props;
+    let displayClass = this.state.showInfo ? 'show' : 'hide';
 
     if (!expanded) return <div className="Burst" />;
 
@@ -101,6 +112,13 @@ class Burst extends Component {
             Capture
           </button>
         </div>
+        <Info
+          infoButtonClass={'burstInfoButton'}
+          toggleInfo={this.toggleInfo}
+          displayClass={displayClass}
+          blurb={burstBlurb}
+          className={'burstInformation'}
+        />
       </div>
     );
   }

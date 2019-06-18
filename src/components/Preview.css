@@ -80,6 +80,44 @@
   border-radius: 3px;
 }
 
+.previewInfoButton {
+  height: 20px;
+  width: 20px;
+  margin: 0px auto;
+}
+
+.previewInfoContainer {
+  text-align: center;
+  margin: 10px;
+}
+
+.previewInfoButton:hover {
+  cursor: pointer;
+}
+
+.previewInformation {
+  background-color: #fff;
+  color: black;
+  font-size: 12px;
+  padding: 10px;
+  border-radius: 5px;
+  overflow: scroll;
+  height: 50px;
+  margin-top: 5px;
+}
+
+.previewHeader h1 {
+  margin: 25px;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
 @keyframes fade-in {
   0% {
     opacity: 0;

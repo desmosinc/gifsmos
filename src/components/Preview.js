@@ -2,13 +2,19 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import Frame from './Frame';
 import './Preview.css';
+import Info from './Info';
+import previewBlurb from './infoBlurbs/previewBlurb';
 
 class Preview extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      showInfo: false
+    };
     this.handlePreviewUpdate = this.handlePreviewUpdate.bind(this);
     this.handleGenerateGIF = this.handleGenerateGIF.bind(this);
     this.handleTogglePlaying = this.handleTogglePlaying.bind(this);
+    this.toggleInfo = this.toggleInfo.bind(this);
   }
 
   handlePreviewUpdate(evt) {
@@ -47,6 +53,12 @@ class Preview extends Component {
     }
   }
 
+  toggleInfo() {
+    this.setState({
+      showInfo: !this.state.showInfo
+    });
+  }
+
   render() {
     const {
       expanded,
@@ -58,12 +70,13 @@ class Preview extends Component {
     } = this.props;
     const numFrames = frameIDs.length;
     const imageSrc = frames[frameIDs[previewIdx]];
+    let displayClass = this.state.showInfo ? 'show' : 'hide';
 
     if (!expanded) return <div className="Preview" />;
 
     return (
       <div className={classNames('Preview', { 'Preview-expanded': expanded })}>
-        <div>
+        <div className="previewHeader">
           <h1>Preview</h1>
         </div>
         <Frame
@@ -104,6 +117,15 @@ class Preview extends Component {
               background: gifProgress === 1 ? '#2ecc40' : '#e79600'
             }}
           />
+          <div className="previewInfoContainer">
+            <Info
+              infoButtonClass={'previewInfoButton'}
+              className={'previewInformation'}
+              toggleInfo={this.toggleInfo}
+              displayClass={displayClass}
+              blurb={previewBlurb}
+            />
+          </div>
         </div>
       </div>
     );
