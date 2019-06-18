@@ -2,19 +2,9 @@
  * Helper functions for loading and saving graphs to/from local storage
  */
 
-/**
- * takes a graph object & graph name, stringifies, and saves to local storage
- * in "saved" object with unique key of date string
- */
 export const saveGraphToLocal = (graph, name, preview, frames, frameIDs) => {
   let savedGraphs = localStorage.getItem('gifsmos-saved-graphs');
-  if (!savedGraphs) {
-    savedGraphs = {
-      saved: {}
-    };
-  } else {
-    savedGraphs = JSON.parse(savedGraphs);
-  }
+  savedGraphs = savedGraphs ? JSON.parse(savedGraphs) : { saved: {} };
   const newGraph = {
     name,
     graph,
@@ -22,28 +12,18 @@ export const saveGraphToLocal = (graph, name, preview, frames, frameIDs) => {
     frames,
     frameIDs
   };
-  let timeStamp = new Date().toString();
-  timeStamp = timeStamp.slice(0, timeStamp.indexOf('(') - 1);
+  let timeStamp = new Date().toLocaleString();
   savedGraphs.saved[timeStamp] = newGraph;
 
   localStorage.setItem('gifsmos-saved-graphs', JSON.stringify(savedGraphs));
   return [timeStamp, name, preview];
 };
 
-/**
- * takes a date string and retrieves the graph object from local storage
- * returns graph object
- */
-
 export const getGraphFromLocal = dateString => {
   let savedGraphs = JSON.parse(localStorage.getItem('gifsmos-saved-graphs'));
   return savedGraphs.saved[dateString];
 };
 
-/**
- * returns an array of objects with a name and dateStrings or
- * null if none saved
- */
 export const getSavedGraphsList = () => {
   let savedGraphs = JSON.parse(localStorage.getItem('gifsmos-saved-graphs'));
 
@@ -56,9 +36,6 @@ export const getSavedGraphsList = () => {
     : [];
 };
 
-/**
- * takes a date string and removes the target graph from local storage
- */
 export const removeGraphFromLocal = dateString => {
   let savedGraphs = JSON.parse(localStorage.getItem('gifsmos-saved-graphs'));
   delete savedGraphs.saved[dateString];

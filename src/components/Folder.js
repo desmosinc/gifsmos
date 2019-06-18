@@ -5,9 +5,9 @@ import {
   removeGraphFromLocal
 } from '../lib/local-storage-helpers';
 import panes from '../constants/pane-types';
-import './Save.css';
+import './Folder.css';
 
-class Save extends Component {
+class Folder extends Component {
   constructor(props) {
     super(props);
 
@@ -66,52 +66,52 @@ class Save extends Component {
     const { name, errors, prevGraphs } = this.state;
     const { expanded } = this.props;
 
-    if (!expanded) return <div className="Save" />;
+    if (!expanded) return <div className="Folder" />;
 
     const savedList = prevGraphs ? (
-      <ul className="Save-saved-list">
-        {prevGraphs.map(function([date, name, preview]) {
+      <ul className="Folder-saved-list">
+        {prevGraphs.reverse().map(function([date, name, preview]) {
           return (
-            <div className="Save-saved-item" key={`${date}-${name}`}>
+            <div className="Folder-saved-item" key={`${date}-${name}`}>
               <div
-                className="Save-saved-graph"
+                className="Folder-saved-graph"
                 onClick={() => this.handleLoadGraph(date)}
               >
                 <img src={preview} alt={name + '-preview'} />
-                <div className="Save-item-text">
-                  <div>{name}</div>
-                  <div className="Save-small-text">
+                <div className="Folder-item-text">
+                  <div className="Folder-name-text">{name}</div>
+                  <div className="Folder-small-text">
                     created on: {date.slice(0, date.lastIndexOf(' '))}
                   </div>
                 </div>
               </div>
               <button
                 onClick={() => this.handleDeleteSavedGraph(date)}
-                className="Save-button Save-delete-graph"
+                className="Folder-button Folder-delete-graph"
               >
-                <div className="Save-delete-text">+</div>
+                <div className="Folder-delete-text">+</div>
               </button>
             </div>
           );
         }, this)}
       </ul>
     ) : (
-      <div className="Save-small-text Save-previous-items">
+      <div className="Folder-small-text Folder-previous-items">
         <em>No Saved Graphs</em>
       </div>
     );
 
     return (
       <div
-        className={classNames('Save', {
-          'Save-expanded': expanded
+        className={classNames('Folder', {
+          'Folder-expanded': expanded
         })}
       >
         <div>
-          <div className="Save-titles">Name</div>
+          <div className="Folder-titles">Name</div>
           <input
-            className={classNames('Save-input', {
-              'Save-input-error': !!errors.name
+            className={classNames('Folder-input', {
+              'Folder-input-error': !!errors.name
             })}
             type="text"
             name="name"
@@ -122,19 +122,19 @@ class Save extends Component {
           />
           <div>
             <button
-              className="Save-button Save-save"
+              className="Folder-button Folder-save"
               onClick={this.handleSaveCurrent}
-              aria-label="save this graph"
+              aria-label="Folder this graph"
             >
               Save
             </button>
           </div>
         </div>
-        <div className="Save-titles">Saved Graphs</div>
-        <div className="Save-previous-items">{savedList}</div>
+        <div className="Folder-titles">Saved Graphs</div>
+        <div className="Folder-previous-items">{savedList}</div>
       </div>
     );
   }
 }
 
-export default Save;
+export default Folder;

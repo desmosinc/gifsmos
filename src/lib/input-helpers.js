@@ -40,8 +40,8 @@ export const getSaveGraphErrors = name => {
   const errors = {};
   if (!name.length) {
     errors.name = 'Name required';
-  } else if (name.length >= 30) {
-    errors.name = 'Name must be less than 30 characters';
+  } else if (name.length > 255) {
+    errors.name = `Name cannot be longer than 255 characters`;
   }
   return errors;
 };
