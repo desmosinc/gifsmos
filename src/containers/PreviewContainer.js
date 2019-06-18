@@ -4,7 +4,8 @@ import {
   generateGIF,
   updatePreviewIdx,
   startAnimation,
-  stopAnimation
+  stopAnimation,
+  deleteFrameAtIdx
 } from '../actions';
 import panes from '../constants/pane-types';
 
@@ -30,7 +31,13 @@ const mapStateToProps = (state, ownProps) => {
 
 const PreviewContainer = connect(
   mapStateToProps,
-  { updatePreviewIdx, generateGIF, startAnimation, stopAnimation }
+  {
+    updatePreviewIdx,
+    deleteFrameAtIdx,
+    generateGIF,
+    startAnimation,
+    stopAnimation
+  }
 )(Preview);
 
 export default PreviewContainer;

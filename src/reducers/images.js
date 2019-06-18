@@ -11,6 +11,7 @@
 import {
   ADD_FRAME,
   UPDATE_GIF_PROGRESS,
+  DELETE_FRAME_IDX,
   ADD_GIF,
   UPDATE_IMAGE_SETTING,
   UPDATE_BOUNDS_SETTING,
@@ -35,6 +36,29 @@ const images = (state = initialState, { type, payload }) => {
         ...{
           frames: { ...frames, [id]: imageData },
           frameIDs: [...frameIDs, id],
+          gifProgress: 0,
+          gifData: ''
+        }
+      };
+    }
+
+    case DELETE_FRAME_IDX: {
+      const { idx } = payload;
+      const { frames, frameIDs } = state;
+
+      const newFrames = {};
+      frameIDs.pop();
+
+      Object.entries(frames).forEach(function(pair) {
+        if (+pair[0] < idx) newFrames[pair[0]] = frames[pair[0]];
+        if (+pair[0] > idx) newFrames[+pair[0] - 1] = frames[pair[0]];
+      });
+
+      return {
+        ...state,
+        ...{
+          frames: newFrames,
+          framesIDs: frameIDs,
           gifProgress: 0,
           gifData: ''
         }

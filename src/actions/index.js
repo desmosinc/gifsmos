@@ -71,6 +71,11 @@ export const updatePreviewIdx = idx => ({
   payload: { idx }
 });
 
+export const deleteFrameAtIdx = idx => ({
+  type: types.DELETE_FRAME_IDX,
+  payload: { idx }
+});
+
 export const updateSetting = (setting, val) => {
   let type;
   const payload = { [setting]: val };

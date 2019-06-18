@@ -9,6 +9,7 @@ class Preview extends Component {
     this.handlePreviewUpdate = this.handlePreviewUpdate.bind(this);
     this.handleGenerateGIF = this.handleGenerateGIF.bind(this);
     this.handleTogglePlaying = this.handleTogglePlaying.bind(this);
+    this.handleDeleteFrame = this.handleDeleteFrame.bind(this);
   }
 
   handlePreviewUpdate(evt) {
@@ -47,6 +48,19 @@ class Preview extends Component {
     }
   }
 
+  handleDeleteFrame() {
+    const {
+      previewIdx,
+      frameIDs,
+      updatePreviewIdx,
+      deleteFrameAtIdx
+    } = this.props;
+
+    const newIdx = previewIdx - 1 < 0 ? 0 : previewIdx - 1;
+    deleteFrameAtIdx(frameIDs[previewIdx]);
+    updatePreviewIdx(newIdx);
+  }
+
   render() {
     const {
       expanded,
@@ -82,6 +96,19 @@ class Preview extends Component {
         <div className="Preview-scrubber-counter">
           {numFrames ? `${previewIdx + 1} / ${numFrames}` : '0 / 0'}
         </div>
+
+        <div className="Frame-delete">
+          {!!numFrames && (
+            <button
+              className="Frame-delete-button"
+              aria-label="delete this frame"
+              onClick={this.handleDeleteFrame}
+            >
+              Delete this Frame
+            </button>
+          )}
+        </div>
+
         <div className="Preview-create">
           {!!numFrames && (
             <button

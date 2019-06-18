@@ -14,6 +14,7 @@ export const ADD_GIF = 'ADD_GIF';
 
 // UI
 export const UPDATE_PREVIEW_IDX = 'UPDATE_PREVIEW_IDX';
+export const DELETE_FRAME_IDX = 'DELETE_FRAME_IDX';
 export const TOGGLE_PANE = 'TOGGLE_PANE';
 export const PLAY_PREVIEW = 'PLAY_PREVIEW';
 export const PAUSE_PREVIEW = 'PAUSE_PREVIEW';

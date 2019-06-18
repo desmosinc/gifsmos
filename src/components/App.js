@@ -30,6 +30,8 @@ class App extends Component {
       CALCULATOR_OPTIONS
     );
 
+    window.calculator = calculator;
+
     window.addEventListener('keydown', this.handleKeyDown);
   }
 
