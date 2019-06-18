@@ -2,11 +2,17 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import { isPositiveInteger } from '../lib/input-helpers';
 import './Settings.css';
+import Info from './Info';
+import settingsBlurb from './infoBlurbs/settingsBlurb';
 
 class Settings extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      showInfo: false
+    };
     this.handleInputUpdate = this.handleInputUpdate.bind(this);
+    this.toggleInfo = this.toggleInfo.bind(this);
   }
 
   handleInputUpdate(evt) {
@@ -18,8 +24,15 @@ class Settings extends Component {
     updateSetting(name, val);
   }
 
+  toggleInfo() {
+    this.setState({
+      showInfo: !this.state.showInfo
+    });
+  }
+
   render() {
     const { expanded, width, height, oversample, interval } = this.props;
+    let displayClass = this.state.showInfo ? 'show' : 'hide';
 
     if (!expanded) return <div className="Settings" />;
 
@@ -73,6 +86,13 @@ class Settings extends Component {
           />
           <span>Oversample</span>
         </div>
+        <Info
+          infoButtonClass={'settings-info-button'}
+          className={'settingsInformation'}
+          toggleInfo={this.toggleInfo}
+          displayClass={displayClass}
+          blurb={settingsBlurb}
+        />
       </div>
     );
   }
