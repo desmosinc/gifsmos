@@ -68,7 +68,7 @@ class Folder extends Component {
 
     if (!expanded) return <div className="Folder" />;
 
-    const savedList = prevGraphs ? (
+    const savedList = prevGraphs.length ? (
       <ul className="Folder-saved-list">
         {prevGraphs.reverse().map(function([date, name, preview]) {
           return (
