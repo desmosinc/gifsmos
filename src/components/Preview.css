@@ -95,6 +95,14 @@
   background: #484848;
 }
 
+.Frame-section-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px auto 0;
+}
+
 .Preview-progress-outer {
   width: 210px;
   height: 10px;
@@ -104,6 +112,21 @@
 .Preview-progress-inner {
   height: 100%;
   border-radius: 3px;
+}
+
+.directional-icon {
+  width: 100px;
+  height: 100px;
+}
+
+.frame-row {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.block {
+  width: 100px;
+  float: left;
 }
 
 @keyframes fade-in {
