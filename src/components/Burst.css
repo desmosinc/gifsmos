@@ -41,10 +41,6 @@
   outline: none !important;
 }
 
-.Burst-text-italic {
-  font-style: italic;
-}
-
 .Burst-input-error {
   border-color: #cc0000;
 }
