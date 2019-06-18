@@ -27,7 +27,7 @@ const initialState = {
   gifProgress: 0,
   gifData: '',
   caption: '',
-  fontColor: '#0000',
+  fontColor: '#000000',
   gifFileName: ''
 };
 
@@ -73,9 +73,7 @@ const images = (state = initialState, { type, payload }) => {
     case UPDATE_TEXT:
       return {
         ...state,
-        ...{
-          caption: payload.text
-        }
+        caption: payload.text
       };
 
     case UPDATE_TEXT_COLOR:
@@ -87,9 +85,7 @@ const images = (state = initialState, { type, payload }) => {
     case UPDATE_GIF_FILENAME:
       return {
         ...state,
-        ...{
-          gifFileName: payload.gifFileName
-        }
+        gifFileName: payload.gifFileName
       };
 
     case RESET:

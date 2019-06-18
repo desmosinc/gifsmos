@@ -114,11 +114,3 @@ class Preview extends Component {
 }
 
 export default Preview;
-
-// gifFileName={this.props.gifFileName}
-// caption={this.props.caption}
-// fontColor={this.props.fontColor}
-// defaultColor={this.props.fontColor}
-// updateText={this.props.updateText}
-// updateTextColor={this.props.updateTextColor}
-// updateGIFFileName={this.props.updateGIFFileName}
