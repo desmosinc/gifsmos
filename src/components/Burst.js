@@ -6,9 +6,8 @@ import './Burst.css';
 class Burst extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      idx: 1,
+      idx: null,
       min: -10,
       max: 10,
       step: 1,
@@ -38,24 +37,32 @@ class Burst extends Component {
   }
 
   render() {
-    const { idx, min, max, step, errors } = this.state;
-    const { expanded } = this.props;
+    const { min, max, step, errors } = this.state;
+    const { expanded, burstSliders } = this.props;
 
     if (!expanded) return <div className="Burst" />;
 
     return (
       <div className={classNames('Burst', { 'Burst-expanded': expanded })}>
-        <div>Slider Index</div>
-        <input
-          className={classNames('Burst-input', {
-            'Burst-input-error': !!errors.idx
-          })}
-          type="number"
+        <div>Slider</div>
+        <select
+          className="Burst-dropdown"
           name="idx"
           aria-label="slider index"
-          value={isNaN(idx) ? '' : idx}
           onChange={this.handleInputUpdate}
-        />
+        >
+          <option value={null} defaultValue>
+            {burstSliders.length ? 'Choose Slider' : 'No Sliders'}
+          </option>
+          {burstSliders.map(exp => {
+            return (
+              <option key={`slider-${exp.id}`} value={exp.id}>
+                {' '}
+                {exp.latex.split('=').join(' = ')}
+              </option>
+            );
+          })}
+        </select>
         <div>Slider Min</div>
         <input
           className={classNames('Burst-input', {

@@ -39,3 +39,12 @@ export const setSliderByIndex = (idx, val) => {
   const identifier = match[1];
   calculator.setExpression({ id, latex: `${identifier}=${val}` });
 };
+
+export const getSliderExpressions = () => {
+  return calculator
+    .getExpressions()
+    .filter(
+      exp =>
+        exp.latex && exp.latex !== '' && exp.latex.match(/[a-z]/gi).length === 1
+    );
+};

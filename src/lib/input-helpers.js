@@ -16,7 +16,7 @@ export const getBurstErrors = inputs => {
     if (isNaN(inputs[prop])) errors[prop] = true;
   }
 
-  if (!isPositiveInteger(idx)) errors.idx = true;
+  if (!idx) errors.idx = true;
   if (min >= max) {
     errors.min = true;
     errors.max = true;

@@ -11,7 +11,8 @@ const mapStateToProps = (state, ownProps) => {
     expanded: ui.expandedPane === panes.BURST,
     width,
     height,
-    oversample
+    oversample,
+    burstSliders: ui.burstSliders
   };
 };
 

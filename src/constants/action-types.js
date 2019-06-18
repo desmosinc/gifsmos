@@ -19,6 +19,7 @@ export const PLAY_PREVIEW = 'PLAY_PREVIEW';
 export const PAUSE_PREVIEW = 'PAUSE_PREVIEW';
 export const SET_ERROR = 'SET_ERROR';
 export const CLEAR_ERROR = 'CLEAR_ERROR';
+export const UPDATE_BURST_SLIDERS = 'UPDATE_BURST_SLIDERS';
 
 // Settings
 export const UPDATE_IMAGE_SETTING = 'UPDATE_IMAGE_SETTING';

@@ -21,8 +21,9 @@ class Sidebar extends Component {
   }
 
   handleToggleBurst() {
-    const { togglePane } = this.props;
+    const { togglePane, getBurstSliders, expandedPane } = this.props;
     togglePane(panes.BURST);
+    if (expandedPane !== 'BURST') getBurstSliders();
   }
 
   handleToggleSettings() {

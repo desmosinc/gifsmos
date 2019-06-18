@@ -11,6 +11,8 @@ export const noSuchExpression = idx =>
 export const notASlider = idx =>
   `Looks like expression ${idx} doesn't define a slider.`;
 
+export const noSlidersFound = () => `Looks like the graph has no sliders.`;
+
 export const gifCreationProblem = () =>
   'There was a problem creating your GIF. :(';
 
@@ -40,7 +42,7 @@ export const badBurstInput = errors => {
   }
 
   if (propText === propMap.idx)
-    return `Your ${propText} must be a positive integer.`;
+    return `Please choose a slider or define an expression`;
 
   return `Your ${propText} isn't quite right.`;
 };

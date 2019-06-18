@@ -27,12 +27,17 @@
  */
 
 import * as types from '../constants/action-types';
-import { setSliderByIndex, getImageData } from '../lib/calc-helpers';
+import {
+  setSliderByIndex,
+  getImageData,
+  getSliderExpressions
+} from '../lib/calc-helpers';
 import { startTimer, clearTimer } from '../lib/timer';
 import {
   gifCreationProblem,
   badBurstInput,
-  badSettingsInput
+  badSettingsInput,
+  noSlidersFound
 } from '../lib/error-messages';
 import { getBurstErrors, getSettingsErrors } from '../lib/input-helpers';
 
@@ -217,3 +222,16 @@ export const generateGIF = (images, opts) => (dispatch, getState) => {
     }
   });
 };
+
+export const getBurstSliders = () => dispatch => {
+  const sliders = getSliderExpressions();
+  if (!sliders.length) {
+    dispatch(flashError(noSlidersFound()));
+  }
+  dispatch(updateBurstSliders(sliders));
+};
+
+const updateBurstSliders = sliders => ({
+  type: types.UPDATE_BURST_SLIDERS,
+  payload: sliders
+});
