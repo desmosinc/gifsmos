@@ -2,19 +2,19 @@ import React from 'react';
 import classNames from 'classnames';
 import camera from './icons/camera.svg';
 import preview from './icons/preview.svg';
-import reset from './icons/reset.svg';
 import download from './icons/download.svg';
 import burst from './icons/burst.svg';
 import settings from './icons/settings.svg';
+import trash from './icons/trash.svg';
 import './SidebarButton.css';
 
 const iconMap = {
   camera,
   preview,
-  reset,
   download,
   burst,
-  settings
+  settings,
+  trash
 };
 
 const ariaMap = {
