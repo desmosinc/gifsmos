@@ -53,8 +53,7 @@ export const saveCurrentGraph = async (name, frames, frameIDs) => {
     targetPixelRatio: 0.25
   });
 
-  let newGraph = saveGraphToLocal(graph, name, preview, frames, frameIDs);
-  return newGraph;
+  return saveGraphToLocal(graph, name, preview, frames, frameIDs);
 };
 
 // retrieves saved graph

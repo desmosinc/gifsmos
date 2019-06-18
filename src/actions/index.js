@@ -242,8 +242,8 @@ export const loadFramesFromLocal = dateString => (dispatch, getState) => {
   const { frameIDs, frames } = loadSavedGraph(dateString);
   for (let val = 0; val < frameIDs.length; val += 1) {
     // get corresponding image
-    let id = frameIDs[val];
-    let imageData = frames[id];
+    const id = frameIDs[val];
+    const imageData = frames[id];
     dispatch(addSavedFrame(imageData, id));
   }
 };
@@ -252,8 +252,8 @@ export const saveGraph = (name, frames, frameIDs) => async dispatch => {
   const saveErrors = getSaveGraphErrors(name);
   if (saveErrors.name) {
     dispatch(flashError(badNameInput(saveErrors.name)));
-    return null;
+    return;
   }
-  let newGraph = await saveCurrentGraph(name, frames, frameIDs);
+  const newGraph = await saveCurrentGraph(name, frames, frameIDs);
   return newGraph;
 };
