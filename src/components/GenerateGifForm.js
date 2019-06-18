@@ -57,7 +57,6 @@ class GenerateGifForm extends Component {
   }
 
   render() {
-    console.log(this.props, 'HALEYS MAKING ME CHANGE THIS!!');
     let currentValue = localStorage.getItem('selectValue') || 'DEFAULT';
     let colorPicker = (
       <ColorPicker
