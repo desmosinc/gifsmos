@@ -27,12 +27,7 @@
  */
 
 import * as types from '../constants/action-types';
-import {
-  setSliderByIndex,
-  getImageData,
-  getCalcState,
-  setCalcState
-} from '../lib/calc-helpers';
+import { setSliderByIndex, getImageData } from '../lib/calc-helpers';
 import { startTimer, clearTimer } from '../lib/timer';
 import {
   gifCreationProblem,
@@ -61,6 +56,11 @@ export const updateGIFProgress = progress => ({
 export const addGIF = imageData => ({
   type: types.ADD_GIF,
   payload: { imageData }
+});
+
+export const undoBurst = (frames, frameIDs) => ({
+  type: types.UNDO_BURST,
+  payload: { frames, frameIDs }
 });
 
 export const togglePane = pane => {
@@ -162,11 +162,6 @@ export const requestBurst = opts => async (dispatch, getState) => {
     targetPixelRatio: oversample ? 2 : 1
   };
 
-  // grab calculator state prior to capture
-  const prevFrames = { ...frames };
-  const prevFrameIDs = [...frameIDs];
-  const prevCalcState = getCalcState();
-
   // Check for errors in the current pane first.
   const burstErrors = getBurstErrors({ idx, min, max, step });
   if (Object.keys(burstErrors).length) {
@@ -181,6 +176,10 @@ export const requestBurst = opts => async (dispatch, getState) => {
     return;
   }
 
+  //
+  const prevFrames = { ...frames };
+  const prevFrameIDs = [...frameIDs];
+
   let imageData;
   let sliderErrorMessage;
   for (let val = min; val <= max; val += step) {
@@ -194,12 +193,8 @@ export const requestBurst = opts => async (dispatch, getState) => {
     dispatch(addFrame(imageData));
   }
 
-  // return data prior to burst capture for undo
-  return {
-    prevFrames,
-    prevFrameIDs,
-    prevCalcState
-  };
+  //
+  return { prevFrames, prevFrameIDs };
 };
 
 export const startAnimation = () => (dispatch, getState) => {

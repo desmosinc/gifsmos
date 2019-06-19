@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import { getCalcState, setCalcState } from '../lib/calc-helpers';
 import { getBurstErrors } from '../lib/input-helpers';
 import './Burst.css';
 
@@ -12,11 +13,16 @@ class Burst extends Component {
       min: -10,
       max: 10,
       step: 1,
+      isCapturing: false,
+      prevFrames: {},
+      prevFrameIDs: [],
+      prevCalcState: {},
       errors: {}
     };
 
     this.handleInputUpdate = this.handleInputUpdate.bind(this);
     this.handleRequestBurst = this.handleRequestBurst.bind(this);
+    this.handleUndoBurst = this.handleUndoBurst.bind(this);
   }
 
   handleInputUpdate(evt) {
@@ -33,17 +39,46 @@ class Burst extends Component {
   }
 
   async handleRequestBurst() {
+    this.setState({ isCapturing: true });
     const { requestBurst, expanded, frames, frameIDs, ...imgOpts } = this.props;
-    // pass frames and frameIDs
-    const dataForUndo = await requestBurst({
+    // grab calculator state prior to capture
+    const prevCalcState = getCalcState();
+    // capture
+    const undoData = await requestBurst({
       ...this.state,
+      ...imgOpts,
       frames,
-      frameIDs,
-      ...imgOpts
+      frameIDs
     });
-    // save undo data to state
-    // if undo data in state, show undo button
-    console.log(dataForUndo);
+    // if capture was successful, update state accordingly
+    if (undoData) {
+      const { prevFrames, prevFrameIDs } = undoData;
+      this.setState({
+        isCapturing: false,
+        prevFrames,
+        prevFrameIDs,
+        prevCalcState
+      });
+    }
+    // update isCapturing regardless
+    else {
+      this.setState({ isCapturing: false });
+    }
+  }
+
+  handleUndoBurst() {
+    const { undoBurst } = this.props;
+    const { prevFrames, prevFrameIDs, prevCalcState } = this.state;
+    // dispatch action to change frames, frameIDs in state
+    undoBurst(prevFrames, prevFrameIDs);
+    // revert calculator state
+    setCalcState(prevCalcState);
+    // clear out undo data in local state
+    this.setState({
+      prevFrames: {},
+      prevFrameIDs: [],
+      prevCalcState: {}
+    });
   }
 
   render() {
@@ -100,13 +135,26 @@ class Burst extends Component {
         />
         <div>
           <button
-            className="Burst-button"
+            className={classNames('Burst-button', {
+              capturing: this.state.isCapturing
+            })}
             onClick={this.handleRequestBurst}
             aria-label="capture several frames"
           >
-            Capture
+            {this.state.isCapturing ? 'Capturing...' : 'Capture'}
           </button>
         </div>
+        {this.state.prevFrameIDs.length ? (
+          <div>
+            <button
+              className="Burst-button"
+              onClick={this.handleUndoBurst}
+              aria-label="undo last burst"
+            >
+              Undo
+            </button>
+          </div>
+        ) : null}
       </div>
     );
   }
