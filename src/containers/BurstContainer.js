@@ -4,14 +4,17 @@ import { requestBurst } from '../actions';
 import panes from '../constants/pane-types';
 
 const mapStateToProps = (state, ownProps) => {
-  const { settings, ui } = state;
+  const { settings, ui, images } = state;
   const { width, height, oversample } = settings.image;
+  const { frames, frameIDs } = images;
 
   return {
     expanded: ui.expandedPane === panes.BURST,
     width,
     height,
-    oversample
+    oversample,
+    frames,
+    frameIDs
   };
 };
 

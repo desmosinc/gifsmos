@@ -39,3 +39,13 @@ export const setSliderByIndex = (idx, val) => {
   const identifier = match[1];
   calculator.setExpression({ id, latex: `${identifier}=${val}` });
 };
+
+// gets current state of calculator instance
+export const getCalcState = () => {
+  return calculator.getState();
+};
+
+// accepts some calculator state and updates calculator instance
+export const setCalcState = state => {
+  return calculator.setState(state);
+};

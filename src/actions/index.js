@@ -27,7 +27,12 @@
  */
 
 import * as types from '../constants/action-types';
-import { setSliderByIndex, getImageData } from '../lib/calc-helpers';
+import {
+  setSliderByIndex,
+  getImageData,
+  getCalcState,
+  setCalcState
+} from '../lib/calc-helpers';
 import { startTimer, clearTimer } from '../lib/timer';
 import {
   gifCreationProblem,
@@ -140,12 +145,27 @@ export const requestFrame = opts => async dispatch => {
 };
 
 export const requestBurst = opts => async (dispatch, getState) => {
-  const { idx, min, max, step, width, height, oversample } = opts;
+  const {
+    idx,
+    min,
+    max,
+    step,
+    width,
+    height,
+    oversample,
+    frames,
+    frameIDs
+  } = opts;
   const imageOpts = {
     width,
     height,
     targetPixelRatio: oversample ? 2 : 1
   };
+
+  // grab calculator state prior to capture
+  const prevFrames = { ...frames };
+  const prevFrameIDs = [...frameIDs];
+  const prevCalcState = getCalcState();
 
   // Check for errors in the current pane first.
   const burstErrors = getBurstErrors({ idx, min, max, step });
@@ -173,6 +193,13 @@ export const requestBurst = opts => async (dispatch, getState) => {
     imageData = await getImageData(imageOpts);
     dispatch(addFrame(imageData));
   }
+
+  // return data prior to burst capture for undo
+  return {
+    prevFrames,
+    prevFrameIDs,
+    prevCalcState
+  };
 };
 
 export const startAnimation = () => (dispatch, getState) => {

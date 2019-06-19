@@ -32,9 +32,18 @@ class Burst extends Component {
     this.setState(newState);
   }
 
-  handleRequestBurst() {
-    const { requestBurst, expanded, ...imgOpts } = this.props;
-    requestBurst({ ...this.state, ...imgOpts });
+  async handleRequestBurst() {
+    const { requestBurst, expanded, frames, frameIDs, ...imgOpts } = this.props;
+    // pass frames and frameIDs
+    const dataForUndo = await requestBurst({
+      ...this.state,
+      frames,
+      frameIDs,
+      ...imgOpts
+    });
+    // save undo data to state
+    // if undo data in state, show undo button
+    console.log(dataForUndo);
   }
 
   render() {
