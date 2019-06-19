@@ -14,6 +14,7 @@ class Burst extends Component {
       max: 10,
       step: 1,
       isCapturing: false,
+      canUndo: false,
       prevFrames: {},
       prevFrameIDs: [],
       prevCalcState: {},
@@ -55,6 +56,7 @@ class Burst extends Component {
       const { prevFrames, prevFrameIDs } = undoData;
       this.setState({
         isCapturing: false,
+        canUndo: true,
         prevFrames,
         prevFrameIDs,
         prevCalcState
@@ -75,6 +77,7 @@ class Burst extends Component {
     setCalcState(prevCalcState);
     // clear out undo data in local state
     this.setState({
+      canUndo: false,
       prevFrames: {},
       prevFrameIDs: [],
       prevCalcState: {}
@@ -144,7 +147,7 @@ class Burst extends Component {
             {this.state.isCapturing ? 'Capturing...' : 'Capture'}
           </button>
         </div>
-        {this.state.prevFrameIDs.length ? (
+        {this.state.canUndo ? (
           <div>
             <button
               className="Burst-button"
