@@ -42,16 +42,13 @@ class Burst extends Component {
   async handleRequestBurst() {
     this.setState({ isCapturing: true });
     const { requestBurst, expanded, frames, frameIDs, ...imgOpts } = this.props;
-    // grab calculator state prior to capture
     const prevCalcState = getCalcState();
-    // capture
     const undoData = await requestBurst({
       ...this.state,
       ...imgOpts,
       frames,
       frameIDs
     });
-    // if capture was successful, update state accordingly
     if (undoData) {
       const { prevFrames, prevFrameIDs } = undoData;
       this.setState({
@@ -61,9 +58,7 @@ class Burst extends Component {
         prevFrameIDs,
         prevCalcState
       });
-    }
-    // update isCapturing regardless
-    else {
+    } else {
       this.setState({ isCapturing: false });
     }
   }
@@ -71,11 +66,8 @@ class Burst extends Component {
   handleUndoBurst() {
     const { undoBurst } = this.props;
     const { prevFrames, prevFrameIDs, prevCalcState } = this.state;
-    // dispatch action to change frames, frameIDs in state
     undoBurst(prevFrames, prevFrameIDs);
-    // revert calculator state
     setCalcState(prevCalcState);
-    // clear out undo data in local state
     this.setState({
       canUndo: false,
       prevFrames: {},

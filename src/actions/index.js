@@ -176,7 +176,6 @@ export const requestBurst = opts => async (dispatch, getState) => {
     return;
   }
 
-  //
   const prevFrames = { ...frames };
   const prevFrameIDs = [...frameIDs];
 
@@ -193,7 +192,6 @@ export const requestBurst = opts => async (dispatch, getState) => {
     dispatch(addFrame(imageData));
   }
 
-  //
   return { prevFrames, prevFrameIDs };
 };
 
