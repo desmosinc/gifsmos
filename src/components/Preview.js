@@ -51,16 +51,11 @@ class Preview extends Component {
     }
   }
 
-  handleDeleteFrame() {
-    const {
-      previewIdx,
-      frameIDs,
-      updatePreviewIdx,
-      deleteFrameAtIdx
-    } = this.props;
+  handleDeleteFrame(curPrevIdx) {
+    const { frameIDs, updatePreviewIdx, deleteFrameAtIdx } = this.props;
 
-    const newIdx = previewIdx - 1 < 0 ? 0 : previewIdx - 1;
-    deleteFrameAtIdx(frameIDs[previewIdx]);
+    const newIdx = curPrevIdx - 1 < 0 ? 0 : curPrevIdx - 1;
+    deleteFrameAtIdx(frameIDs[curPrevIdx]);
     updatePreviewIdx(newIdx);
   }
 
@@ -111,6 +106,18 @@ class Preview extends Component {
           />
         </div>
 
+        <div className="Frame-delete">
+          {!!numFrames && (
+            <button
+              className="Frame-delete-button"
+              aria-label="delete this frame"
+              onClick={() => this.handleDeleteFrame(previewIdx)}
+            >
+              Delete this Frame
+            </button>
+          )}
+        </div>
+
         <div className="Preview-scrubber">
           <input
             type="range"
@@ -127,16 +134,14 @@ class Preview extends Component {
           {numFrames ? `${previewIdx + 1} / ${numFrames}` : '0 / 0'}
         </div>
 
-        <div className="Frame-delete">
-          {!!numFrames && (
-            <button
-              className="Frame-delete-button"
-              aria-label="delete this frame"
-              onClick={this.handleDeleteFrame}
-            >
-              Delete this Frame
-            </button>
-          )}
+        <div className="Frame-timeline">
+          {frameIDs.map((frameID, i) => (
+            <img
+              className="Frame-scroll"
+              src={frames[frameID]}
+              onClick={() => this.handleDeleteFrame(i)}
+            />
+          ))}
         </div>
 
         <div className="Preview-create">

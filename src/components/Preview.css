@@ -17,7 +17,7 @@
 .Preview-scrubber {
   text-align: center;
   width: 340px;
-  margin: 20px auto 0;
+  margin: 2vw auto 0;
 }
 
 .Preview-scrubber input {
@@ -65,7 +65,7 @@
 
 .Frame-delete {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 3vw;
 }
 
 .Frame-delete-button {
@@ -117,6 +117,8 @@
 .directional-icon {
   width: 100px;
   height: 100px;
+  margin: 5px;
+  position: relative;
 }
 
 .frame-row {
@@ -127,6 +129,22 @@
 .block {
   width: 100px;
   float: left;
+}
+
+.Frame-timeline {
+  width: 95vw;
+  display: flex;
+  overflow-x: scroll;
+  margin-top: 5vw;
+}
+
+.Frame-scroll {
+  position: relative;
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  margin-right: 0.5rem;
+  left: 50px;
 }
 
 @keyframes fade-in {
