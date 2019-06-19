@@ -10,13 +10,14 @@
 }
 
 .modal-content {
-  background-color: #f4f4f4;
+  background-color: #fff;
   margin: 15% auto;
   width: 40%;
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 20px;
   height: 400px;
   overflow: scroll;
+
   font-family: arial;
   font-size: 14px;
   position: fixed;
