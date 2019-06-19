@@ -5,14 +5,15 @@ import {
   updatePreviewIdx,
   startAnimation,
   stopAnimation,
-  deleteFrameAtIdx
+  deleteFrameAtIdx,
+  redoLastFrame
 } from '../actions';
 import panes from '../constants/pane-types';
 
 const mapStateToProps = (state, ownProps) => {
   const { images, ui, settings } = state;
   const { expandedPane, previewIdx, playing } = ui;
-  const { frames, frameIDs, gifProgress } = images;
+  const { frames, frameIDs, gifProgress, redoFrames } = images;
   const { width, height, oversample, interval } = settings.image;
 
   return {
@@ -25,7 +26,8 @@ const mapStateToProps = (state, ownProps) => {
     width,
     height,
     oversample,
-    interval
+    interval,
+    redoFrames
   };
 };
 
@@ -36,7 +38,8 @@ const PreviewContainer = connect(
     deleteFrameAtIdx,
     generateGIF,
     startAnimation,
-    stopAnimation
+    stopAnimation,
+    redoLastFrame
   }
 )(Preview);
 

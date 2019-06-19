@@ -66,6 +66,15 @@ export const togglePane = pane => {
   };
 };
 
+export const redoLastFrame = frameObj => {
+  const { id, frameData } = frameObj;
+
+  return {
+    type: types.REDO_FRAME,
+    payload: { id, frameData }
+  };
+};
+
 export const updatePreviewIdx = idx => ({
   type: types.UPDATE_PREVIEW_IDX,
   payload: { idx }

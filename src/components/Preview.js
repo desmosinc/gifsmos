@@ -13,6 +13,7 @@ class Preview extends Component {
     this.handleTogglePlaying = this.handleTogglePlaying.bind(this);
     this.handleDeleteFrame = this.handleDeleteFrame.bind(this);
     this.handleIncrementPreviewIdx = this.handleIncrementPreviewIdx.bind(this);
+    this.handleRedoFrame = this.handleRedoFrame.bind(this);
   }
 
   handlePreviewUpdate(evt) {
@@ -72,6 +73,16 @@ class Preview extends Component {
     }
   }
 
+  handleRedoFrame() {
+    const { redoFrames, redoLastFrame } = this.props;
+
+    const lastFrame = redoFrames[redoFrames.length - 1];
+    const id = lastFrame.id;
+    const frameData = lastFrame.frameData;
+
+    redoLastFrame({ id, frameData });
+  }
+
   render() {
     const {
       expanded,
@@ -79,8 +90,10 @@ class Preview extends Component {
       frames,
       frameIDs,
       gifProgress,
-      playing
+      playing,
+      redoFrames
     } = this.props;
+
     const numFrames = frameIDs.length;
     const imageSrc = frames[frameIDs[previewIdx]];
 
@@ -109,11 +122,20 @@ class Preview extends Component {
         <div className="Frame-delete">
           {!!numFrames && (
             <button
-              className="Frame-delete-button"
+              className="Frame-delete-redo-button"
               aria-label="delete this frame"
               onClick={() => this.handleDeleteFrame(previewIdx)}
             >
               Delete this Frame
+            </button>
+          )}
+          {!!redoFrames.length && (
+            <button
+              className="Frame-delete-redo-button"
+              aria-label="redo last frame"
+              onClick={this.handleRedoFrame}
+            >
+              Redo Last Delete
             </button>
           )}
         </div>
