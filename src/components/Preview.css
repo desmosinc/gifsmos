@@ -121,16 +121,6 @@
   position: relative;
 }
 
-.frame-row {
-  width: 100%;
-  margin: 0 auto;
-}
-
-.block {
-  width: 100px;
-  float: left;
-}
-
 .Frame-timeline {
   width: 95vw;
   display: flex;
@@ -145,6 +135,10 @@
   height: 150px;
   margin-right: 0.5rem;
   left: 50px;
+}
+
+.Frame-scroll:hover {
+  opacity: 0.5;
 }
 
 @keyframes fade-in {
