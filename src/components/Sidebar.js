@@ -73,7 +73,7 @@ class Sidebar extends Component {
           onClick={this.handleToggleSettings}
         />
 
-        {!!numFrames && <SidebarButton icon="trash" onClick={reset} />}
+        {!!numFrames && <SidebarButton icon="reset" onClick={reset} />}
 
         {!!gifData.length && (
           <SidebarButtonWithBadge
