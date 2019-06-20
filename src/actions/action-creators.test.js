@@ -45,7 +45,10 @@ const desmosMock = {
   GraphingCalculator: jest.fn(() => {
     return {
       asyncScreenshot: (opts, cb) => cb(''),
-      getExpressions: () => [{ id: 1, latex: 'x = 3' }, { id: 2, latex: '' }],
+      getExpressions: () => [
+        { id: 1, type: 'expression', latex: 'x = 3' },
+        { id: 2, latex: '' }
+      ],
       setExpression: () => null
     };
   })
