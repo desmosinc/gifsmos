@@ -14,6 +14,7 @@ class Sidebar extends Component {
     this.handleToggleSettings = this.handleToggleSettings.bind(this);
     this.handleRequestFrame = this.handleRequestFrame.bind(this);
     this.handleDownload = this.handleDownload.bind(this);
+    this.handleToggleFiles = this.handleToggleFiles.bind(this);
   }
 
   handleTogglePreview() {
@@ -32,8 +33,8 @@ class Sidebar extends Component {
   }
 
   handleDownload() {
-    const { gifData } = this.props;
-    download(gifData, 'gifsmos.gif', 'image/gif');
+    const { gifData, gifFileName } = this.props;
+    download(gifData, gifFileName || 'gifsmos.gif', 'image/gif');
   }
 
   handleRequestFrame() {
@@ -44,6 +45,11 @@ class Sidebar extends Component {
       targetPixelRatio: oversample ? 2 : 1
     };
     requestFrame(imageOpts);
+  }
+
+  handleToggleFiles() {
+    const { togglePane } = this.props;
+    togglePane(panes.FILES);
   }
 
   render() {
@@ -66,6 +72,12 @@ class Sidebar extends Component {
           color="orange"
           showBadge={!!numFrames}
           value={numFrames > 99 ? '99+' : numFrames}
+        />
+
+        <SidebarButton
+          icon="folder"
+          expanded={expandedPane === panes.FILES}
+          onClick={this.handleToggleFiles}
         />
 
         <SidebarButton
