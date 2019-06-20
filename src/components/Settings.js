@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { isPositiveInteger } from '../lib/input-helpers';
 import './Settings.css';
@@ -74,5 +75,23 @@ class Settings extends Component {
     );
   }
 }
+
+Settings.defaultProps = {
+  expanded: false,
+  width: 300,
+  height: 300,
+  oversample: false,
+  interval: 100,
+  updateSetting: () => {}
+};
+
+Settings.propTypes = {
+  expanded: PropTypes.bool.isRequired,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  oversample: PropTypes.bool.isRequired,
+  interval: PropTypes.number.isRequired,
+  updateSetting: PropTypes.func.isRequired
+};
 
 export default Settings;

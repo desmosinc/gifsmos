@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { getBurstErrors } from '../lib/input-helpers';
 import './Burst.css';
@@ -102,5 +103,21 @@ class Burst extends Component {
     );
   }
 }
+
+Burst.defaultProps = {
+  expanded: false,
+  width: 300,
+  height: 300,
+  oversample: false,
+  requestBurst: () => {}
+};
+
+Burst.propTypes = {
+  expanded: PropTypes.bool.isRequired,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  oversample: PropTypes.bool.isRequired,
+  requestBurst: PropTypes.func.isRequired
+};
 
 export default Burst;
