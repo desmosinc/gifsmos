@@ -27,14 +27,25 @@
  */
 
 import * as types from '../constants/action-types';
-import { setSliderByIndex, getImageData } from '../lib/calc-helpers';
+import {
+  setSliderByIndex,
+  getImageData,
+  loadSavedGraph,
+  saveCurrentGraph
+} from '../lib/calc-helpers';
 import { startTimer, clearTimer } from '../lib/timer';
 import {
   gifCreationProblem,
   badBurstInput,
-  badSettingsInput
+  badSettingsInput,
+  badNameInput
 } from '../lib/error-messages';
-import { getBurstErrors, getSettingsErrors } from '../lib/input-helpers';
+import {
+  getBurstErrors,
+  getSettingsErrors,
+  getSaveGraphErrors
+} from '../lib/input-helpers';
+import {} from '../lib/input-helpers';
 
 const ERROR_DELAY = 3000;
 let nextFrameID = 0;
@@ -48,10 +59,35 @@ export const addFrame = imageData => ({
   }
 });
 
+export const addSavedFrame = (imageData, id) => ({
+  type: types.ADD_FRAME,
+  payload: {
+    id,
+    imageData
+  }
+});
+
 export const updateGIFProgress = progress => ({
   type: types.UPDATE_GIF_PROGRESS,
   payload: { progress }
 });
+
+export const updateText = text => ({
+  type: types.UPDATE_TEXT,
+  payload: { text }
+});
+
+export const updateTextColor = fontColor => ({
+  type: types.UPDATE_TEXT_COLOR,
+  payload: { fontColor }
+});
+
+export const updateGIFFileName = name => {
+  return {
+    type: types.UPDATE_GIF_FILENAME,
+    payload: { gifFileName: name }
+  };
+};
 
 export const addGIF = imageData => ({
   type: types.ADD_GIF,
@@ -216,4 +252,25 @@ export const generateGIF = (images, opts) => (dispatch, getState) => {
       dispatch(addGIF(data.image));
     }
   });
+};
+
+export const loadFramesFromLocal = dateString => (dispatch, getState) => {
+  dispatch(reset());
+  const { frameIDs, frames } = loadSavedGraph(dateString);
+  for (let val = 0; val < frameIDs.length; val += 1) {
+    // get corresponding image
+    const id = frameIDs[val];
+    const imageData = frames[id];
+    dispatch(addSavedFrame(imageData, id));
+  }
+};
+
+export const saveGraph = (name, frames, frameIDs) => async dispatch => {
+  const saveErrors = getSaveGraphErrors(name);
+  if (saveErrors.name) {
+    dispatch(flashError(badNameInput(saveErrors.name)));
+    return;
+  }
+  const newGraph = await saveCurrentGraph(name, frames, frameIDs);
+  return newGraph;
 };

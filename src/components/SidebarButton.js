@@ -5,6 +5,7 @@ import preview from './icons/preview.svg';
 import reset from './icons/reset.svg';
 import download from './icons/download.svg';
 import burst from './icons/burst.svg';
+import folder from './icons/folder.svg';
 import settings from './icons/settings.svg';
 import './SidebarButton.css';
 
@@ -14,7 +15,8 @@ const iconMap = {
   reset,
   download,
   burst,
-  settings
+  settings,
+  folder
 };
 
 const ariaMap = {
@@ -23,7 +25,8 @@ const ariaMap = {
   reset: 'reset images',
   download: 'download gif',
   burst: 'multi-capture panel',
-  settings: 'settings panel'
+  settings: 'settings panel',
+  folder: 'folder-graphs panel'
 };
 
 const SidebarButton = ({ children, icon, onClick, expanded }) => (
