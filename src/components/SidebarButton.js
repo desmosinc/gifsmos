@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import camera from './icons/camera.svg';
 import preview from './icons/preview.svg';
@@ -39,5 +40,17 @@ const SidebarButton = ({ children, icon, onClick, expanded }) => (
     {children}
   </button>
 );
+
+SidebarButton.defaultProps = {
+  icon: '',
+  onClick: () => {},
+  expanded: false
+};
+
+SidebarButton.propTypes = {
+  icon: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+  expanded: PropTypes.bool
+};
 
 export default SidebarButton;
