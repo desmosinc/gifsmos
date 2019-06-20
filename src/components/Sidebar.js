@@ -11,7 +11,6 @@ class Sidebar extends Component {
     this.handleToggleBurst = this.handleToggleBurst.bind(this);
     this.handleToggleSettings = this.handleToggleSettings.bind(this);
     this.handleRequestFrame = this.handleRequestFrame.bind(this);
-    // this.handleDownload = this.handleDownload.bind(this);
     this.handleToggleFiles = this.handleToggleFiles.bind(this);
   }
 
@@ -29,11 +28,6 @@ class Sidebar extends Component {
     const { togglePane } = this.props;
     togglePane(panes.SETTINGS);
   }
-
-  // handleDownload() {
-  //   const { gifData, gifFileName } = this.props;
-  //   download(gifData, gifFileName || 'gifsmos.gif', 'image/gif');
-  // }
 
   handleRequestFrame() {
     const { requestFrame, width, height, oversample } = this.props;
