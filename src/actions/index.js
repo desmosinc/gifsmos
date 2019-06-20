@@ -231,7 +231,10 @@ export const startAnimation = () => (dispatch, getState) => {
 
 // The gifshot library is loaded in index.html
 const gifshot = window.gifshot;
-export const generateGIF = (images, opts) => (dispatch, getState) => {
+export const generateGIF = (images, opts, gifMaker = gifshot) => (
+  dispatch,
+  getState
+) => {
   // Have to check state interval and not opts because opts is in seconds
   const { interval } = getState().settings.image;
   const settingsErrors = getSettingsErrors({ interval });
@@ -245,7 +248,7 @@ export const generateGIF = (images, opts) => (dispatch, getState) => {
     ...opts,
     progressCallback: progress => dispatch(updateGIFProgress(progress))
   };
-  gifshot.createGIF(gifshotArgs, data => {
+  gifMaker.createGIF(gifshotArgs, data => {
     if (data.error) {
       dispatch(flashError(gifCreationProblem()));
     } else {
