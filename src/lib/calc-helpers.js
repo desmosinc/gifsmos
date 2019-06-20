@@ -28,10 +28,14 @@ export const getImageData = opts =>
  */
 const getExpByIndex = idx => calculator.getExpressions()[idx - 1];
 
-// Returns an error message on failure.
+/**
+ * Returns an error message on failure.
+ * Skips expressions that are not of type 'expression'
+ */
 export const setSliderByIndex = (idx, val) => {
   const exp = getExpByIndex(idx);
   if (!exp) return noSuchExpression(idx);
+  if (exp.type !== 'expression') return notASlider(idx);
 
   const { id, latex } = exp;
   const match = latex.match(/(.+)=/);
