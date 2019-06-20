@@ -12,17 +12,23 @@ import {
   ADD_FRAME,
   UPDATE_GIF_PROGRESS,
   ADD_GIF,
+  UPDATE_GIF_FILENAME,
   UPDATE_IMAGE_SETTING,
   UPDATE_BOUNDS_SETTING,
   UPDATE_STRATEGY,
-  RESET
+  RESET,
+  UPDATE_TEXT,
+  UPDATE_TEXT_COLOR
 } from '../constants/action-types';
 
 const initialState = {
   frames: {},
   frameIDs: [],
   gifProgress: 0,
-  gifData: ''
+  gifData: '',
+  caption: '',
+  fontColor: '#000000',
+  gifFileName: ''
 };
 
 const images = (state = initialState, { type, payload }) => {
@@ -62,6 +68,24 @@ const images = (state = initialState, { type, payload }) => {
           gifProgress: 0,
           gifData: ''
         }
+      };
+
+    case UPDATE_TEXT:
+      return {
+        ...state,
+        caption: payload.text
+      };
+
+    case UPDATE_TEXT_COLOR:
+      return {
+        ...state,
+        fontColor: payload.fontColor
+      };
+
+    case UPDATE_GIF_FILENAME:
+      return {
+        ...state,
+        gifFileName: payload.gifFileName
       };
 
     case RESET:
