@@ -13,7 +13,10 @@ const initialState = {
   frames: {},
   frameIDs: [],
   gifProgress: 0,
-  gifData: ''
+  gifData: '',
+  caption: '',
+  fontColor: '#000000',
+  gifFileName: ''
 };
 
 describe('reducers', () => {

@@ -13,7 +13,10 @@ const initialState = {
     frames: {},
     frameIDs: [],
     gifProgress: 0,
-    gifData: ''
+    gifData: '',
+    caption: '',
+    fontColor: '#000000',
+    gifFileName: ''
   },
   settings: {
     image: {
@@ -31,7 +34,7 @@ const initialState = {
     strategy: 'contain'
   },
   ui: {
-    expandedPane: 'NONE',
+    expandedPane: panes.NONE,
     previewIdx: 0,
     playing: false,
     error: ''
