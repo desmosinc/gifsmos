@@ -35,3 +35,13 @@ export const getSettingsErrors = inputs => {
 
   return errors;
 };
+
+export const getSaveGraphErrors = name => {
+  const errors = {};
+  if (!name.length) {
+    errors.name = 'Name required';
+  } else if (name.length > 255) {
+    errors.name = `Name cannot be longer than 255 characters`;
+  }
+  return errors;
+};

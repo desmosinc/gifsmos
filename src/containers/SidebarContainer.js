@@ -5,13 +5,12 @@ import { requestFrame, togglePane, reset, getBurstSliders } from '../actions';
 const mapStateToProps = (state, ownProps) => {
   const { images, settings, ui } = state;
   const { expandedPane } = ui;
-  const { gifData, frameIDs } = images;
+  const { frameIDs } = images;
   const { width, height, oversample } = settings.image;
 
   return {
     numFrames: frameIDs.length,
     expandedPane,
-    gifData,
     width,
     height,
     oversample

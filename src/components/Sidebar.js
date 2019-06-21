@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import download from 'downloadjs';
 import SidebarButton from './SidebarButton';
 import SidebarButtonWithBadge from './SidebarButtonWithBadge';
 import panes from '../constants/pane-types';
@@ -12,7 +11,7 @@ class Sidebar extends Component {
     this.handleToggleBurst = this.handleToggleBurst.bind(this);
     this.handleToggleSettings = this.handleToggleSettings.bind(this);
     this.handleRequestFrame = this.handleRequestFrame.bind(this);
-    this.handleDownload = this.handleDownload.bind(this);
+    this.handleToggleFiles = this.handleToggleFiles.bind(this);
   }
 
   handleTogglePreview() {
@@ -31,11 +30,6 @@ class Sidebar extends Component {
     togglePane(panes.SETTINGS);
   }
 
-  handleDownload() {
-    const { gifData } = this.props;
-    download(gifData, 'gifsmos.gif', 'image/gif');
-  }
-
   handleRequestFrame() {
     const { requestFrame, width, height, oversample } = this.props;
     const imageOpts = {
@@ -46,8 +40,13 @@ class Sidebar extends Component {
     requestFrame(imageOpts);
   }
 
+  handleToggleFiles() {
+    const { togglePane } = this.props;
+    togglePane(panes.FILES);
+  }
+
   render() {
-    const { reset, expandedPane, numFrames, gifData } = this.props;
+    const { reset, expandedPane, numFrames } = this.props;
 
     return (
       <div className="Sidebar">
@@ -69,22 +68,18 @@ class Sidebar extends Component {
         />
 
         <SidebarButton
+          icon="folder"
+          expanded={expandedPane === panes.FILES}
+          onClick={this.handleToggleFiles}
+        />
+
+        <SidebarButton
           icon="settings"
           expanded={expandedPane === panes.SETTINGS}
           onClick={this.handleToggleSettings}
         />
 
         {!!numFrames && <SidebarButton icon="reset" onClick={reset} />}
-
-        {!!gifData.length && (
-          <SidebarButtonWithBadge
-            icon="download"
-            onClick={this.handleDownload}
-            color="green"
-            showBadge={true}
-            value={'\u2713'}
-          />
-        )}
 
         <div className="Sidebar-help">
           <a

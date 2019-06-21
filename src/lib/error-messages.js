@@ -13,6 +13,9 @@ export const notASlider = idx =>
 
 export const noSlidersFound = () => `Looks like the graph has no sliders.`;
 
+export const badNameInput = errorMessage =>
+  `Invalid name input for saving graph: ${errorMessage}`;
+
 export const gifCreationProblem = () =>
   'There was a problem creating your GIF. :(';
 
