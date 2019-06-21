@@ -9,10 +9,15 @@ describe('<ErrorToast/>', () => {
     global.renderWithRedux(<ErrorToast />);
   });
 
-  it('renders appropriate content', () => {
+  it('shows error when passed message prop', () => {
     const { getByText } = global.renderWithRedux(
       <ErrorToast message="error" />
     );
-    expect(getByText('error').tagName).toBe('DIV');
+    expect(getByText('error')).toBeTruthy();
+  });
+
+  it('does not show error when message prop not passed', () => {
+    const { queryByText } = global.renderWithRedux(<ErrorToast />);
+    expect(queryByText('error')).toBeFalsy();
   });
 });

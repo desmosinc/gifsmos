@@ -101,7 +101,6 @@ class Sidebar extends Component {
 }
 
 Sidebar.defaultProps = {
-  // gifData needs a value in order for component to render
   gifData: ''
 };
 

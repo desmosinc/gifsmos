@@ -14,8 +14,6 @@ describe('<SidebarButtonWithBadge/>', () => {
       <SidebarButtonWithBadge showBadge={true} color="color" />
     );
     // check that badge is present
-    expect(getByTestId('SidebarButton-icon-button').lastChild.tagName).toBe(
-      'DIV'
-    );
+    expect(getByTestId('SidebarButton-icon-button').lastChild).toBeTruthy();
   });
 });
