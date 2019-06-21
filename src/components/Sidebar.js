@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import download from 'downloadjs';
 import SidebarButton from './SidebarButton';
 import SidebarButtonWithBadge from './SidebarButtonWithBadge';
 import panes from '../constants/pane-types';
@@ -13,7 +12,6 @@ class Sidebar extends Component {
     this.handleToggleBurst = this.handleToggleBurst.bind(this);
     this.handleToggleSettings = this.handleToggleSettings.bind(this);
     this.handleRequestFrame = this.handleRequestFrame.bind(this);
-    this.handleDownload = this.handleDownload.bind(this);
     this.handleToggleFiles = this.handleToggleFiles.bind(this);
   }
 
@@ -32,11 +30,6 @@ class Sidebar extends Component {
     togglePane(panes.SETTINGS);
   }
 
-  handleDownload() {
-    const { gifData, gifFileName } = this.props;
-    download(gifData, gifFileName || 'gifsmos.gif', 'image/gif');
-  }
-
   handleRequestFrame() {
     const { requestFrame, width, height, oversample } = this.props;
     const imageOpts = {
@@ -53,7 +46,7 @@ class Sidebar extends Component {
   }
 
   render() {
-    const { reset, expandedPane, numFrames, gifData } = this.props;
+    const { reset, expandedPane, numFrames } = this.props;
 
     return (
       <div className="Sidebar">
@@ -87,16 +80,6 @@ class Sidebar extends Component {
         />
 
         {!!numFrames && <SidebarButton icon="reset" onClick={reset} />}
-
-        {!!gifData.length && (
-          <SidebarButtonWithBadge
-            icon="download"
-            onClick={this.handleDownload}
-            color="green"
-            showBadge={true}
-            value={'\u2713'}
-          />
-        )}
 
         <div className="Sidebar-help">
           <a

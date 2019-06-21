@@ -258,7 +258,10 @@ describe('Action creators', () => {
           return cb({ image: 'test' });
         }
       };
-      store.dispatch(actions.generateGIF([], opts, gifshot));
+      // download mock
+      const download = () => null;
+
+      store.dispatch(actions.generateGIF([], opts, gifshot, download));
       expect(store.getActions()).toEqual(expectedActions);
     });
   });
