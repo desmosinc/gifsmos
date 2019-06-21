@@ -34,10 +34,15 @@ const SidebarButton = ({ children, icon, onClick, expanded }) => (
     onClick={onClick}
     aria-label={ariaMap[icon]}
     aria-expanded={expanded}
+    data-testid={`SidebarButton-${icon}-button`}
   >
     <img src={iconMap[icon]} alt={`${icon} icon`} />
     {children}
   </button>
 );
+
+SidebarButton.defaultProps = {
+  icon: 'icon'
+};
 
 export default SidebarButton;

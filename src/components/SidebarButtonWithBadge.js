@@ -10,6 +10,7 @@ const SidebarButtonWithBadge = ({ showBadge, value, color, ...props }) => (
           'SidebarButton-badge',
           `SidebarButton-badge-${color}`
         )}
+        data-testid="SidebarButtonWithBadge-badge"
       >
         {value}
       </div>
