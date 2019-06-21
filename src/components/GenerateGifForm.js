@@ -21,11 +21,9 @@ class GenerateGifForm extends Component {
       case 'fontColor':
         this.props.updateTextColor(evt.target.value);
         break;
-
       case 'name':
         this.props.updateGIFFileName(evt.target.value);
         break;
-
       default:
         break;
     }
@@ -60,7 +58,7 @@ class GenerateGifForm extends Component {
           aria-label="generate gif"
           type="submit"
         >
-          Generate!
+          Download GIF!
         </button>
       </form>
     );

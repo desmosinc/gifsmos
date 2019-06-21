@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import camera from './icons/camera.svg';
 import preview from './icons/preview.svg';
 import reset from './icons/reset.svg';
-import download from './icons/download.svg';
 import burst from './icons/burst.svg';
 import folder from './icons/folder.svg';
 import settings from './icons/settings.svg';
@@ -13,7 +12,6 @@ const iconMap = {
   camera,
   preview,
   reset,
-  download,
   burst,
   settings,
   folder
@@ -23,7 +21,6 @@ const ariaMap = {
   camera: 'capture frame',
   preview: 'preview panel',
   reset: 'reset images',
-  download: 'download gif',
   burst: 'multi-capture panel',
   settings: 'settings panel',
   folder: 'folder-graphs panel'

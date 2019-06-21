@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
 import rootReducer from './reducers';
@@ -11,10 +10,7 @@ import { togglePane } from './actions';
 import greet from './lib/dev-greeting';
 import './index.css';
 
-const store = createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(thunkMiddleware))
-);
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
 const closePane = () => store.dispatch(togglePane(panes.NONE));
 
