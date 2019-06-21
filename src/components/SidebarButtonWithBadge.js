@@ -24,7 +24,7 @@ SidebarButtonWithBadge.defaultProps = {
   expanded: false,
   color: '',
   showBadge: false,
-  value: ''
+  value: 0
 };
 
 SidebarButtonWithBadge.propTypes = {
@@ -33,7 +33,7 @@ SidebarButtonWithBadge.propTypes = {
   expanded: PropTypes.bool,
   color: PropTypes.string.isRequired,
   showBadge: PropTypes.bool.isRequired,
-  value: PropTypes.string.isRequired
+  value: PropTypes.number.isRequired
 };
 
 export default SidebarButtonWithBadge;
