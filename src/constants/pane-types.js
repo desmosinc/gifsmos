@@ -6,7 +6,8 @@ const panes = {
   PREVIEW: 'PREVIEW',
   BURST: 'BURST',
   SETTINGS: 'SETTINGS',
-  NONE: 'NONE'
+  NONE: 'NONE',
+  FILES: 'FILES'
 };
 
 export default panes;

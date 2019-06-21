@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import Frame from './Frame';
+import GenerateGifFormContainer from '../containers/GenerateGifFormContainer';
 import './Preview.css';
 
 class Preview extends Component {
@@ -26,14 +27,18 @@ class Preview extends Component {
       height,
       oversample,
       interval,
-      generateGIF
+      generateGIF,
+      caption,
+      fontColor
     } = this.props;
     const images = frameIDs.map(id => frames[id]);
     const multiplier = oversample ? 2 : 1;
     const opts = {
       gifWidth: width * multiplier,
       gifHeight: height * multiplier,
-      interval: interval / 1000
+      interval: interval / 1000,
+      text: caption,
+      fontColor: fontColor
     };
     generateGIF(images, opts);
   }
@@ -83,15 +88,11 @@ class Preview extends Component {
           {numFrames ? `${previewIdx + 1} / ${numFrames}` : '0 / 0'}
         </div>
         <div className="Preview-create">
-          {!!numFrames && (
-            <button
-              className="Preview-create-button"
-              onClick={this.handleGenerateGIF}
-              aria-label="generate gif"
-            >
-              Generate GIF
-            </button>
-          )}
+          {!!numFrames && this.props.gifData.length === 0 ? (
+            <GenerateGifFormContainer
+              handleGenerateGIF={this.handleGenerateGIF}
+            />
+          ) : null}
         </div>
         <div className="Preview-progress-outer">
           <div
@@ -102,6 +103,11 @@ class Preview extends Component {
             }}
           />
         </div>
+        {gifProgress === 1 ? (
+          <div className="Preview-progress-success">
+            GIF ready for download!
+          </div>
+        ) : null}
       </div>
     );
   }
