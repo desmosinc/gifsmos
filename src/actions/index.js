@@ -124,6 +124,11 @@ export const reset = () => {
   return { type: types.RESET };
 };
 
+const updateBurstSliders = sliders => ({
+  type: types.UPDATE_BURST_SLIDERS,
+  payload: sliders
+});
+
 // Thunks
 export const flashError = message => dispatch => {
   clearTimeout(errorTimeout);
@@ -230,8 +235,3 @@ export const getBurstSliders = () => dispatch => {
   }
   dispatch(updateBurstSliders(sliders));
 };
-
-const updateBurstSliders = sliders => ({
-  type: types.UPDATE_BURST_SLIDERS,
-  payload: sliders
-});
