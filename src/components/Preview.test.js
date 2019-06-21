@@ -15,9 +15,10 @@ describe('<Preview/>', () => {
     );
     expect(getByTestId('Preview-scrubber').firstChild.type).toBe('range');
     expect(getByTestId('Preview-scrubber-counter').textContent).toBe('1 / 1');
-    // revisit the following test after generate gif form implemented
+    expect(getByTestId('Preview-container').querySelector('form')).toBeTruthy();
     expect(
-      getByTestId('Preview-create-button-container').firstChild.textContent
-    ).toBe('Generate GIF');
+      getByTestId('Preview-container').querySelector('.GenerateGifForm-button')
+        .textContent
+    ).toBe('Download GIF!');
   });
 });
