@@ -37,7 +37,7 @@ describe('error messages', () => {
     );
   });
 
-  it('return a message for a setings input errors', () => {
+  it('return a message for a settings input errors', () => {
     expect(errors.badSettingsInput({ width: true })).toEqual(
       'The Image Width setting must be a positive integer.'
     );
@@ -49,6 +49,27 @@ describe('error messages', () => {
     );
     expect(errors.badSettingsInput({ width: true, height: true })).toEqual(
       'Image settings must be positive integers.'
+    );
+  });
+
+  it('return a message for an invalid bounds errors', () => {
+    expect(errors.invalidBounds({ leftless: true })).toEqual(
+      'Left Bound must be less than Right Bound to create a snapshot.'
+    );
+    expect(errors.invalidBounds({ bottomless: true })).toEqual(
+      'Bottom Bound must be less than Top Bound to create a snapshot.'
+    );
+    expect(errors.invalidBounds({ top: true })).toEqual(
+      'Top Bound must be a valid integer.'
+    );
+    expect(errors.invalidBounds({ bottom: true })).toEqual(
+      'Bottom Bound must be a valid integer.'
+    );
+    expect(errors.invalidBounds({ left: true })).toEqual(
+      'Left Bound must be a valid integer.'
+    );
+    expect(errors.invalidBounds({ right: true })).toEqual(
+      'Right Bound must be a valid integer.'
     );
   });
 });
