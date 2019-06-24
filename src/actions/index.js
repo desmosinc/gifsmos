@@ -40,12 +40,12 @@ import {
   badSettingsInput,
   badNameInput
 } from '../lib/error-messages';
+import download from 'downloadjs';
 import {
   getBurstErrors,
   getSettingsErrors,
   getSaveGraphErrors
 } from '../lib/input-helpers';
-import {} from '../lib/input-helpers';
 
 const ERROR_DELAY = 3000;
 let nextFrameID = 0;
@@ -161,7 +161,7 @@ export const clearError = () => ({ type: types.CLEAR_ERROR });
 
 export const reset = () => {
   clearTimer();
-  localStorage.clear();
+  localStorage.removeItem('selectValue');
   return { type: types.RESET };
 };
 
@@ -241,12 +241,15 @@ export const startAnimation = () => (dispatch, getState) => {
 
 // The gifshot library is loaded in index.html
 const gifshot = window.gifshot;
-export const generateGIF = (images, opts, gifMaker = gifshot) => (
-  dispatch,
-  getState
-) => {
+export const generateGIF = (
+  images,
+  opts,
+  gifMaker = gifshot,
+  downloadFn = download
+) => (dispatch, getState) => {
   // Have to check state interval and not opts because opts is in seconds
   const { interval } = getState().settings.image;
+  const { gifFileName } = getState().images;
   const settingsErrors = getSettingsErrors({ interval });
   if (Object.keys(settingsErrors).length) {
     dispatch(flashError(badSettingsInput(settingsErrors)));
@@ -264,6 +267,7 @@ export const generateGIF = (images, opts, gifMaker = gifshot) => (
       dispatch(flashError(gifCreationProblem()));
     } else {
       dispatch(addGIF(data.image));
+      downloadFn(data.image, gifFileName || 'gifsmos.gif', 'image/gif');
     }
   });
 };

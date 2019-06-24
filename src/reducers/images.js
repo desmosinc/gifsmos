@@ -29,10 +29,10 @@ const initialState = {
   gifProgress: 0,
   gifData: '',
   caption: '',
-  fontColor: '#000',
-  gifFileName: '',
   textAlign: 'center',
-  textBaseline: 'bottom'
+  textBaseline: 'bottom',
+  fontColor: '#000000',
+  gifFileName: ''
 };
 
 const images = (state = initialState, { type, payload }) => {
