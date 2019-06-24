@@ -108,8 +108,8 @@
 
 .Preview-progress-outer {
   width: 210px;
-  height: 10px;
-  margin: 10px auto;
+  height: 15px;
+  margin: 15px auto 0;
 }
 
 .Preview-progress-inner {
@@ -142,6 +142,13 @@
 
 .Frame-scroll:hover {
   opacity: 0.5;
+}
+
+.Preview-progress-success {
+  width: 200px;
+  margin: 15px auto 0;
+  text-align: center;
+  color: #fff;
 }
 
 @keyframes fade-in {

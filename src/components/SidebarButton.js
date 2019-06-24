@@ -3,8 +3,8 @@ import classNames from 'classnames';
 import camera from './icons/camera.svg';
 import preview from './icons/preview.svg';
 import reset from './icons/reset.svg';
-import download from './icons/download.svg';
 import burst from './icons/burst.svg';
+import folder from './icons/folder.svg';
 import settings from './icons/settings.svg';
 import './SidebarButton.css';
 
@@ -12,18 +12,18 @@ const iconMap = {
   camera,
   preview,
   reset,
-  download,
   burst,
-  settings
+  settings,
+  folder
 };
 
 const ariaMap = {
   camera: 'capture frame',
   preview: 'preview panel',
   reset: 'reset images',
-  download: 'download gif',
   burst: 'multi-capture panel',
-  settings: 'settings panel'
+  settings: 'settings panel',
+  folder: 'folder-graphs panel'
 };
 
 const SidebarButton = ({ children, icon, onClick, expanded }) => (
@@ -34,10 +34,15 @@ const SidebarButton = ({ children, icon, onClick, expanded }) => (
     onClick={onClick}
     aria-label={ariaMap[icon]}
     aria-expanded={expanded}
+    data-testid={`SidebarButton-${icon}-button`}
   >
     <img src={iconMap[icon]} alt={`${icon} icon`} />
     {children}
   </button>
 );
+
+SidebarButton.defaultProps = {
+  icon: 'icon'
+};
 
 export default SidebarButton;

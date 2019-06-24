@@ -31,14 +31,18 @@ class Preview extends Component {
       height,
       oversample,
       interval,
-      generateGIF
+      generateGIF,
+      caption,
+      fontColor
     } = this.props;
     const images = frameIDs.map(id => frames[id]);
     const multiplier = oversample ? 2 : 1;
     const opts = {
       gifWidth: width * multiplier,
       gifHeight: height * multiplier,
-      interval: interval / 1000
+      interval: interval / 1000,
+      text: caption,
+      fontColor: fontColor
     };
     generateGIF(images, opts);
   }
@@ -106,6 +110,7 @@ class Preview extends Component {
             className="directional-icon"
             src={left}
             onClick={() => this.handleIncrementPreviewIdx(false)}
+            alt=""
           />
           <Frame
             imageSrc={imageSrc}
@@ -116,11 +121,12 @@ class Preview extends Component {
             className="directional-icon"
             src={right}
             onClick={() => this.handleIncrementPreviewIdx(true)}
+            alt=""
           />
         </div>
 
         <div className="Frame-delete">
-          {!!numFrames && (
+          {!!numFrames ? (
             <button
               className="Frame-delete-redo-button"
               aria-label="delete this frame"
@@ -128,8 +134,8 @@ class Preview extends Component {
             >
               Delete this Frame
             </button>
-          )}
-          {!!redoFrames.length && (
+          ) : null}
+          {!!redoFrames.length ? (
             <button
               className="Frame-delete-redo-button"
               aria-label="redo last frame"
@@ -137,10 +143,9 @@ class Preview extends Component {
             >
               Redo Last Delete
             </button>
-          )}
+          ) : null}
         </div>
-
-        <div className="Preview-scrubber">
+        <div className="Preview-scrubber" data-testid="Preview-scrubber">
           <input
             type="range"
             min="0"
@@ -162,6 +167,7 @@ class Preview extends Component {
               className="Frame-scroll"
               src={frames[frameID]}
               onClick={() => this.handleDeleteFrame(i)}
+              alt=""
             />
           ))}
         </div>
@@ -187,9 +193,20 @@ class Preview extends Component {
             }}
           />
         </div>
+
+        {gifProgress === 1 ? (
+          <div className="Preview-progress-success">Download Successful </div>
+        ) : null}
       </div>
     );
   }
 }
+
+Preview.defaultProps = {
+  previewIdx: 0,
+  frames: {},
+  frameIDs: [],
+  gifData: ''
+};
 
 export default Preview;
