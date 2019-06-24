@@ -22,7 +22,7 @@ export default class Info extends Component {
     return (
       <div className="Info-container">
         <div className="Info-header">
-          <h1>{this.props.title}</h1>
+          <h2>{this.props.title}</h2>
           <div className="Text-container">
             <img
               src={info}

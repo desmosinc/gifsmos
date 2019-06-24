@@ -1,6 +1,6 @@
 .Info-icon {
-  height: 20px;
-  width: 20px;
+  height: 17px;
+  width: 17px;
   margin-left: 10px;
   margin-top: 7px;
 }
@@ -15,7 +15,7 @@
   align-items: center;
 }
 
-.Info-header h1 {
+.Info-header h2 {
   color: #fff;
 }
 
@@ -34,7 +34,7 @@
   color: #fff;
   font-size: 13px;
   padding: 15px;
-  border-radius: 20px;
+  border-radius: 5px;
   text-align: left;
 }
 
