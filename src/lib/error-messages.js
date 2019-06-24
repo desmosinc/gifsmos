@@ -11,6 +11,9 @@ export const noSuchExpression = idx =>
 export const notASlider = idx =>
   `Looks like expression ${idx} doesn't define a slider.`;
 
+export const badNameInput = errorMessage =>
+  `Invalid name input for saving graph: ${errorMessage}`;
+
 export const gifCreationProblem = () =>
   'There was a problem creating your GIF. :(';
 
@@ -98,6 +101,8 @@ export const invalidBounds = errors => {
         break;
       case 'right':
         errorString.push('Right Bound must be a valid integer.');
+        break;
+      default:
         break;
     }
   }

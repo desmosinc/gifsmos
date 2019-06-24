@@ -6,8 +6,9 @@
  * and concise.
  */
 
-import { calculator } from '../components/App';
+import { calculator } from './calculator';
 import { noSuchExpression, notASlider } from './error-messages';
+import { saveGraphToLocal, getGraphFromLocal } from './local-storage-helpers';
 
 /*
  * The calculator's async screenshot method takes a callback, but we'd prefer to
@@ -27,10 +28,14 @@ export const getImageData = opts =>
  */
 const getExpByIndex = idx => calculator.getExpressions()[idx - 1];
 
-// Returns an error message on failure.
+/**
+ * Returns an error message on failure.
+ * Skips expressions that are not of type 'expression'
+ */
 export const setSliderByIndex = (idx, val) => {
   const exp = getExpByIndex(idx);
   if (!exp) return noSuchExpression(idx);
+  if (exp.type !== 'expression') return notASlider(idx);
 
   const { id, latex } = exp;
   const match = latex.match(/(.+)=/);
@@ -39,4 +44,21 @@ export const setSliderByIndex = (idx, val) => {
   const identifier = match[1];
 
   calculator.setExpression({ id, latex: `${identifier}=${val}` });
+};
+
+export const saveCurrentGraph = async (name, frames, frameIDs) => {
+  const graph = calculator.getState();
+  const preview = await getImageData({
+    width: 160,
+    height: 160,
+    targetPixelRatio: 0.25
+  });
+
+  return saveGraphToLocal(graph, name, preview, frames, frameIDs);
+};
+
+export const loadSavedGraph = dateString => {
+  const { graph, frames, frameIDs } = getGraphFromLocal(dateString);
+  calculator.setState(graph);
+  return { frames, frameIDs };
 };

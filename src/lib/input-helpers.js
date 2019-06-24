@@ -46,10 +46,19 @@ export const getBoundErrors = inputs => {
 
   if (left >= right) errors['leftless'] = true;
   if (bottom >= top) errors['bottomless'] = true;
-  if (isNaN(top)) errors['top'] = true;
-  if (isNaN(bottom)) errors['bottom'] = true;
-  if (isNaN(left)) errors['left'] = true;
-  if (isNaN(right)) errors['right'] = true;
+  for (let cur in inputs) {
+    if (isNaN(inputs[cur])) errors[cur] = true;
+  }
 
+  return errors;
+};
+
+export const getSaveGraphErrors = name => {
+  const errors = {};
+  if (!name.length) {
+    errors.name = 'Name required';
+  } else if (name.length > 255) {
+    errors.name = `Name cannot be longer than 255 characters`;
+  }
   return errors;
 };
