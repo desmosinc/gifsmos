@@ -6,12 +6,17 @@ import panes from '../constants/pane-types';
 const mapStateToProps = (state, ownProps) => {
   const { settings, ui } = state;
   const { width, height, oversample } = settings.image;
+  const { left, right, top, bottom } = settings.bounds;
 
   return {
     expanded: ui.expandedPane === panes.BURST,
     width,
     height,
-    oversample
+    oversample,
+    left,
+    right,
+    top,
+    bottom
   };
 };
 

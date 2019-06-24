@@ -19,6 +19,6 @@ describe('<Preview/>', () => {
     expect(
       getByTestId('Preview-container').querySelector('.GenerateGifForm-button')
         .textContent
-    ).toBe('Download GIF!');
+    ).toBe('Download GIF');
   });
 });

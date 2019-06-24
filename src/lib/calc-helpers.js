@@ -42,6 +42,7 @@ export const setSliderByIndex = (idx, val) => {
   if (!match) return notASlider(idx);
 
   const identifier = match[1];
+
   calculator.setExpression({ id, latex: `${identifier}=${val}` });
 };
 
