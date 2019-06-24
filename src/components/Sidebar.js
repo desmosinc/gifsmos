@@ -53,6 +53,7 @@ class Sidebar extends Component {
       mode: strategy,
       targetPixelRatio: oversample ? 2 : 1
     };
+
     requestFrame(imageOpts);
   }
 
@@ -69,14 +70,12 @@ class Sidebar extends Component {
         <SidebarButton icon="camera" onClick={this.handleRequestFrame} />
 
         <SidebarButton
-          data-testid="burst"
           icon="burst"
           expanded={expandedPane === panes.BURST}
           onClick={this.handleToggleBurst}
         />
 
         <SidebarButtonWithBadge
-          data-testid="preview"
           icon="preview"
           expanded={expandedPane === panes.PREVIEW}
           onClick={this.handleTogglePreview}
