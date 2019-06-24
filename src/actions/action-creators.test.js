@@ -230,12 +230,10 @@ describe('Action creators', () => {
         step: 1,
         width: 300,
         mode: 'contain',
-        mathBounds: {
-          left: -10,
-          right: 10,
-          bottom: -10,
-          top: 10
-        }
+        left: -10,
+        right: 10,
+        bottom: -10,
+        top: 10
       };
       initializeCalculator(desmosMock, calcContainerMock);
       return store.dispatch(actions.requestBurst(opts)).then(() => {
