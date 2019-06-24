@@ -27,18 +27,21 @@ const ariaMap = {
 };
 
 const SidebarButton = ({ children, icon, onClick, expanded }) => (
-  <button
-    className={classNames('SidebarButton', {
-      'SidebarButton-expanded': expanded
-    })}
-    onClick={onClick}
-    aria-label={ariaMap[icon]}
-    aria-expanded={expanded}
-    data-testid={`SidebarButton-${icon}-button`}
-  >
-    <img src={iconMap[icon]} alt={`${icon} icon`} />
-    {children}
-  </button>
+  <div className="tooltip">
+    <span className="tooltiptext">{icon[0].toUpperCase() + icon.slice(1)}</span>
+    <button
+      className={classNames('SidebarButton', {
+        'SidebarButton-expanded': expanded
+      })}
+      onClick={onClick}
+      aria-label={ariaMap[icon]}
+      aria-expanded={expanded}
+      data-testid={`SidebarButton-${icon}-button`}
+    >
+      <img src={iconMap[icon]} alt={`${icon} icon`} />
+      {children}
+    </button>
+  </div>
 );
 
 SidebarButton.defaultProps = {
