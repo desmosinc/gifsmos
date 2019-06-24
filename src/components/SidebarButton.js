@@ -2,10 +2,10 @@ import React from 'react';
 import classNames from 'classnames';
 import camera from './icons/camera.svg';
 import preview from './icons/preview.svg';
-import reset from './icons/reset.svg';
 import burst from './icons/burst.svg';
 import folder from './icons/folder.svg';
 import settings from './icons/settings.svg';
+import reset from './icons/reset.svg';
 import './SidebarButton.css';
 
 const iconMap = {
