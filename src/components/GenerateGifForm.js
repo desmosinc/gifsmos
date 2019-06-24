@@ -18,10 +18,6 @@ class GenerateGifForm extends Component {
   handleSubmit(evt) {
     evt.preventDefault();
     this.props.handleGenerateGIF();
-    this.props.updateTextPosition({
-      textAlign: 'center',
-      textBaseline: 'bottom'
-    });
   }
 
   handleInputUpdate(evt) {
@@ -37,18 +33,21 @@ class GenerateGifForm extends Component {
         this.props.updateGIFFileName(evt.target.value);
         break;
 
+      case 'placement':
+        let values = evt.target.value.split('-');
+        let positionObj = {
+          textAlign: values[1],
+          textBaseline: values[0]
+        };
+        this.props.updateTextPosition(positionObj);
+        let selectValue = document.getElementById('GenerateGifForm-select');
+        selectValue = selectValue.options[selectValue.selectedIndex].value;
+        localStorage.setItem('selectValue', selectValue);
+        this.props.updateTextPosition(positionObj);
+
+        break;
       default:
         break;
-    }
-
-    if (evt.target.name === 'placement') {
-      let values = evt.target.value.split('-');
-      let positionObj = {
-        textAlign: values[1],
-        textBaseline: values[0]
-      };
-
-      this.props.updateTextPosition(positionObj);
     }
   }
 
@@ -63,6 +62,7 @@ class GenerateGifForm extends Component {
   }
 
   render() {
+    let currentValue = localStorage.getItem('selectValue') || 'DEFAULT';
     let colorPicker = (
       <ColorPicker
         updateTextColor={this.props.updateTextColor}
@@ -92,8 +92,9 @@ class GenerateGifForm extends Component {
           type="select"
           className="GenerateGifForm-select"
           name="placement"
+          id="GenerateGifForm-select"
           onChange={this.handleInputUpdate}
-          defaultValue={'DEFAULT'}
+          defaultValue={currentValue}
         >
           <option disabled value="DEFAULT">
             pick a text position
