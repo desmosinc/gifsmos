@@ -228,7 +228,12 @@ describe('Action creators', () => {
         min: -3,
         oversample: false,
         step: 1,
-        width: 300
+        width: 300,
+        mode: 'contain',
+        left: -10,
+        right: 10,
+        bottom: -10,
+        top: 10
       };
       initializeCalculator(desmosMock, calcContainerMock);
       return store.dispatch(actions.requestBurst(opts)).then(() => {

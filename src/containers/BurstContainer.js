@@ -7,6 +7,7 @@ const mapStateToProps = (state, ownProps) => {
   const { settings, ui } = state;
   const { width, height, oversample } = settings.image;
   const { left, right, top, bottom } = settings.bounds;
+  const { strategy } = settings;
 
   return {
     expanded: ui.expandedPane === panes.BURST,
@@ -16,7 +17,8 @@ const mapStateToProps = (state, ownProps) => {
     left,
     right,
     top,
-    bottom
+    bottom,
+    strategy
   };
 };
 

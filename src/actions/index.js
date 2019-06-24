@@ -27,7 +27,6 @@
  */
 
 import * as types from '../constants/action-types';
-
 import {
   setSliderByIndex,
   getImageData,
@@ -201,15 +200,19 @@ export const requestBurst = opts => async (dispatch, getState) => {
     left,
     right,
     top,
-    bottom
+    bottom,
+    strategy
   } = opts;
   const imageOpts = {
     width,
     height,
-    left,
-    right,
-    top,
-    bottom,
+    mathBounds: {
+      top,
+      bottom,
+      left,
+      right
+    },
+    mode: strategy,
     targetPixelRatio: oversample ? 2 : 1
   };
 
@@ -224,6 +227,12 @@ export const requestBurst = opts => async (dispatch, getState) => {
   const settingsErrors = getSettingsErrors({ width, height });
   if (Object.keys(settingsErrors).length) {
     dispatch(flashError(badSettingsInput(settingsErrors)));
+    return;
+  }
+
+  const boundErrors = getBoundErrors({ top, bottom, left, right });
+  if (Object.keys(boundErrors).length) {
+    dispatch(flashError(invalidBounds(boundErrors)));
     return;
   }
 
