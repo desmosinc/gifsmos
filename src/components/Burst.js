@@ -7,7 +7,6 @@ import './Burst.css';
 class Burst extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       idx: 1,
       min: -10,
@@ -24,6 +23,12 @@ class Burst extends Component {
     this.handleInputUpdate = this.handleInputUpdate.bind(this);
     this.handleRequestBurst = this.handleRequestBurst.bind(this);
     this.handleUndoBurst = this.handleUndoBurst.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.frameIDs.length !== prevProps.frameIDs.length) {
+      this.setState({ canUndo: false });
+    }
   }
 
   handleInputUpdate(evt) {
