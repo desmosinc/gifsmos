@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import download from 'downloadjs';
 import SidebarButton from './SidebarButton';
 import SidebarButtonWithBadge from './SidebarButtonWithBadge';
 import panes from '../constants/pane-types';
@@ -12,7 +11,7 @@ class Sidebar extends Component {
     this.handleToggleBurst = this.handleToggleBurst.bind(this);
     this.handleToggleSettings = this.handleToggleSettings.bind(this);
     this.handleRequestFrame = this.handleRequestFrame.bind(this);
-    this.handleDownload = this.handleDownload.bind(this);
+    this.handleToggleFiles = this.handleToggleFiles.bind(this);
   }
 
   handleTogglePreview() {
@@ -28,11 +27,6 @@ class Sidebar extends Component {
   handleToggleSettings() {
     const { togglePane } = this.props;
     togglePane(panes.SETTINGS);
-  }
-
-  handleDownload() {
-    const { gifData } = this.props;
-    download(gifData, 'gifsmos.gif', 'image/gif');
   }
 
   handleRequestFrame() {
@@ -62,8 +56,13 @@ class Sidebar extends Component {
     requestFrame(imageOpts);
   }
 
+  handleToggleFiles() {
+    const { togglePane } = this.props;
+    togglePane(panes.FILES);
+  }
+
   render() {
-    const { reset, expandedPane, numFrames, gifData } = this.props;
+    const { reset, expandedPane, numFrames } = this.props;
 
     return (
       <div className="Sidebar">
@@ -87,7 +86,12 @@ class Sidebar extends Component {
         />
 
         <SidebarButton
-          data-testid="settings"
+          icon="folder"
+          expanded={expandedPane === panes.FILES}
+          onClick={this.handleToggleFiles}
+        />
+
+        <SidebarButton
           icon="settings"
           expanded={expandedPane === panes.SETTINGS}
           onClick={this.handleToggleSettings}
@@ -95,22 +99,12 @@ class Sidebar extends Component {
 
         {!!numFrames && <SidebarButton icon="reset" onClick={reset} />}
 
-        {!!gifData.length && (
-          <SidebarButtonWithBadge
-            data-testid="download"
-            icon="download"
-            onClick={this.handleDownload}
-            color="green"
-            showBadge={true}
-            value={'\u2713'}
-          />
-        )}
-
         <div className="Sidebar-help">
           <a
             href="https://github.com/ctlusto/gifsmos/blob/master/README.md"
             target="_blank"
             rel="noopener noreferrer"
+            data-testid="Sidebar-help-link"
           >
             Help
           </a>
@@ -119,5 +113,9 @@ class Sidebar extends Component {
     );
   }
 }
+
+Sidebar.defaultProps = {
+  gifData: ''
+};
 
 export default Sidebar;
