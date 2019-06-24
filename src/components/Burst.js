@@ -40,7 +40,7 @@ class Burst extends Component {
   }
 
   async handleRequestBurst() {
-    this.setState({ isCapturing: true });
+    this.setState({ isCapturing: true, canUndo: false });
     const { requestBurst, expanded, frames, frameIDs, ...imgOpts } = this.props;
     const prevCalcState = getCalcState();
     const undoData = await requestBurst({
