@@ -86,6 +86,7 @@ class Sidebar extends Component {
             href="https://github.com/ctlusto/gifsmos/blob/master/README.md"
             target="_blank"
             rel="noopener noreferrer"
+            data-testid="Sidebar-help-link"
           >
             Help
           </a>

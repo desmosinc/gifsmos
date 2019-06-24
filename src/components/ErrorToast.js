@@ -15,4 +15,8 @@ ErrorToast.propTypes = {
   message: PropTypes.string.isRequired
 };
 
+ErrorToast.defaultProps = {
+  message: ''
+};
+
 export default ErrorToast;

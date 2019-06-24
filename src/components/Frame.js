@@ -4,7 +4,10 @@ import classNames from 'classnames';
 import './Frame.css';
 
 const Frame = ({ imageSrc, playing, togglePlaying }) => (
-  <div className={classNames('Frame', { 'Frame-empty': !imageSrc })}>
+  <div
+    className={classNames('Frame', { 'Frame-empty': !imageSrc })}
+    data-testid="Frame-container"
+  >
     {imageSrc && (
       <>
         <img src={imageSrc} alt="current frame" />
