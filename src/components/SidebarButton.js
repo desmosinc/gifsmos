@@ -27,8 +27,10 @@ const ariaMap = {
 };
 
 const SidebarButton = ({ children, icon, onClick, expanded }) => (
-  <div className="tooltip">
-    <span className="tooltiptext">{icon[0].toUpperCase() + icon.slice(1)}</span>
+  <div className="SidebarButton-tooltip">
+    <span className="SidebarButton-tooltiptext">
+      {icon[0].toUpperCase() + icon.slice(1)}
+    </span>
     <button
       className={classNames('SidebarButton', {
         'SidebarButton-expanded': expanded
