@@ -3,7 +3,7 @@
   border: 1px solid transparent;
   width: 40px;
   height: 40px;
-  margin-top: 10px;
+  margin-top: 15px;
   margin-left: 15px;
   border-radius: 5px;
   font-size: 1em;
@@ -65,4 +65,44 @@
   100% {
     opacity: 1;
   }
+}
+
+.SidebarButton-tooltip {
+  position: relative;
+  display: inline-block;
+  margin: 10px auto;
+}
+
+.SidebarButton-tooltip .SidebarButton-tooltiptext {
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 3px 1px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  width: 75px;
+  height: 20px;
+  bottom: 75%;
+  left: 50%;
+  opacity: 0;
+}
+
+.SidebarButton-tooltip:hover .SidebarButton-tooltiptext {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 2s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition-delay: 2s;
+}
+
+.SidebarButton-tooltip:hover .SidebarButton-tooltiptext::after {
+  content: '';
+  position: absolute;
+  top: 100%; /* At the bottom of the tooltip */
+  left: 20%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
 }
