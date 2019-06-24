@@ -51,6 +51,7 @@ class Burst extends Component {
           <Info blurb={burstBlurb} title={'Burst'} />
         </div>
         <div>Slider Index</div>
+        <div data-testid="Burst-slider-index-label">Slider Index</div>
         <input
           className={classNames('Burst-input', {
             'Burst-input-error': !!errors.idx
@@ -61,7 +62,7 @@ class Burst extends Component {
           value={isNaN(idx) ? '' : idx}
           onChange={this.handleInputUpdate}
         />
-        <div>Slider Min</div>
+        <div data-testid="Burst-slider-min-label">Slider Min</div>
         <input
           className={classNames('Burst-input', {
             'Burst-input-error': !!errors.min
@@ -72,7 +73,7 @@ class Burst extends Component {
           value={isNaN(min) ? '' : min}
           onChange={this.handleInputUpdate}
         />
-        <div>Slider Max</div>
+        <div data-testid="Burst-slider-max-label">Slider Max</div>
         <input
           className={classNames('Burst-input', {
             'Burst-input-error': !!errors.max
@@ -83,7 +84,7 @@ class Burst extends Component {
           value={isNaN(max) ? '' : max}
           onChange={this.handleInputUpdate}
         />
-        <div>Slider Step</div>
+        <div data-testid="Burst-slider-step-label">Slider Step</div>
         <input
           className={classNames('Burst-input', {
             'Burst-input-error': !!errors.step

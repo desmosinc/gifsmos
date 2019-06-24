@@ -4,14 +4,15 @@ import SidebarContainer from '../containers/SidebarContainer';
 import PreviewContainer from '../containers/PreviewContainer';
 import BurstContainer from '../containers/BurstContainer';
 import SettingsContainer from '../containers/SettingsContainer';
+import FolderContainer from '../containers/FolderContainer';
 import ErrorToastContainer from '../containers/ErrorToastContainer';
 import CALCULATOR_OPTIONS from '../constants/calculator-options';
+import { initializeCalculator } from '../lib/calculator';
 import './App.css';
 
 // The Desmos API is loaded in index.html
 const Desmos = window.Desmos;
 const calcContainer = React.createRef();
-export let calculator;
 
 class App extends Component {
   constructor(props) {
@@ -25,11 +26,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    calculator = Desmos.GraphingCalculator(
-      calcContainer.current,
-      CALCULATOR_OPTIONS
-    );
-
+    initializeCalculator(Desmos, calcContainer, CALCULATOR_OPTIONS);
     window.addEventListener('keydown', this.handleKeyDown);
   }
 
@@ -41,6 +38,7 @@ class App extends Component {
         <SettingsContainer />
         <PreviewContainer />
         <BurstContainer />
+        <FolderContainer />
         <SidebarContainer />
         <ErrorToastContainer />
       </div>

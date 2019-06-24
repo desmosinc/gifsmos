@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import Frame from './Frame';
 import Info from './Info';
+import GenerateGifFormContainer from '../containers/GenerateGifFormContainer';
 import './Preview.css';
 import previewBlurb from '../blurbs/previewBlurb';
 
@@ -28,14 +29,18 @@ class Preview extends Component {
       height,
       oversample,
       interval,
-      generateGIF
+      generateGIF,
+      caption,
+      fontColor
     } = this.props;
     const images = frameIDs.map(id => frames[id]);
     const multiplier = oversample ? 2 : 1;
     const opts = {
       gifWidth: width * multiplier,
       gifHeight: height * multiplier,
-      interval: interval / 1000
+      interval: interval / 1000,
+      text: caption,
+      fontColor: fontColor
     };
     generateGIF(images, opts);
   }
@@ -64,14 +69,17 @@ class Preview extends Component {
     if (!expanded) return <div className="Preview" />;
 
     return (
-      <div className={classNames('Preview', { 'Preview-expanded': expanded })}>
+      <div
+        className={classNames('Preview', { 'Preview-expanded': expanded })}
+        data-testid="Preview-container"
+      >
         <Info title="Preview" blurb={previewBlurb} />
         <Frame
           imageSrc={imageSrc}
           playing={playing}
           togglePlaying={this.handleTogglePlaying}
         />
-        <div className="Preview-scrubber">
+        <div className="Preview-scrubber" data-testid="Preview-scrubber">
           <input
             type="range"
             min="0"
@@ -82,19 +90,21 @@ class Preview extends Component {
             aria-label="preview frame index"
           />
         </div>
-        <div className="Preview-scrubber-counter">
+        <div
+          className="Preview-scrubber-counter"
+          data-testid="Preview-scrubber-counter"
+        >
           {numFrames ? `${previewIdx + 1} / ${numFrames}` : '0 / 0'}
         </div>
-        <div className="Preview-create">
-          {!!numFrames && (
-            <button
-              className="Preview-create-button"
-              onClick={this.handleGenerateGIF}
-              aria-label="generate gif"
-            >
-              Generate GIF
-            </button>
-          )}
+        <div
+          className="Preview-create"
+          data-testid="Preview-create-form-container"
+        >
+          {!!numFrames && this.props.gifData.length === 0 ? (
+            <GenerateGifFormContainer
+              handleGenerateGIF={this.handleGenerateGIF}
+            />
+          ) : null}
         </div>
         <div className="Preview-progress-outer">
           <div
@@ -105,9 +115,19 @@ class Preview extends Component {
             }}
           />
         </div>
+        {gifProgress === 1 ? (
+          <div className="Preview-progress-success">Download Successful</div>
+        ) : null}
       </div>
     );
   }
 }
+
+Preview.defaultProps = {
+  previewIdx: 0,
+  frames: {},
+  frameIDs: [],
+  gifData: ''
+};
 
 export default Preview;
