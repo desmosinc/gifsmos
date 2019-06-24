@@ -70,14 +70,12 @@ class Sidebar extends Component {
         <SidebarButton icon="camera" onClick={this.handleRequestFrame} />
 
         <SidebarButton
-          data-testid="burst"
           icon="burst"
           expanded={expandedPane === panes.BURST}
           onClick={this.handleToggleBurst}
         />
 
         <SidebarButtonWithBadge
-          data-testid="preview"
           icon="preview"
           expanded={expandedPane === panes.PREVIEW}
           onClick={this.handleTogglePreview}
@@ -87,7 +85,6 @@ class Sidebar extends Component {
         />
 
         <SidebarButton
-          data-testid="settings"
           icon="folder"
           expanded={expandedPane === panes.FILES}
           onClick={this.handleToggleFiles}
