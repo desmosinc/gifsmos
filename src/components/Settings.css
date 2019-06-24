@@ -1,5 +1,6 @@
 .Settings {
   position: absolute;
+  z-index: 2;
   top: 40px;
   left: 70px;
   bottom: 0;

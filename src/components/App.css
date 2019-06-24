@@ -1,7 +1,26 @@
 .calculator {
+  z-index: 1;
   position: absolute;
   top: 40px;
   left: 70px;
   right: 0;
   bottom: 0;
+}
+
+.calculator-burst {
+  left: 271px;
+  animation: fade-in 0.5s;
+  -webkit-animation: fade-in 0.5s;
+}
+
+.calculator-settings {
+  left: 271px;
+  animation: fade-in 0.5s;
+  -webkit-animation: fade-in 0.5s;
+}
+
+.calculator-files {
+  left: 449px;
+  animation: fade-in 0.5s;
+  -webkit-animation: fade-in 0.5s;
 }

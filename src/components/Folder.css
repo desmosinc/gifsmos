@@ -1,4 +1,5 @@
 .Folder {
+  z-index: 2;
   position: absolute;
   top: 40px;
   left: 70px;

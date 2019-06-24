@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ClassNames from 'classnames';
 import Header from '../components/Header';
 import SidebarContainer from '../containers/SidebarContainer';
 import PreviewContainer from '../containers/PreviewContainer';
@@ -31,10 +32,19 @@ class App extends Component {
   }
 
   render() {
+    const { expandedPane } = this.props;
+
     return (
       <div className="App">
         <Header />
-        <div className="calculator" ref={calcContainer} />
+        <div
+          className={ClassNames('calculator', {
+            'calculator-burst': expandedPane === 'BURST',
+            'calculator-settings': expandedPane === 'SETTINGS',
+            'calculator-files': expandedPane === 'FILES'
+          })}
+          ref={calcContainer}
+        />
         <SettingsContainer />
         <PreviewContainer />
         <BurstContainer />
