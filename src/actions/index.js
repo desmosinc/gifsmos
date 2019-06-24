@@ -27,21 +27,28 @@
  */
 
 import * as types from '../constants/action-types';
+
 import {
   setSliderByIndex,
   getImageData,
   loadSavedGraph,
   saveCurrentGraph
 } from '../lib/calc-helpers';
+
 import { startTimer, clearTimer } from '../lib/timer';
+
 import {
   gifCreationProblem,
   badBurstInput,
   badSettingsInput,
+  invalidBounds,
   badNameInput
 } from '../lib/error-messages';
+
 import download from 'downloadjs';
+
 import {
+  getBoundErrors,
   getBurstErrors,
   getSettingsErrors,
   getSaveGraphErrors
@@ -174,10 +181,17 @@ export const flashError = message => dispatch => {
 
 export const requestFrame = opts => async dispatch => {
   const { width, height } = opts;
+  const { left, right, top, bottom } = opts.mathBounds;
 
   const settingsErrors = getSettingsErrors({ width, height });
   if (Object.keys(settingsErrors).length) {
     dispatch(flashError(badSettingsInput(settingsErrors)));
+    return;
+  }
+
+  const boundErrors = getBoundErrors({ left, right, top, bottom });
+  if (Object.keys(boundErrors).length) {
+    dispatch(flashError(invalidBounds(boundErrors)));
     return;
   }
 
@@ -186,10 +200,26 @@ export const requestFrame = opts => async dispatch => {
 };
 
 export const requestBurst = opts => async (dispatch, getState) => {
-  const { idx, min, max, step, width, height, oversample } = opts;
+  const {
+    idx,
+    min,
+    max,
+    step,
+    width,
+    height,
+    oversample,
+    left,
+    right,
+    top,
+    bottom
+  } = opts;
   const imageOpts = {
     width,
     height,
+    left,
+    right,
+    top,
+    bottom,
     targetPixelRatio: oversample ? 2 : 1
   };
 
