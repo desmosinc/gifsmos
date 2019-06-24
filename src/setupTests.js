@@ -1,9 +1,8 @@
 import 'jest-dom/extend-expect';
-import 'react-testing-library/cleanup-after-each';
 import React from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 import rootReducer from './reducers';
 
 global.console = {
