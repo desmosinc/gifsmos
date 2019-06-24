@@ -50,7 +50,6 @@ class Burst extends Component {
         <div className="Component-header">
           <Info blurb={burstBlurb} title={'Burst'} />
         </div>
-        <div>Slider Index</div>
         <div data-testid="Burst-slider-index-label">Slider Index</div>
         <input
           className={classNames('Burst-input', {

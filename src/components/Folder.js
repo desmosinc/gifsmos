@@ -6,6 +6,8 @@ import {
 } from '../lib/local-storage-helpers';
 import panes from '../constants/pane-types';
 import './Folder.css';
+import Info from './Info';
+import folderBlurb from '../blurbs/folderBlurb';
 
 class Folder extends Component {
   constructor(props) {
@@ -107,6 +109,7 @@ class Folder extends Component {
           'Folder-expanded': expanded
         })}
       >
+        <Info title="Folder" blurb={folderBlurb} />
         <div>
           <div className="Folder-titles">Name</div>
           <input
