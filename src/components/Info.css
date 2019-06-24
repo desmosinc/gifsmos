@@ -1,0 +1,51 @@
+.Info-icon {
+  height: 20px;
+  width: 20px;
+  margin-left: 10px;
+  margin-top: 7px;
+}
+
+.Info-icon:hover {
+  cursor: pointer;
+}
+
+.Info-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Info-header h1 {
+  color: #fff;
+}
+
+.Text-container {
+  position: relative;
+}
+
+.Show {
+  position: absolute;
+  z-index: 1;
+  background-color: rgb(34, 34, 34, 0.8);
+  width: 180px;
+  margin-left: 10px;
+  left: 100%;
+  top: 10%;
+  color: #fff;
+  font-size: 13px;
+  padding: 15px;
+  border-radius: 20px;
+  text-align: left;
+}
+
+.Show a {
+  color: #fff;
+}
+
+.Show a:hover {
+  color: rgb(184, 184, 184);
+}
+
+.Hide {
+  display: none;
+}

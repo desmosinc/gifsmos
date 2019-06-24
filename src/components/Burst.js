@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import { getBurstErrors } from '../lib/input-helpers';
 import './Burst.css';
+import Info from './Info';
+import burstBlurb from '../blurbs/burstBlurb.js';
 
 class Burst extends Component {
   constructor(props) {
@@ -45,6 +47,9 @@ class Burst extends Component {
 
     return (
       <div className={classNames('Burst', { 'Burst-expanded': expanded })}>
+        <div className="Component-header">
+          <Info blurb={burstBlurb} title={'Burst'} />
+        </div>
         <div>Slider Index</div>
         <input
           className={classNames('Burst-input', {

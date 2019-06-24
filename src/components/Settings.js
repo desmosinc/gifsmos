@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import { isPositiveInteger } from '../lib/input-helpers';
 import './Settings.css';
+import Info from './Info';
+import settingsBlurb from '../blurbs/settingsBlurb';
 
 class Settings extends Component {
   constructor(props) {
@@ -27,6 +29,7 @@ class Settings extends Component {
       <div
         className={classNames('Settings', { 'Settings-expanded': expanded })}
       >
+        <Info title="Settings" blurb={settingsBlurb} />
         <div>Image Width</div>
         <input
           className={classNames('Settings-input', {

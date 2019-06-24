@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import Frame from './Frame';
+import Info from './Info';
 import './Preview.css';
+import previewBlurb from '../blurbs/previewBlurb';
 
 class Preview extends Component {
   constructor(props) {
@@ -63,6 +65,7 @@ class Preview extends Component {
 
     return (
       <div className={classNames('Preview', { 'Preview-expanded': expanded })}>
+        <Info title="Preview" blurb={previewBlurb} />
         <Frame
           imageSrc={imageSrc}
           playing={playing}
