@@ -89,9 +89,7 @@ const images = (state = initialState, { type, payload }) => {
     case UPDATE_GIF_FILENAME:
       return {
         ...state,
-        ...{
-          gifFileName: payload.gifFileName
-        }
+        gifFileName: payload.gifFileName
       };
 
     case UPDATE_TEXT_POSITION:
