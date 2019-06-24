@@ -240,7 +240,7 @@ describe('Action creators', () => {
       initializeCalculator(desmosMock, calcContainerMock);
       return store.dispatch(actions.requestBurst(opts)).then(() => {
         // slide with min/max of -3/3 should dispatch addFrame 7 times
-        expect(store.getActions().length).toEqual(1);
+        expect(store.getActions().length).toEqual(7);
       });
     });
 
