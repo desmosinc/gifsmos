@@ -4,15 +4,20 @@ import SidebarButton from './SidebarButton';
 import SidebarButtonWithBadge from './SidebarButtonWithBadge';
 import panes from '../constants/pane-types';
 import './Sidebar.css';
+import Modal from './Modal';
 
 class Sidebar extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      showModal: false
+    };
     this.handleTogglePreview = this.handleTogglePreview.bind(this);
     this.handleToggleBurst = this.handleToggleBurst.bind(this);
     this.handleToggleSettings = this.handleToggleSettings.bind(this);
     this.handleRequestFrame = this.handleRequestFrame.bind(this);
     this.handleDownload = this.handleDownload.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
   handleTogglePreview() {
@@ -31,8 +36,8 @@ class Sidebar extends Component {
   }
 
   handleDownload() {
-    const { gifData } = this.props;
-    download(gifData, 'gifsmos.gif', 'image/gif');
+    const { gifData, gifFileName } = this.props;
+    download(gifData, gifFileName || 'gifsmos.gif', 'image/gif');
   }
 
   handleRequestFrame() {
@@ -43,6 +48,12 @@ class Sidebar extends Component {
       targetPixelRatio: oversample ? 2 : 1
     };
     requestFrame(imageOpts);
+  }
+
+  toggleModal() {
+    this.setState({
+      showModal: !this.state.showModal
+    });
   }
 
   render() {
@@ -85,14 +96,14 @@ class Sidebar extends Component {
           />
         )}
 
-        <div className="Sidebar-help">
-          <a
-            href="https://github.com/ctlusto/gifsmos/blob/master/README.md"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Help
-          </a>
+        <div className="Sidebar-help" onClick={this.toggleModal}>
+          <p>Help</p>
+        </div>
+        <div>
+          <Modal
+            showModal={this.state.showModal}
+            toggleModal={this.toggleModal}
+          />
         </div>
       </div>
     );
