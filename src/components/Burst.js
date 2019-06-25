@@ -54,12 +54,11 @@ class Burst extends Component {
           onChange={this.handleInputUpdate}
         >
           <option value={null} defaultValue>
-            {burstSliders.length ? 'Choose Slider' : 'No Sliders'}
+            {burstSliders.length ? 'Pick Slider' : 'No Sliders'}
           </option>
           {burstSliders.map(exp => {
             return (
-              <option key={`slider-${exp.id}`} value={exp.id}>
-                {' '}
+              <option key={`slider-${exp.id}`} value={exp.expressionIdx}>
                 {exp.latex.split('=').join(' = ')}
               </option>
             );
