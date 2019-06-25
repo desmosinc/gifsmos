@@ -5,7 +5,7 @@ const mapStateToProps = (state, ownProps) => {
   const { expandedPane } = state.ui;
 
   return {
-    expandedPane
+    pane: expandedPane.toLowerCase()
   };
 };
 

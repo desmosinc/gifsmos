@@ -2,7 +2,6 @@
   z-index: 1;
   position: absolute;
   top: 40px;
-  left: 70px;
   right: 0;
   bottom: 0;
 }
@@ -10,6 +9,11 @@
 .calculator-burst,
 .calculator-settings {
   left: 271px;
+}
+
+.calculator-none,
+.calculator-preview {
+  left: 70px;
 }
 
 .calculator-files {
