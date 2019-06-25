@@ -100,6 +100,11 @@ export const addGIF = imageData => ({
   payload: { imageData }
 });
 
+export const undoBurst = (frames, frameIDs) => ({
+  type: types.UNDO_BURST,
+  payload: { frames, frameIDs }
+});
+
 export const togglePane = pane => {
   clearTimer();
   return {
@@ -197,6 +202,8 @@ export const requestBurst = opts => async (dispatch, getState) => {
     width,
     height,
     oversample,
+    frames,
+    frameIDs,
     left,
     right,
     top,
@@ -229,13 +236,13 @@ export const requestBurst = opts => async (dispatch, getState) => {
     dispatch(flashError(badSettingsInput(settingsErrors)));
     return;
   }
-
+  const prevFrames = { ...frames };
+  const prevFrameIDs = [...frameIDs];
   const boundErrors = getBoundErrors({ top, bottom, left, right });
   if (Object.keys(boundErrors).length) {
     dispatch(flashError(invalidBounds(boundErrors)));
     return;
   }
-
   let imageData;
   let sliderErrorMessage;
   for (let val = min; val <= max; val += step) {
@@ -248,6 +255,8 @@ export const requestBurst = opts => async (dispatch, getState) => {
     imageData = await getImageData(imageOpts);
     dispatch(addFrame(imageData));
   }
+
+  return { prevFrames, prevFrameIDs };
 };
 
 export const startAnimation = () => (dispatch, getState) => {

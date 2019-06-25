@@ -61,6 +61,11 @@
   border-color: #e79600;
 }
 
+.capturing {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .Bound-text {
   margin: 1rem;
   font-size: 17px;

@@ -229,6 +229,7 @@ describe('Action creators', () => {
         oversample: false,
         step: 1,
         width: 300,
+        frameIDs: [0, 1, 2],
         mode: 'contain',
         left: -10,
         right: 10,
