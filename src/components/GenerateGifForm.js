@@ -103,7 +103,7 @@ class GenerateGifForm extends Component {
         <div
           style={colorPickerBg}
           onClick={this.renderColorPicker}
-          className="colorPicker"
+          className="ColorPicker"
         >
           <p>Pick a Caption Color</p>
         </div>

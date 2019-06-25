@@ -21,7 +21,6 @@ import {
   UPDATE_TEXT_COLOR,
   UPDATE_TEXT_POSITION
 } from '../constants/action-types';
-import { startTimer } from '../lib/timer';
 
 const initialState = {
   frames: {},
