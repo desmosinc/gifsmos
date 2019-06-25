@@ -42,7 +42,7 @@ export const badBurstInput = errors => {
   }
 
   if (propText === propMap.idx)
-    return `Please choose a slider or define an expression`;
+    return `Please choose a slider or define an expression.`;
 
   return `Your ${propText} isn't quite right.`;
 };
