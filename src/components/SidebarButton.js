@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import camera from './icons/camera.svg';
 import preview from './icons/preview.svg';
 import burst from './icons/burst.svg';
-import folder from './icons/folder.svg';
+import saved from './icons/saved.svg';
 import settings from './icons/settings.svg';
 import reset from './icons/reset.svg';
 import './SidebarButton.css';
@@ -14,7 +14,7 @@ const iconMap = {
   reset,
   burst,
   settings,
-  folder
+  saved
 };
 
 const ariaMap = {
@@ -23,7 +23,7 @@ const ariaMap = {
   reset: 'reset images',
   burst: 'multi-capture panel',
   settings: 'settings panel',
-  folder: 'folder-graphs panel'
+  saved: 'saved-graphs panel'
 };
 
 const SidebarButton = ({ children, icon, onClick, expanded }) => (
