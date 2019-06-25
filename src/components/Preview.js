@@ -7,9 +7,15 @@ import './Preview.css';
 class Preview extends Component {
   constructor(props) {
     super(props);
-    this.handlePreviewUpdate = this.handlePreviewUpdate.bind(this);
+    this.state = {
+      showColorPicker: false
+    };
+
     this.handleGenerateGIF = this.handleGenerateGIF.bind(this);
+    this.handlePreviewUpdate = this.handlePreviewUpdate.bind(this);
     this.handleTogglePlaying = this.handleTogglePlaying.bind(this);
+    this.handleClickContainer = this.handleClickContainer.bind(this);
+    this.updateColorPicker = this.updateColorPicker.bind(this);
   }
 
   handlePreviewUpdate(evt) {
@@ -29,8 +35,11 @@ class Preview extends Component {
       interval,
       generateGIF,
       caption,
-      fontColor
+      fontColor,
+      textAlign,
+      textBaseline
     } = this.props;
+
     const images = frameIDs.map(id => frames[id]);
     const multiplier = oversample ? 2 : 1;
     const opts = {
@@ -38,9 +47,23 @@ class Preview extends Component {
       gifHeight: height * multiplier,
       interval: interval / 1000,
       text: caption,
-      fontColor: fontColor
+      fontColor: fontColor,
+      textAlign: textAlign,
+      textBaseline: textBaseline
     };
     generateGIF(images, opts);
+  }
+
+  updateColorPicker(status) {
+    this.setState({ showColorPicker: status });
+  }
+
+  handleClickContainer(evt) {
+    if (evt.target.className === 'Preview Preview-expanded') {
+      this.setState({
+        showColorPicker: false
+      });
+    }
   }
 
   handleTogglePlaying() {
@@ -70,6 +93,7 @@ class Preview extends Component {
       <div
         className={classNames('Preview', { 'Preview-expanded': expanded })}
         data-testid="Preview-container"
+        onClick={this.handleClickContainer}
       >
         <Frame
           imageSrc={imageSrc}
@@ -100,6 +124,8 @@ class Preview extends Component {
           {!!numFrames && this.props.gifData.length === 0 ? (
             <GenerateGifFormContainer
               handleGenerateGIF={this.handleGenerateGIF}
+              showColorPicker={this.state.showColorPicker}
+              updateColorPicker={this.updateColorPicker}
             />
           ) : null}
         </div>
