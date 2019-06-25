@@ -95,10 +95,8 @@ const images = (state = initialState, { type, payload }) => {
     case UPDATE_TEXT_POSITION:
       return {
         ...state,
-        ...{
-          textAlign: payload.textAlign,
-          textBaseline: payload.textBaseline
-        }
+        textAlign: payload.textAlign,
+        textBaseline: payload.textBaseline
       };
 
     case RESET:

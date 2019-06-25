@@ -4,20 +4,46 @@ import { SketchPicker } from 'react-color';
 class ColorPicker extends Component {
   constructor(props) {
     super(props);
-    this.handleSetTimeout = this.handleSetTimeout.bind(this);
+    this.state = {
+      showColor: this.props.showColor
+    };
+    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.handleClickOutside = this.handleClickOutside.bind(this);
+  }
+
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleClickOutside);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClickOutside);
   }
 
   handleInputUpdate = color => {
     this.props.updateTextColor(color.hex);
   };
 
-  handleSetTimeout() {
-    setTimeout(this.props.closeColorPicker, 500);
+  setWrapperRef(node) {
+    this.wrapperRef = node;
+  }
+
+  handleClickOutside(event) {
+    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+      this.props.closeColorPicker();
+    }
   }
 
   render() {
+    let styles;
+    if (this.state.showColor) {
+      styles = null;
+    } else {
+      styles = {
+        display: 'none'
+      };
+    }
     return (
-      <div onMouseLeave={this.handleSetTimeout}>
+      <div ref={this.setWrapperRef} style={styles}>
         <SketchPicker
           className="sketchPicker"
           onChange={this.handleInputUpdate}
