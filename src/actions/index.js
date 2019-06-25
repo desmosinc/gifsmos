@@ -27,7 +27,6 @@
  */
 
 import * as types from '../constants/action-types';
-
 import {
   setSliderByIndex,
   getImageData,
@@ -108,6 +107,11 @@ export const updateTextPosition = textOpts => {
 export const addGIF = imageData => ({
   type: types.ADD_GIF,
   payload: { imageData }
+});
+
+export const undoBurst = (frames, frameIDs) => ({
+  type: types.UNDO_BURST,
+  payload: { frames, frameIDs }
 });
 
 export const togglePane = pane => {
@@ -208,18 +212,24 @@ export const requestBurst = opts => async (dispatch, getState) => {
     width,
     height,
     oversample,
-    left,
-    right,
-    top,
-    bottom
-  } = opts;
-  const imageOpts = {
-    width,
-    height,
+    frames,
+    frameIDs,
     left,
     right,
     top,
     bottom,
+    strategy
+  } = opts;
+  const imageOpts = {
+    width,
+    height,
+    mathBounds: {
+      top,
+      bottom,
+      left,
+      right
+    },
+    mode: strategy,
     targetPixelRatio: oversample ? 2 : 1
   };
 
@@ -236,7 +246,13 @@ export const requestBurst = opts => async (dispatch, getState) => {
     dispatch(flashError(badSettingsInput(settingsErrors)));
     return;
   }
-
+  const prevFrames = { ...frames };
+  const prevFrameIDs = [...frameIDs];
+  const boundErrors = getBoundErrors({ top, bottom, left, right });
+  if (Object.keys(boundErrors).length) {
+    dispatch(flashError(invalidBounds(boundErrors)));
+    return;
+  }
   let imageData;
   let sliderErrorMessage;
   for (let val = min; val <= max; val += step) {
@@ -249,6 +265,8 @@ export const requestBurst = opts => async (dispatch, getState) => {
     imageData = await getImageData(imageOpts);
     dispatch(addFrame(imageData));
   }
+
+  return { prevFrames, prevFrameIDs };
 };
 
 export const startAnimation = () => (dispatch, getState) => {

@@ -11,6 +11,7 @@
 export const ADD_FRAME = 'ADD_FRAME';
 export const UPDATE_GIF_PROGRESS = 'UPDATE_GIF_PROGRESS';
 export const ADD_GIF = 'ADD_GIF';
+export const UNDO_BURST = 'UNDO_BURST';
 export const UPDATE_TEXT = 'UPDATE_TEXT';
 export const UPDATE_TEXT_COLOR = 'UPDATE_TEXT_COLOR';
 export const UPDATE_GIF_FILENAME = 'UPDATE_GIF_FILENAME';
