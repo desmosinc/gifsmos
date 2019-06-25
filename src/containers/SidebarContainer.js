@@ -5,16 +5,22 @@ import { requestFrame, togglePane, reset } from '../actions';
 const mapStateToProps = (state, ownProps) => {
   const { images, settings, ui } = state;
   const { expandedPane } = ui;
-  const { gifData, frameIDs } = images;
+  const { frameIDs } = images;
   const { width, height, oversample } = settings.image;
+  const { left, right, top, bottom } = settings.bounds;
+  const { strategy } = settings;
 
   return {
     numFrames: frameIDs.length,
     expandedPane,
-    gifData,
     width,
     height,
-    oversample
+    left,
+    right,
+    top,
+    bottom,
+    oversample,
+    strategy
   };
 };
 

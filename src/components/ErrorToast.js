@@ -10,4 +10,8 @@ const ErrorToast = ({ message }) => {
   );
 };
 
+ErrorToast.defaultProps = {
+  message: ''
+};
+
 export default ErrorToast;
