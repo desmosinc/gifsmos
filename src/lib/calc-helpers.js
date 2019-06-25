@@ -42,7 +42,16 @@ export const setSliderByIndex = (idx, val) => {
   if (!match) return notASlider(idx);
 
   const identifier = match[1];
+
   calculator.setExpression({ id, latex: `${identifier}=${val}` });
+};
+
+export const getCalcState = () => {
+  return calculator.getState();
+};
+
+export const setCalcState = state => {
+  return calculator.setState(state);
 };
 
 export const saveCurrentGraph = async (name, frames, frameIDs) => {

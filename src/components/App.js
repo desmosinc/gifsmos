@@ -32,10 +32,12 @@ class App extends Component {
   }
 
   render() {
+    const { pane } = this.props;
+
     return (
       <div className="App">
         <Header />
-        <div className="calculator" ref={calcContainer} />
+        <div className={`calculator calculator-${pane}`} ref={calcContainer} />
         <SettingsContainer />
         <PreviewContainer />
         <BurstContainer />

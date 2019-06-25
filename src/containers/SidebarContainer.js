@@ -7,13 +7,20 @@ const mapStateToProps = (state, ownProps) => {
   const { expandedPane } = ui;
   const { frameIDs } = images;
   const { width, height, oversample } = settings.image;
+  const { left, right, top, bottom } = settings.bounds;
+  const { strategy } = settings;
 
   return {
     numFrames: frameIDs.length,
     expandedPane,
     width,
     height,
-    oversample
+    left,
+    right,
+    top,
+    bottom,
+    oversample,
+    strategy
   };
 };
 

@@ -11,7 +11,13 @@ describe('<Preview/>', () => {
 
   it('renders appropriate content', () => {
     const { getByTestId } = global.renderWithRedux(
-      <Preview expanded previewIdx={0} frames={{ 1: 'test' }} frameIDs={[1]} />
+      <Preview
+        expanded
+        previewIdx={0}
+        frames={{ 1: 'test' }}
+        frameIDs={[1]}
+        gifData={[]}
+      />
     );
     expect(getByTestId('Preview-scrubber').firstChild.type).toBe('range');
     expect(getByTestId('Preview-scrubber-counter').textContent).toBe('1 / 1');
@@ -19,6 +25,6 @@ describe('<Preview/>', () => {
     expect(
       getByTestId('Preview-container').querySelector('.GenerateGifForm-button')
         .textContent
-    ).toBe('Download GIF!');
+    ).toBe('Download GIF');
   });
 });

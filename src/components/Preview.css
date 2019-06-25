@@ -1,17 +1,21 @@
 .Preview {
   position: absolute;
-  top: 40px;
+  top: 60px;
   left: 70px;
   right: 0;
   bottom: 0;
   background: #2e2e2e;
   transform: translateX(-100%);
   transition: 0.2s transform;
+  margin-bottom: 0;
+  overflow: scroll;
 }
 
 .Preview-expanded {
+  z-index: 1;
   transform: translateX(0);
   transition: 0.2s transform;
+  min-height: 100vh;
 }
 
 .Preview-scrubber {
@@ -29,16 +33,18 @@
   text-align: center;
   color: #fff;
   font-weight: bold;
+  width: 200px;
+  margin: 0 auto;
 }
 
 .Preview-create {
+  width: 200px;
   text-align: center;
-  margin-top: 20px;
+  margin: 20px auto 0;
 }
 
 .Preview-progress-outer {
   width: 210px;
-  height: 15px;
   margin: 15px auto 0;
 }
 

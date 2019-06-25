@@ -6,7 +6,7 @@ afterEach(cleanup);
 
 describe('<SidebarButton/>', () => {
   it('renders without crashing', () => {
-    global.renderWithRedux(<SidebarButton />);
+    global.renderWithRedux(<SidebarButton icon="icon" />);
   });
 
   it('renders appropriate content', () => {

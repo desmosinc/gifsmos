@@ -42,8 +42,9 @@ export const badBurstInput = errors => {
       propText = 'input';
   }
 
-  if (propText === propMap.idx)
+  if (propText === propMap.idx) {
     return `Your ${propText} must be a positive integer.`;
+  }
 
   return `Your ${propText} isn't quite right.`;
 };
@@ -66,4 +67,46 @@ export const badSettingsInput = errors => {
   }
 
   return 'Image settings must be positive integers.';
+};
+
+export const invalidBounds = errors => {
+  let badProps = [];
+  for (let prop in errors) {
+    if (!!errors[prop]) badProps.push(prop);
+  }
+
+  let errorString = [];
+
+  for (let i = 0; i < badProps.length; i++) {
+    let errBound = badProps[i];
+
+    switch (errBound) {
+      case 'leftless':
+        errorString.push(
+          'Left Bound must be less than Right Bound to create a snapshot.'
+        );
+        break;
+      case 'bottomless':
+        errorString.push(
+          'Bottom Bound must be less than Top Bound to create a snapshot.'
+        );
+        break;
+      case 'top':
+        errorString.push('Top Bound must be a valid integer.');
+        break;
+      case 'bottom':
+        errorString.push('Bottom Bound must be a valid integer.');
+        break;
+      case 'left':
+        errorString.push('Left Bound must be a valid integer.');
+        break;
+      case 'right':
+        errorString.push('Right Bound must be a valid integer.');
+        break;
+      default:
+        break;
+    }
+  }
+
+  return errorString.join('   ');
 };

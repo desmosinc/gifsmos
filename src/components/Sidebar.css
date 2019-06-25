@@ -1,17 +1,20 @@
 .Sidebar {
   position: absolute;
-  top: 40px;
+  z-index: 2;
+  top: 60px;
   left: 0;
   bottom: 0;
   width: 70px;
   border-right: 1px solid black;
   background: #2e2e2e;
+  min-height: 100vh;
 }
 
 .Sidebar-help {
   position: absolute;
   left: 18px;
-  bottom: 20px;
+  bottom: 30px;
+  position: fixed;
 }
 
 .Sidebar-help a {
