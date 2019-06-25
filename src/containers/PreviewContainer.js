@@ -11,7 +11,16 @@ import panes from '../constants/pane-types';
 const mapStateToProps = (state, ownProps) => {
   const { images, ui, settings } = state;
   const { expandedPane, previewIdx, playing } = ui;
-  const { frames, frameIDs, gifProgress, gifData, caption, fontColor } = images;
+  const {
+    frames,
+    frameIDs,
+    gifProgress,
+    gifData,
+    caption,
+    fontColor,
+    textAlign,
+    textBaseline
+  } = images;
   const { width, height, oversample, interval } = settings.image;
 
   return {
@@ -27,7 +36,9 @@ const mapStateToProps = (state, ownProps) => {
     oversample,
     interval,
     caption,
-    fontColor
+    fontColor,
+    textAlign,
+    textBaseline
   };
 };
 
