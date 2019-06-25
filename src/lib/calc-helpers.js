@@ -42,16 +42,26 @@ export const setSliderByIndex = (idx, val) => {
   if (!match) return notASlider(idx);
 
   const identifier = match[1];
+
   calculator.setExpression({ id, latex: `${identifier}=${val}` });
 };
 
 export const getSliderExpressions = () => {
   return calculator
     .getExpressions()
+    .map((exp, i) => ({ ...exp, expressionIdx: i + 1 }))
     .filter(
       exp =>
         exp.latex && exp.latex !== '' && exp.latex.match(/[a-z]/gi).length === 1
     );
+};
+
+export const getCalcState = () => {
+  return calculator.getState();
+};
+
+export const setCalcState = state => {
+  return calculator.setState(state);
 };
 
 export const saveCurrentGraph = async (name, frames, frameIDs) => {

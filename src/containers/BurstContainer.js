@@ -1,24 +1,34 @@
 import { connect } from 'react-redux';
 import Burst from '../components/Burst';
-import { requestBurst } from '../actions';
+import { requestBurst, undoBurst } from '../actions';
 import panes from '../constants/pane-types';
 
 const mapStateToProps = (state, ownProps) => {
-  const { settings, ui } = state;
+  const { settings, ui, images } = state;
   const { width, height, oversample } = settings.image;
+  const { frames, frameIDs } = images;
+  const { left, right, top, bottom } = settings.bounds;
+  const { strategy } = settings;
 
   return {
     expanded: ui.expandedPane === panes.BURST,
     width,
     height,
     oversample,
-    burstSliders: ui.burstSliders
+    burstSliders: ui.burstSliders,
+    frames,
+    frameIDs,
+    left,
+    right,
+    top,
+    bottom,
+    strategy
   };
 };
 
 const BurstContainer = connect(
   mapStateToProps,
-  { requestBurst }
+  { requestBurst, undoBurst }
 )(Burst);
 
 export default BurstContainer;

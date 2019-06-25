@@ -8,6 +8,10 @@ export const isPositiveInteger = val => {
   return val > 0;
 };
 
+export const isProperBound = (lower, higher, value) => {
+  return lower < higher && !isNaN(value);
+};
+
 export const getBurstErrors = inputs => {
   const { idx, min, max, step } = inputs;
   const errors = {};
@@ -31,6 +35,19 @@ export const getSettingsErrors = inputs => {
 
   for (let prop in inputs) {
     if (!isPositiveInteger(inputs[prop])) errors[prop] = true;
+  }
+
+  return errors;
+};
+
+export const getBoundErrors = inputs => {
+  const errors = {};
+  const { left, right, top, bottom } = inputs;
+
+  if (left >= right) errors['leftless'] = true;
+  if (bottom >= top) errors['bottomless'] = true;
+  for (let cur in inputs) {
+    if (isNaN(inputs[cur])) errors[cur] = true;
   }
 
   return errors;
