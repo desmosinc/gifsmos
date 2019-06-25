@@ -72,20 +72,32 @@ class GenerateGifForm extends Component {
     let colorPickerBg = { backgroundColor: this.props.fontColor };
     return (
       <form className="GenerateGifForm-form" onSubmit={this.handleSubmit}>
+        <label className="GenerateGifForm-label-hidden" htmlFor="fileName">
+          File Name:
+        </label>
         <input
           className="GenerateGifForm-input"
           name="name"
-          onChange={this.handleInputUpdate}
           placeholder="Add a File Name"
+          onChange={this.handleInputUpdate}
           value={this.props.gifFileName}
         />
+        <label className="GenerateGifForm-label-hidden" htmlFor="caption">
+          Caption:
+        </label>
         <input
           className="GenerateGifForm-input"
           name="caption"
-          onChange={this.handleInputUpdate}
           placeholder="Add a Caption"
+          onChange={this.handleInputUpdate}
           value={this.props.caption}
         />
+        <label
+          className="GenerateGifForm-label-hidden"
+          htmlFor="captionPosition"
+        >
+          Text Position:
+        </label>
         <select
           type="select"
           className="GenerateGifForm-select"
@@ -95,7 +107,7 @@ class GenerateGifForm extends Component {
           defaultValue={currentValue}
         >
           <option disabled value="DEFAULT">
-            Pick a Text Position
+            Select a Caption Position
           </option>
           <option value="top-left">Top Left</option>
           <option value="top-center">Top Center</option>
@@ -109,7 +121,9 @@ class GenerateGifForm extends Component {
           onClick={this.renderColorPicker}
           className="ColorPicker"
         >
-          <p>Pick a Caption Color</p>
+          <label className="GenerateGifForm-label" htmlFor="captionColor">
+            Pick a Caption Color
+          </label>
         </div>
         {this.state.showColorPicker ? colorPicker : null}
         <button

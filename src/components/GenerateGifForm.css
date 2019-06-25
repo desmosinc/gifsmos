@@ -1,5 +1,32 @@
+.GenerateGifForm-container {
+  min-height: 100vh;
+}
+
 .GenerateGifForm-form {
   display: inline-block;
+}
+
+.GenerateGifForm-label {
+  display: block;
+  color: white;
+  height: 20px;
+  width: 200px;
+  font-size: 1em;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+}
+
+.GenerateGifForm-label-hidden {
+  display: none;
+  color: white;
+  height: 20px;
+  width: 200px;
+  margin: 15px auto 0;
+  font-size: 1em;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
 }
 
 .GenerateGifForm-input {
@@ -13,6 +40,27 @@
   padding: 5px;
   outline: none !important;
   text-align: center;
+}
+
+.GenerateGifForm-select {
+  width: 210px;
+  margin: 15px auto 0;
+  border: none;
+  height: 33px;
+  font-size: 1em;
+  text-align: center;
+}
+
+.ColorPicker {
+  display: block;
+  width: 210px;
+  margin: 15px auto 0;
+  color: #fff;
+  font-size: 1em;
+  padding: 5px;
+  border-radius: 5px;
+  text-align: center;
+  border: none;
 }
 
 .GenerateGifForm-input-error {
@@ -32,18 +80,6 @@
   animation: fade-in 0.5s;
 }
 
-.GenerateGifForm-container {
-  min-height: 100vh;
-}
-
-.GenerateGifForm-select {
-  width: 210px;
-  margin: 15px auto 0;
-  border: none;
-  height: 33px;
-  font-size: 1em;
-}
-
 .GenerateGifForm-button:hover {
   background: #484848;
 }
@@ -59,18 +95,6 @@
 
 .ColorPicker:hover {
   cursor: pointer;
-}
-
-.ColorPicker {
-  display: block;
-  width: 210px;
-  margin: 15px auto 0;
-  color: #fff;
-  font-size: 1em;
-  padding: 1px;
-  border-radius: 5px;
-  text-align: center;
-  border: none;
 }
 
 .ColorPicker-sketchPicker {
