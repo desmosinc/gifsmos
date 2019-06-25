@@ -71,3 +71,9 @@
   font-size: 17px;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.Component-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

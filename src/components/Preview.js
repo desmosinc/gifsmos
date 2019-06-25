@@ -4,7 +4,6 @@ import Frame from './Frame';
 import Info from './Info';
 import GenerateGifFormContainer from '../containers/GenerateGifFormContainer';
 import './Preview.css';
-import previewBlurb from '../blurbs/previewBlurb';
 
 class Preview extends Component {
   constructor(props) {
@@ -68,12 +67,19 @@ class Preview extends Component {
 
     if (!expanded) return <div className="Preview" />;
 
+    const previewText = `Preview allows you to preview your future GIF by 
+                         scrubbing through snapshots with the slider or 
+                         previewing your GIF with the play/pause button.`;
+
     return (
       <div
         className={classNames('Preview', { 'Preview-expanded': expanded })}
         data-testid="Preview-container"
       >
-        <Info title="Preview" blurb={previewBlurb} />
+        <div className="Component-header">
+          <h2>Preview</h2>
+          <Info infoText={previewText} />
+        </div>
         <Frame
           imageSrc={imageSrc}
           playing={playing}

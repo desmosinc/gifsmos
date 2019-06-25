@@ -7,7 +7,6 @@ import {
 import panes from '../constants/pane-types';
 import './Folder.css';
 import Info from './Info';
-import folderBlurb from '../blurbs/folderBlurb';
 
 class Folder extends Component {
   constructor(props) {
@@ -103,13 +102,19 @@ class Folder extends Component {
       </div>
     );
 
+    const folderText = `The folder allows you to save your graphs so you 
+                          can come back to them at a later time.`;
+
     return (
       <div
         className={classNames('Folder', {
           'Folder-expanded': expanded
         })}
       >
-        <Info title="Folder" blurb={folderBlurb} />
+        <div className="Component-header">
+          <h2>Folder</h2>
+          <Info infoText={folderText} />
+        </div>
         <div>
           <div className="Folder-titles">Name</div>
           <input

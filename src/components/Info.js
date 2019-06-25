@@ -18,24 +18,21 @@ export default class Info extends Component {
   }
 
   render() {
-    const displayClass = this.state.show ? 'Show' : 'Hide';
+    const displayClass = this.state.show ? 'Show-info' : 'Hide-info';
     return (
       <div className="Info-container">
-        <div className="Info-header">
-          <h2>{this.props.title}</h2>
-          <div className="Text-container">
-            <img
-              src={info}
-              alt="info icon"
-              className="Info-icon"
-              onClick={this.toggleInfo}
-            />
-            <div className={displayClass}>
-              <p>{this.props.blurb}</p>
-              <a href="https://github.com/desmosinc/gifsmos" target="blank">
-                <p>More Info</p>
-              </a>
-            </div>
+        <div className="Text-container">
+          <img
+            src={info}
+            alt="info icon"
+            className="Info-icon"
+            onClick={this.toggleInfo}
+          />
+          <div className={displayClass}>
+            <p>{this.props.infoText}</p>
+            <a href="https://github.com/desmosinc/gifsmos" target="blank">
+              <p>More Info</p>
+            </a>
           </div>
         </div>
       </div>

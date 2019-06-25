@@ -54,6 +54,20 @@
   color: #fff;
 }
 
+.Component-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Component-header h2 {
+  color: #fff;
+}
+
+.Component-header p {
+  color: #fff;
+}
+
 @keyframes fade-in {
   0% {
     opacity: 0;

@@ -140,6 +140,12 @@
   border-color: #e79600;
 }
 
+.Component-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @media (max-width: 448px) {
   .Folder {
     width: calc(100vw - 70px);

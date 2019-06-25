@@ -4,7 +4,6 @@ import { getCalcState, setCalcState } from '../lib/calc-helpers';
 import { getBurstErrors } from '../lib/input-helpers';
 import './Burst.css';
 import Info from './Info';
-import burstBlurb from '../blurbs/burstBlurb.js';
 
 class Burst extends Component {
   constructor(props) {
@@ -86,13 +85,17 @@ class Burst extends Component {
   render() {
     const { idx, min, max, step, errors } = this.state;
     const { expanded } = this.props;
+    const burstInfo = `Burst allows you to generate multiple snapshots
+      of your graph at one time. Enter the relevant info in the input fields
+      and hit capture to watch the magic happen.`;
 
     if (!expanded) return <div className="Burst" />;
 
     return (
       <div className={classNames('Burst', { 'Burst-expanded': expanded })}>
         <div className="Component-header">
-          <Info blurb={burstBlurb} title={'Burst'} />
+          <h2>Burst</h2>
+          <Info infoText={burstInfo} title={'Burst'} />
         </div>
         <div data-testid="Burst-slider-index-label">Slider Index</div>
         <input
