@@ -43,6 +43,7 @@ export const setSliderByIndex = (idx, val) => {
 export const getSliderExpressions = () => {
   return calculator
     .getExpressions()
+    .map((exp, i) => ({ ...exp, expressionIdx: i + 1 }))
     .filter(
       exp =>
         exp.latex && exp.latex !== '' && exp.latex.match(/[a-z]/gi).length === 1
