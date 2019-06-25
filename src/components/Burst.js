@@ -46,7 +46,9 @@ class Burst extends Component {
       <div className={classNames('Burst', { 'Burst-expanded': expanded })}>
         <div>Slider</div>
         <select
-          className="Burst-dropdown"
+          className={classNames('Burst-dropdown', {
+            'Burst-input-error': !!errors.idx
+          })}
           name="idx"
           aria-label="slider index"
           onChange={this.handleInputUpdate}
