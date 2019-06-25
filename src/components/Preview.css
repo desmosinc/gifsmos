@@ -32,11 +32,14 @@
   text-align: center;
   color: #fff;
   font-weight: bold;
+  width: 200px;
+  margin: 0 auto;
 }
 
 .Preview-create {
+  width: 200px;
   text-align: center;
-  margin-top: 20px;
+  margin: 20px auto 0;
 }
 
 .Preview-progress-outer {

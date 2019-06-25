@@ -1,3 +1,7 @@
+.GenerateGifForm-form {
+  display: inline-block;
+}
+
 .GenerateGifForm-input {
   display: block;
   height: 20px;

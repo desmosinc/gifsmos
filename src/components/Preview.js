@@ -7,9 +7,15 @@ import './Preview.css';
 class Preview extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      showColorPicker: false
+    };
+
     this.handleGenerateGIF = this.handleGenerateGIF.bind(this);
     this.handlePreviewUpdate = this.handlePreviewUpdate.bind(this);
     this.handleTogglePlaying = this.handleTogglePlaying.bind(this);
+    this.handleClickContainer = this.handleClickContainer.bind(this);
+    this.updateColorPicker = this.updateColorPicker.bind(this);
   }
 
   handlePreviewUpdate(evt) {
@@ -48,6 +54,18 @@ class Preview extends Component {
     generateGIF(images, opts);
   }
 
+  updateColorPicker(status) {
+    this.setState({ showColorPicker: status });
+  }
+
+  handleClickContainer(evt) {
+    if (evt.target.className === 'Preview Preview-expanded') {
+      this.setState({
+        showColorPicker: false
+      });
+    }
+  }
+
   handleTogglePlaying() {
     const { playing, startAnimation, stopAnimation } = this.props;
     if (playing) {
@@ -75,6 +93,7 @@ class Preview extends Component {
       <div
         className={classNames('Preview', { 'Preview-expanded': expanded })}
         data-testid="Preview-container"
+        onClick={this.handleClickContainer}
       >
         <Frame
           imageSrc={imageSrc}
@@ -105,6 +124,8 @@ class Preview extends Component {
           {!!numFrames && this.props.gifData.length === 0 ? (
             <GenerateGifFormContainer
               handleGenerateGIF={this.handleGenerateGIF}
+              showColorPicker={this.state.showColorPicker}
+              updateColorPicker={this.updateColorPicker}
             />
           ) : null}
         </div>

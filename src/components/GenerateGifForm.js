@@ -6,12 +6,18 @@ class GenerateGifForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showColor: false
+      showColorPicker: this.props.showColorPicker
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputUpdate = this.handleInputUpdate.bind(this);
     this.renderColorPicker = this.renderColorPicker.bind(this);
     this.closeColorPicker = this.closeColorPicker.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.showColorPicker !== prevProps.showColorPicker) {
+      this.setState({ showColorPicker: this.props.showColorPicker });
+    }
   }
 
   handleSubmit(evt) {
@@ -44,30 +50,28 @@ class GenerateGifForm extends Component {
   }
 
   renderColorPicker() {
-    this.setState(prevState => ({
-      showColor: !prevState.showColor
-    }));
+    this.setState({ showColorPicker: !this.state.showColorPicker });
+    this.props.updateColorPicker(!this.state.showColorPicker);
   }
 
   closeColorPicker() {
-    this.setState({ showColor: false });
+    this.setState({ showColorPicker: false });
   }
 
   render() {
-    console.log(this.state);
     let currentValue = localStorage.getItem('selectValue') || 'DEFAULT';
     let colorPicker = (
       <ColorPicker
         updateTextColor={this.props.updateTextColor}
         textColor={this.props.fontColor}
         closeColorPicker={this.closeColorPicker}
-        showColor={this.state.showColor}
+        showColorPicker={this.state.showColorPicker}
       />
     );
 
     let colorPickerBg = { backgroundColor: this.props.fontColor };
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className="GenerateGifForm-form" onSubmit={this.handleSubmit}>
         <input
           className="GenerateGifForm-input"
           name="name"
@@ -107,7 +111,7 @@ class GenerateGifForm extends Component {
         >
           <p>Pick a Caption Color</p>
         </div>
-        {this.state.showColor ? colorPicker : null}
+        {this.state.showColorPicker ? colorPicker : null}
         <button
           className="GenerateGifForm-button"
           aria-label="generate gif"
