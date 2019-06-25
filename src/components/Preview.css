@@ -1,6 +1,6 @@
 .Preview {
   position: absolute;
-  top: 40px;
+  top: 60px;
   left: 70px;
   right: 0;
   bottom: 0;
@@ -12,6 +12,7 @@
 }
 
 .Preview-expanded {
+  z-index: 1;
   transform: translateX(0);
   transition: 0.2s transform;
   min-height: 100vh;
