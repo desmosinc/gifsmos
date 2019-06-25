@@ -61,7 +61,6 @@ class Settings extends Component {
           value={isNaN(width) ? '' : width}
           onChange={this.handleInputUpdate}
         />
-
         <div data-testid="Settings-image-height-label">Image Height</div>
         <input
           className={classNames('Settings-input', {
@@ -73,7 +72,6 @@ class Settings extends Component {
           value={isNaN(height) ? '' : height}
           onChange={this.handleInputUpdate}
         />
-
         <div data-testid="Settings-frame-interval-label">Interval (ms)</div>
         <input
           className={classNames('Settings-input', {
