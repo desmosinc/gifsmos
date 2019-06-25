@@ -12,6 +12,7 @@ import {
   ADD_FRAME,
   UPDATE_GIF_PROGRESS,
   ADD_GIF,
+  UNDO_BURST,
   UPDATE_GIF_FILENAME,
   UPDATE_IMAGE_SETTING,
   UPDATE_BOUNDS_SETTING,
@@ -57,6 +58,13 @@ const images = (state = initialState, { type, payload }) => {
       return {
         ...state,
         gifData: payload.imageData
+      };
+
+    case UNDO_BURST:
+      return {
+        ...state,
+        frames: payload.frames,
+        frameIDs: payload.frameIDs
       };
 
     case UPDATE_IMAGE_SETTING:
