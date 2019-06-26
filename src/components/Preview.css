@@ -60,17 +60,17 @@
   color: #fff;
 }
 
-.Component-header {
+.Preview-header {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.Component-header h2 {
+.Preview-header h2 {
   color: #fff;
 }
 
-.Component-header p {
+.Preview-header p {
   color: #fff;
 }
 

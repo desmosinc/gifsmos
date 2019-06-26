@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import Frame from './Frame';
-import Info from './Info';
+import InfoIcon from './InfoIcon';
 import GenerateGifFormContainer from '../containers/GenerateGifFormContainer';
 import './Preview.css';
 
@@ -100,9 +100,9 @@ class Preview extends Component {
         data-testid="Preview-container"
         onClick={this.handleClickContainer}
       >
-        <div className="Component-header">
+        <div className="Preview-header">
           <h2>Preview</h2>
-          <Info infoText={previewText} />
+          <InfoIcon infoText={previewText} />
         </div>
         <Frame
           imageSrc={imageSrc}

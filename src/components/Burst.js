@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { getCalcState, setCalcState } from '../lib/calc-helpers';
 import { getBurstErrors } from '../lib/input-helpers';
 import './Burst.css';
-import Info from './Info';
+import InfoIcon from './InfoIcon';
 
 class Burst extends Component {
   constructor(props) {
@@ -93,9 +93,9 @@ class Burst extends Component {
 
     return (
       <div className={classNames('Burst', { 'Burst-expanded': expanded })}>
-        <div className="Component-header">
+        <div className="Burst-header">
           <h2>Burst</h2>
-          <Info infoText={burstInfo} title={'Burst'} />
+          <InfoIcon infoText={burstInfo} />
         </div>
         <div data-testid="Burst-slider-index-label">Slider Index</div>
         <input

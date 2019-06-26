@@ -6,7 +6,7 @@ import {
 } from '../lib/local-storage-helpers';
 import panes from '../constants/pane-types';
 import './Folder.css';
-import Info from './Info';
+import InfoIcon from './InfoIcon';
 
 class Folder extends Component {
   constructor(props) {
@@ -111,9 +111,9 @@ class Folder extends Component {
           'Folder-expanded': expanded
         })}
       >
-        <div className="Component-header">
+        <div className="Folder-header">
           <h2>Folder</h2>
-          <Info infoText={folderText} />
+          <InfoIcon infoText={folderText} />
         </div>
         <div>
           <div className="Folder-titles">Name</div>

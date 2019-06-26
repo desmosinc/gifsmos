@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import { isPositiveInteger, isProperBound } from '../lib/input-helpers';
 import './Settings.css';
-import Info from './Info';
+import InfoIcon from './InfoIcon';
 
 class Settings extends Component {
   constructor(props) {
@@ -50,9 +50,9 @@ class Settings extends Component {
       <div
         className={classNames('Settings', { 'Settings-expanded': expanded })}
       >
-        <div className="Component-header">
+        <div className="Settings-header">
           <h2>Settings</h2>
-          <Info infoText={settingsText} />
+          <InfoIcon infoText={settingsText} />
         </div>
         <div data-testid="Settings-image-width-label">Image Width</div>
         <input
