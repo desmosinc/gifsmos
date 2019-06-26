@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import Frame from './Frame';
+import InfoIcon from './InfoIcon';
 import GenerateGifFormContainer from '../containers/GenerateGifFormContainer';
 import './Preview.css';
 
@@ -89,12 +90,20 @@ class Preview extends Component {
 
     if (!expanded) return <div className="Preview" />;
 
+    const previewText = `Preview allows you to preview your future GIF by 
+                         scrubbing through snapshots with the slider or 
+                         previewing your GIF with the play/pause button.`;
+
     return (
       <div
         className={classNames('Preview', { 'Preview-expanded': expanded })}
         data-testid="Preview-container"
         onClick={this.handleClickContainer}
       >
+        <div className="Preview-header">
+          <h2>Preview</h2>
+          <InfoIcon infoText={previewText} />
+        </div>
         <Frame
           imageSrc={imageSrc}
           playing={playing}
