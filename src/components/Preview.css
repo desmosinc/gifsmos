@@ -9,6 +9,7 @@
   transition: 0.2s transform;
   margin-bottom: 0;
   overflow: scroll;
+  color: #fff;
 }
 
 .Preview-expanded {
@@ -63,6 +64,12 @@
   margin: 15px auto 0;
   text-align: center;
   color: #fff;
+}
+
+.Preview-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @keyframes fade-in {
