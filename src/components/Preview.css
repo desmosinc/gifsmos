@@ -18,6 +18,11 @@
   min-height: 100vh;
 }
 
+.Preview-muted {
+  opacity: 0.2;
+  pointer-events: none;
+}
+
 .Preview-scrubber {
   text-align: center;
   width: 340px;
@@ -67,4 +72,12 @@
   100% {
     opacity: 1;
   }
+}
+
+.Preview-no-frames {
+  width: 360px;
+  margin: 0 auto;
+  color: #fff;
+  font-size: 1.4rem;
+  text-align: center;
 }

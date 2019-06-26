@@ -95,27 +95,29 @@ class Preview extends Component {
         data-testid="Preview-container"
         onClick={this.handleClickContainer}
       >
-        <Frame
-          imageSrc={imageSrc}
-          playing={playing}
-          togglePlaying={this.handleTogglePlaying}
-        />
-        <div className="Preview-scrubber" data-testid="Preview-scrubber">
-          <input
-            type="range"
-            min="0"
-            max={numFrames - 1}
-            value={previewIdx}
-            onChange={this.handlePreviewUpdate}
-            disabled={!numFrames}
-            aria-label="preview frame index"
+        <div className={classNames({ 'Preview-muted': !frameIDs.length })}>
+          <Frame
+            imageSrc={imageSrc}
+            playing={playing}
+            togglePlaying={this.handleTogglePlaying}
           />
-        </div>
-        <div
-          className="Preview-scrubber-counter"
-          data-testid="Preview-scrubber-counter"
-        >
-          {numFrames ? `${previewIdx + 1} / ${numFrames}` : '0 / 0'}
+          <div className="Preview-scrubber" data-testid="Preview-scrubber">
+            <input
+              type="range"
+              min="0"
+              max={numFrames - 1}
+              value={previewIdx}
+              onChange={this.handlePreviewUpdate}
+              disabled={!numFrames}
+              aria-label="preview frame index"
+            />
+          </div>
+          <div
+            className="Preview-scrubber-counter"
+            data-testid="Preview-scrubber-counter"
+          >
+            {numFrames ? `${previewIdx + 1} / ${numFrames}` : '0 / 0'}
+          </div>
         </div>
         <div
           className="Preview-create"
@@ -140,6 +142,12 @@ class Preview extends Component {
         </div>
         {gifProgress === 1 ? (
           <div className="Preview-progress-success">Download Successful</div>
+        ) : null}
+        {!frameIDs.length ? (
+          <div className="Preview-no-frames">
+            No frames have been captured. Use the camera or burst tools to add
+            some!
+          </div>
         ) : null}
       </div>
     );
