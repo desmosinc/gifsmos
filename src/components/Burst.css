@@ -81,3 +81,9 @@
   font-size: 17px;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.Burst-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

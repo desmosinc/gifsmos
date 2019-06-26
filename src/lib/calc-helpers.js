@@ -47,13 +47,13 @@ export const setSliderByIndex = (idx, val) => {
 };
 
 export const getSliderExpressions = () => {
-  return calculator
-    .getExpressions()
-    .map((exp, i) => ({ ...exp, expressionIdx: i + 1 }))
-    .filter(
-      exp =>
-        exp.latex && exp.latex !== '' && exp.latex.match(/[a-z]/gi).length === 1
-    );
+  return calculator.getExpressions().reduce((acc, exp, i) => {
+    return exp.latex &&
+      exp.latex !== '' &&
+      exp.latex.match(/[a-z]/gi).length === 1
+      ? [...acc, { ...exp, expressionIdx: i + 1 }]
+      : acc;
+  }, []);
 };
 
 export const getCalcState = () => {
