@@ -4,13 +4,16 @@
   left: 70px;
   bottom: 0;
   width: 200px;
-  padding-top: 20px;
   background: #2e2e2e;
   border-right: 1px solid black;
   text-align: center;
   transform: translateX(-100%);
   transition: 0.2s transform;
   color: #fff;
+  min-height: 100vh;
+  overflow-y: auto;
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
 }
 
 .Burst-expanded {

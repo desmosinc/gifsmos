@@ -10,6 +10,7 @@
   transform: translateX(-100%);
   transition: 0.2s transform;
   color: #fff;
+  min-height: 100vh;
 }
 
 .Folder-expanded {
@@ -71,9 +72,7 @@
 }
 
 .Folder-previous-items {
-  height: calc(88vh - 175px);
   margin-top: 15px;
-  overflow: scroll;
   overflow: -moz-scrollbars-none;
   -ms-overflow-style: none;
 }
