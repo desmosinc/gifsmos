@@ -11,8 +11,6 @@ export const noSuchExpression = idx =>
 export const notASlider = idx =>
   `Looks like expression ${idx} doesn't define a slider.`;
 
-export const noSlidersFound = () => `Looks like the graph has no sliders.`;
-
 export const badNameInput = errorMessage =>
   `Invalid name input for saving graph: ${errorMessage}`;
 

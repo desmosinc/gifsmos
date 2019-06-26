@@ -41,7 +41,6 @@ import {
   gifCreationProblem,
   badBurstInput,
   badSettingsInput,
-  noSlidersFound,
   invalidBounds,
   badNameInput
 } from '../lib/error-messages';
@@ -329,9 +328,6 @@ export const generateGIF = (
 
 export const getBurstSliders = () => dispatch => {
   const sliders = getSliderExpressions();
-  if (!sliders.length) {
-    dispatch(flashError(noSlidersFound()));
-  }
   dispatch(updateBurstSliders(sliders));
 };
 
