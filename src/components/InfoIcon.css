@@ -1,0 +1,40 @@
+.InfoIcon-icon {
+  height: 17px;
+  width: 17px;
+  margin-left: 10px;
+  margin-top: 7px;
+}
+
+.InfoIcon-icon:hover {
+  cursor: pointer;
+}
+
+.InfoIcon-text-container {
+  position: relative;
+}
+
+.InfoIcon-text {
+  position: absolute;
+  background-color: rgb(34, 34, 34, 0.8);
+  width: 180px;
+  margin-left: 10px;
+  left: 100%;
+  top: 10%;
+  font-size: 13px;
+  padding: 1rem;
+  border-radius: 5px;
+  text-align: left;
+  z-index: 1;
+}
+
+.InfoIcon-text a {
+  color: #fff;
+}
+
+.InfoIcon-text a:hover {
+  color: rgb(184, 184, 184);
+}
+
+.InfoIcon-text.hide {
+  display: none;
+}
