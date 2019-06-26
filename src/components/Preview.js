@@ -95,7 +95,7 @@ class Preview extends Component {
         data-testid="Preview-container"
         onClick={this.handleClickContainer}
       >
-        <div className={classNames({ 'Preview-muted': !frameIDs.length })}>
+        <div className={classNames({ 'Preview-muted': !numFrames })}>
           <Frame
             imageSrc={imageSrc}
             playing={playing}
