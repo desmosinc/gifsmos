@@ -4,6 +4,7 @@ import { getCalcState, setCalcState } from '../lib/calc-helpers';
 import { getBurstErrors } from '../lib/input-helpers';
 import './Burst.css';
 import InfoIcon from './InfoIcon';
+import refresh from './icons/refresh.svg';
 
 class Burst extends Component {
   constructor(props) {
@@ -84,7 +85,7 @@ class Burst extends Component {
 
   render() {
     const { idx, min, max, step, errors } = this.state;
-    const { expanded, burstSliders } = this.props;
+    const { expanded, burstSliders, getBurstSliders } = this.props;
     const burstInfo = `Burst allows you to generate multiple snapshots
       of your graph at one time. Enter the relevant info in the input fields
       and hit capture to watch the magic happen.`;
@@ -117,6 +118,14 @@ class Burst extends Component {
             );
           })}
         </select>
+        <div className="Burst-slider-icon-container">
+          <img
+            src={refresh}
+            alt="refresh sliders icon"
+            className="Burst-refresh-icon"
+            onClick={getBurstSliders}
+          />
+        </div>
         <div data-testid="Burst-slider-min-label">Slider Min</div>
         <input
           className={classNames('Burst-input', {
