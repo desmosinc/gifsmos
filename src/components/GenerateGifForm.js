@@ -72,37 +72,28 @@ class GenerateGifForm extends Component {
     let colorPickerBg = { backgroundColor: this.props.fontColor };
     return (
       <form className="GenerateGifForm-form" onSubmit={this.handleSubmit}>
-        <label className="GenerateGifForm-label-hidden" htmlFor="fileName">
-          File Name:
-        </label>
         <input
           className="GenerateGifForm-input"
           name="name"
+          aria-label="add a file name"
           placeholder="Add a File Name"
           onChange={this.handleInputUpdate}
           value={this.props.gifFileName}
         />
-        <label className="GenerateGifForm-label-hidden" htmlFor="caption">
-          Caption:
-        </label>
         <input
           className="GenerateGifForm-input"
           name="caption"
+          aria-label="add a caption"
           placeholder="Add a Caption"
           onChange={this.handleInputUpdate}
           value={this.props.caption}
         />
-        <label
-          className="GenerateGifForm-label-hidden"
-          htmlFor="captionPosition"
-        >
-          Text Position:
-        </label>
         <select
           type="select"
           className="GenerateGifForm-select"
           name="placement"
           id="GenerateGifForm-select"
+          aria-label="caption position"
           onChange={this.handleInputUpdate}
           defaultValue={currentValue}
         >
@@ -119,11 +110,14 @@ class GenerateGifForm extends Component {
         <div
           style={colorPickerBg}
           onClick={this.renderColorPicker}
+          onKeyDown={this.renderColorPicker}
           className="ColorPicker"
+          aria-label="pick a caption color"
+          role="button"
+          aria-pressed={this.state.showColorPicker}
+          tabindex="0"
         >
-          <label className="GenerateGifForm-label" htmlFor="captionColor">
-            Pick a Caption Color
-          </label>
+          <p>Pick a Caption Color</p>
         </div>
         {this.state.showColorPicker ? colorPicker : null}
         <button

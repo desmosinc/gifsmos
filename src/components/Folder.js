@@ -59,7 +59,7 @@ class Folder extends Component {
   handleLoadGraph(date) {
     const { togglePane, loadFramesFromLocal } = this.props;
     loadFramesFromLocal(date);
-    togglePane(panes.files);
+    togglePane(panes.FILES);
   }
 
   render() {
@@ -124,7 +124,7 @@ class Folder extends Component {
             <button
               className="Folder-button Folder-save"
               onClick={this.handleSaveCurrent}
-              aria-label="Folder this graph"
+              aria-label="Save this graph"
             >
               Save
             </button>
