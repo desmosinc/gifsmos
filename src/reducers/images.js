@@ -21,7 +21,8 @@ import {
   UPDATE_STRATEGY,
   RESET,
   UPDATE_TEXT,
-  UPDATE_TEXT_COLOR
+  UPDATE_TEXT_COLOR,
+  UPDATE_TEXT_POSITION
 } from '../constants/action-types';
 
 const initialState = {
@@ -31,6 +32,8 @@ const initialState = {
   gifProgress: 0,
   gifData: '',
   caption: '',
+  textAlign: 'center',
+  textBaseline: 'bottom',
   fontColor: '#000000',
   gifFileName: ''
 };
@@ -152,6 +155,13 @@ const images = (state = initialState, { type, payload }) => {
       return {
         ...state,
         gifFileName: payload.gifFileName
+      };
+
+    case UPDATE_TEXT_POSITION:
+      return {
+        ...state,
+        textAlign: payload.textAlign,
+        textBaseline: payload.textBaseline
       };
 
     case RESET:

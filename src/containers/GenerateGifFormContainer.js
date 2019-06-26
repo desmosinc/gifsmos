@@ -1,16 +1,24 @@
 import { connect } from 'react-redux';
 import GenerateGifForm from '../components/GenerateGifForm';
-import { updateGIFFileName, updateText, updateTextColor } from '../actions';
+import {
+  updateGIFFileName,
+  updateText,
+  updateTextColor,
+  generateGIF,
+  updateTextPosition
+} from '../actions';
 
 const mapStateToProps = (state, ownProps) => {
   const { images } = state;
-  const { caption, fontColor, gifFileName } = images;
+  const { caption, fontColor, gifFileName, textAlign, textBaseline } = images;
 
   return {
     handleGenerateGIF: ownProps.handleGenerateGIF,
     caption,
     fontColor,
-    gifFileName
+    gifFileName,
+    textAlign,
+    textBaseline
   };
 };
 
@@ -19,7 +27,9 @@ const GenerateGifFormContainer = connect(
   {
     updateText,
     updateTextColor,
-    updateGIFFileName
+    updateGIFFileName,
+    generateGIF,
+    updateTextPosition
   }
 )(GenerateGifForm);
 

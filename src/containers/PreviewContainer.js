@@ -20,9 +20,10 @@ const mapStateToProps = (state, ownProps) => {
     gifData,
     caption,
     fontColor,
-    redoFrames
+    redoFrames,
+    textAlign,
+    textBaseline
   } = images;
-
   const { width, height, oversample, interval } = settings.image;
 
   return {
@@ -39,7 +40,9 @@ const mapStateToProps = (state, ownProps) => {
     interval,
     redoFrames,
     caption,
-    fontColor
+    fontColor,
+    textAlign,
+    textBaseline
   };
 };
 

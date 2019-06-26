@@ -16,7 +16,9 @@ const initialState = {
   gifData: '',
   caption: '',
   fontColor: '#000000',
-  gifFileName: ''
+  gifFileName: '',
+  textAlign: 'center',
+  textBaseline: 'bottom'
 };
 
 describe('reducers', () => {

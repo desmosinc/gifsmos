@@ -59,7 +59,7 @@ class Folder extends Component {
   handleLoadGraph(date) {
     const { togglePane, loadFramesFromLocal } = this.props;
     loadFramesFromLocal(date);
-    togglePane(panes.files);
+    togglePane(panes.FILES);
   }
 
   render() {

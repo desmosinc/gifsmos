@@ -95,6 +95,15 @@ export const updateGIFFileName = name => {
   };
 };
 
+export const updateTextPosition = textOpts => {
+  let { textAlign, textBaseline } = textOpts;
+
+  return {
+    type: types.UPDATE_TEXT_POSITION,
+    payload: { textAlign, textBaseline }
+  };
+};
+
 export const addGIF = imageData => ({
   type: types.ADD_GIF,
   payload: { imageData }
@@ -177,6 +186,7 @@ export const clearError = () => ({ type: types.CLEAR_ERROR });
 
 export const reset = () => {
   clearTimer();
+  localStorage.removeItem('selectValue');
   return { type: types.RESET };
 };
 
