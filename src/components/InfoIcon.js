@@ -26,11 +26,15 @@ export default class InfoIcon extends Component {
           alt="info icon"
           className="InfoIcon-icon"
           onClick={this.toggleInfo}
+          tabindex="0"
+          role="button"
+          aria-pressed={this.state.show}
+          onKeyDown={this.toggleInfo}
         />
         <div className={`InfoIcon-text ${displayClass}`}>
           <p>{this.props.infoText}</p>
           <a href="https://github.com/desmosinc/gifsmos" target="blank">
-            <p>More Info</p>
+            More Info
           </a>
         </div>
       </div>
