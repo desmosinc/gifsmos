@@ -8,6 +8,10 @@ export const isPositiveInteger = val => {
   return val > 0;
 };
 
+export const isProperBound = (lower, higher, value) => {
+  return lower < higher && !isNaN(value);
+};
+
 export const getBurstErrors = inputs => {
   const { idx, min, max, step } = inputs;
   const errors = {};
@@ -33,5 +37,28 @@ export const getSettingsErrors = inputs => {
     if (!isPositiveInteger(inputs[prop])) errors[prop] = true;
   }
 
+  return errors;
+};
+
+export const getBoundErrors = inputs => {
+  const errors = {};
+  const { left, right, top, bottom } = inputs;
+
+  if (left >= right) errors['leftless'] = true;
+  if (bottom >= top) errors['bottomless'] = true;
+  for (let cur in inputs) {
+    if (isNaN(inputs[cur])) errors[cur] = true;
+  }
+
+  return errors;
+};
+
+export const getSaveGraphErrors = name => {
+  const errors = {};
+  if (!name.length) {
+    errors.name = 'Name required';
+  } else if (name.length > 255) {
+    errors.name = `Name cannot be longer than 255 characters`;
+  }
   return errors;
 };
