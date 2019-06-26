@@ -11,6 +11,8 @@
 import {
   ADD_FRAME,
   UPDATE_GIF_PROGRESS,
+  DELETE_FRAME_IDX,
+  REDO_FRAME,
   ADD_GIF,
   UNDO_BURST,
   UPDATE_GIF_FILENAME,
@@ -25,6 +27,7 @@ import {
 const initialState = {
   frames: {},
   frameIDs: [],
+  redoFrames: [],
   gifProgress: 0,
   gifData: '',
   caption: '',
@@ -43,7 +46,62 @@ const images = (state = initialState, { type, payload }) => {
           frames: { ...frames, [id]: imageData },
           frameIDs: [...frameIDs, id],
           gifProgress: 0,
-          gifData: ''
+          gifData: '',
+          redoFrames: []
+        }
+      };
+    }
+
+    case DELETE_FRAME_IDX: {
+      const { idx } = payload;
+      const { frames, frameIDs } = state;
+
+      const newFrames = {};
+      frameIDs.pop();
+      const newFrameIDs = [...frameIDs];
+      let deletedFrame;
+
+      Object.entries(frames).forEach(function(pair) {
+        if (+pair[0] < idx) newFrames[pair[0]] = frames[pair[0]];
+        if (+pair[0] === idx)
+          deletedFrame = { id: pair[0], frameData: frames[pair[0]] };
+        if (+pair[0] > idx) newFrames[+pair[0] - 1] = frames[pair[0]];
+      });
+
+      return {
+        ...state,
+        ...{
+          frames: newFrames,
+          framesIDs: newFrameIDs,
+          gifProgress: 0,
+          gifData: '',
+          redoFrames: [...state.redoFrames, deletedFrame]
+        }
+      };
+    }
+
+    case REDO_FRAME: {
+      const { id, frameData } = payload;
+      const { frames, frameIDs, redoFrames } = state;
+
+      const newFrames = {};
+      const newFrameIDs = [...frameIDs, frameIDs.length + 1];
+      const poppedRedoFrames = [...redoFrames];
+      poppedRedoFrames.pop();
+
+      Object.entries(frames).forEach(function(pair) {
+        if (+pair[0] < id) newFrames[pair[0]] = frames[pair[0]];
+        if (+pair[0] >= id) newFrames[+pair[0] + 1] = frames[pair[0]];
+      });
+
+      newFrames[id] = frameData;
+
+      return {
+        ...state,
+        ...{
+          frames: newFrames,
+          frameIDs: newFrameIDs,
+          redoFrames: poppedRedoFrames
         }
       };
     }

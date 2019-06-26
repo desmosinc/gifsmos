@@ -17,7 +17,7 @@
 .Preview-scrubber {
   text-align: center;
   width: 340px;
-  margin: 20px auto 0;
+  margin: 2vw auto 0;
 }
 
 .Preview-scrubber input {
@@ -36,6 +36,76 @@
   margin-top: 20px;
 }
 
+.Preview-create-button {
+  width: 210px;
+  height: 35px;
+  margin-top: 10px;
+  font-size: 1em;
+  background: transparent;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  outline: none !important;
+  animation: fade-in 0.5s;
+}
+
+.Preview-create-button:hover {
+  background: #484848;
+}
+
+.Preview-create-button:active {
+  background: #3b3b3b;
+}
+
+.Preview-create-button:focus {
+  border-color: #e79600;
+  background: #484848;
+}
+
+.Frame-delete {
+  text-align: center;
+  margin-top: 3vw;
+}
+
+.Frame-redo {
+  text-align: center;
+  margin-top: 3vw;
+}
+
+.Frame-delete-redo-button {
+  width: 210px;
+  height: 35px;
+  margin-top: 10px;
+  font-size: 1em;
+  background: transparent;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  outline: none !important;
+  animation: fade-in 0.5s;
+}
+
+.Frame-delete-redo-button:hover {
+  background: #484848;
+}
+
+.Frame-delete-redo-button:active {
+  background: #3b3b3b;
+}
+
+.Frame-delete-redo-button:focus {
+  background: #484848;
+}
+
+.Frame-section-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px auto 0;
+}
+
 .Preview-progress-outer {
   width: 210px;
   height: 15px;
@@ -45,6 +115,33 @@
 .Preview-progress-inner {
   height: 100%;
   border-radius: 3px;
+}
+
+.directional-icon {
+  width: 100px;
+  height: 100px;
+  margin: 5px;
+  position: relative;
+}
+
+.Frame-timeline {
+  width: 95vw;
+  display: flex;
+  overflow-x: scroll;
+  margin-top: 5vw;
+}
+
+.Frame-scroll {
+  position: relative;
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  margin-right: 0.5rem;
+  left: 50px;
+}
+
+.Frame-scroll:hover {
+  opacity: 0.5;
 }
 
 .Preview-progress-success {

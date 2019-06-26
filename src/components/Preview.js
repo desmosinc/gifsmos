@@ -3,6 +3,8 @@ import classNames from 'classnames';
 import Frame from './Frame';
 import GenerateGifFormContainer from '../containers/GenerateGifFormContainer';
 import './Preview.css';
+import left from './icons/left.svg';
+import right from './icons/right.svg';
 
 class Preview extends Component {
   constructor(props) {
@@ -10,6 +12,9 @@ class Preview extends Component {
     this.handlePreviewUpdate = this.handlePreviewUpdate.bind(this);
     this.handleGenerateGIF = this.handleGenerateGIF.bind(this);
     this.handleTogglePlaying = this.handleTogglePlaying.bind(this);
+    this.handleDeleteFrame = this.handleDeleteFrame.bind(this);
+    this.handleIncrementPreviewIdx = this.handleIncrementPreviewIdx.bind(this);
+    this.handleRedoFrame = this.handleRedoFrame.bind(this);
   }
 
   handlePreviewUpdate(evt) {
@@ -52,6 +57,37 @@ class Preview extends Component {
     }
   }
 
+  handleDeleteFrame(curPrevIdx) {
+    const { frameIDs, updatePreviewIdx, deleteFrameAtIdx } = this.props;
+
+    const newIdx = curPrevIdx - 1 < 0 ? 0 : curPrevIdx - 1;
+    deleteFrameAtIdx(frameIDs[curPrevIdx]);
+    updatePreviewIdx(newIdx);
+  }
+
+  handleIncrementPreviewIdx(incrementUp) {
+    const { previewIdx, frameIDs, updatePreviewIdx } = this.props;
+
+    if (!!incrementUp) {
+      const newIdx =
+        previewIdx + 1 > frameIDs.length - 1 ? previewIdx : previewIdx + 1;
+      updatePreviewIdx(newIdx);
+    } else {
+      const newIdx = previewIdx - 1 < 0 ? 0 : previewIdx - 1;
+      updatePreviewIdx(newIdx);
+    }
+  }
+
+  handleRedoFrame() {
+    const { redoFrames, redoLastFrame } = this.props;
+
+    const lastFrame = redoFrames[redoFrames.length - 1];
+    const id = lastFrame.id;
+    const frameData = lastFrame.frameData;
+
+    redoLastFrame({ id, frameData });
+  }
+
   render() {
     const {
       expanded,
@@ -59,23 +95,57 @@ class Preview extends Component {
       frames,
       frameIDs,
       gifProgress,
-      playing
+      playing,
+      redoFrames
     } = this.props;
+
     const numFrames = frameIDs.length;
     const imageSrc = frames[frameIDs[previewIdx]];
 
     if (!expanded) return <div className="Preview" />;
 
     return (
-      <div
-        className={classNames('Preview', { 'Preview-expanded': expanded })}
-        data-testid="Preview-container"
-      >
-        <Frame
-          imageSrc={imageSrc}
-          playing={playing}
-          togglePlaying={this.handleTogglePlaying}
-        />
+      <div className={classNames('Preview', { 'Preview-expanded': expanded })}>
+        <div className="Frame-section-container">
+          <img
+            className="directional-icon"
+            src={left}
+            onClick={() => this.handleIncrementPreviewIdx(false)}
+            alt=""
+          />
+          <Frame
+            imageSrc={imageSrc}
+            playing={playing}
+            togglePlaying={this.handleTogglePlaying}
+          />
+          <img
+            className="directional-icon"
+            src={right}
+            onClick={() => this.handleIncrementPreviewIdx(true)}
+            alt=""
+          />
+        </div>
+
+        <div className="Frame-delete">
+          {!!numFrames ? (
+            <button
+              className="Frame-delete-redo-button"
+              aria-label="delete this frame"
+              onClick={() => this.handleDeleteFrame(previewIdx)}
+            >
+              Delete this Frame
+            </button>
+          ) : null}
+          {!!redoFrames.length ? (
+            <button
+              className="Frame-delete-redo-button"
+              aria-label="redo last frame"
+              onClick={this.handleRedoFrame}
+            >
+              Redo Last Delete
+            </button>
+          ) : null}
+        </div>
         <div className="Preview-scrubber" data-testid="Preview-scrubber">
           <input
             type="range"
@@ -87,22 +157,34 @@ class Preview extends Component {
             aria-label="preview frame index"
           />
         </div>
-        <div
-          className="Preview-scrubber-counter"
-          data-testid="Preview-scrubber-counter"
-        >
+
+        <div className="Preview-scrubber-counter">
           {numFrames ? `${previewIdx + 1} / ${numFrames}` : '0 / 0'}
         </div>
-        <div
-          className="Preview-create"
-          data-testid="Preview-create-form-container"
-        >
-          {!!numFrames && this.props.gifData.length === 0 ? (
-            <GenerateGifFormContainer
-              handleGenerateGIF={this.handleGenerateGIF}
+
+        <div className="Frame-timeline">
+          {frameIDs.map((frameID, i) => (
+            <img
+              className="Frame-scroll"
+              src={frames[frameID]}
+              onClick={() => this.handleDeleteFrame(i)}
+              alt=""
             />
-          ) : null}
+          ))}
         </div>
+
+        <div className="Preview-create">
+          {!!numFrames && (
+            <button
+              className="Preview-create-button"
+              onClick={this.handleGenerateGIF}
+              aria-label="generate gif"
+            >
+              Generate GIF
+            </button>
+          )}
+        </div>
+
         <div className="Preview-progress-outer">
           <div
             className="Preview-progress-inner"
@@ -112,8 +194,9 @@ class Preview extends Component {
             }}
           />
         </div>
+
         {gifProgress === 1 ? (
-          <div className="Preview-progress-success">Download Successful</div>
+          <div className="Preview-progress-success">Download Successful </div>
         ) : null}
       </div>
     );
