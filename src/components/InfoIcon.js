@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import info from './icons/info.svg';
 import './InfoIcon.css';
 
-export default class Info extends Component {
+export default class InfoIcon extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,22 +18,20 @@ export default class Info extends Component {
   }
 
   render() {
-    const displayClass = this.state.show ? 'Show' : 'Hide';
+    const displayClass = this.state.show ? 'show' : 'hide';
     return (
       <div className="InfoIcon-text-container">
-        <div className="Text-container">
-          <img
-            src={info}
-            alt="info icon"
-            className="InfoIcon-icon"
-            onClick={this.toggleInfo}
-          />
-          <div className={`InfoIcon-text ${displayClass}`}>
-            <p>{this.props.infoText}</p>
-            <a href="https://github.com/desmosinc/gifsmos" target="blank">
-              <p>More Info</p>
-            </a>
-          </div>
+        <img
+          src={info}
+          alt="info icon"
+          className="InfoIcon-icon"
+          onClick={this.toggleInfo}
+        />
+        <div className={`InfoIcon-text ${displayClass}`}>
+          <p>{this.props.infoText}</p>
+          <a href="https://github.com/desmosinc/gifsmos" target="blank">
+            <p>More Info</p>
+          </a>
         </div>
       </div>
     );

@@ -9,11 +9,11 @@
   cursor: pointer;
 }
 
-.Text-container {
+.InfoIcon-text-container {
   position: relative;
 }
 
-.Show {
+.InfoIcon-text {
   position: absolute;
   background-color: rgb(34, 34, 34, 0.8);
   width: 180px;
@@ -27,14 +27,14 @@
   z-index: 1;
 }
 
-.Show a {
+.InfoIcon-text a {
   color: #fff;
 }
 
-.Show a:hover {
+.InfoIcon-text a:hover {
   color: rgb(184, 184, 184);
 }
 
-.Hide {
+.InfoIcon-text.hide {
   display: none;
 }
