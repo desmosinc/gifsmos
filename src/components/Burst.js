@@ -107,7 +107,7 @@ class Burst extends Component {
           aria-label="slider index"
           onChange={this.handleInputUpdate}
         >
-          <option value={null} defaultValue>
+          <option value={null}>
             {burstSliders.length ? 'Pick Slider' : 'No Sliders'}
           </option>
           {burstSliders.map(exp => {
