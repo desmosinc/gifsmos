@@ -26,7 +26,7 @@ export default class InfoIcon extends Component {
           alt="info icon"
           className="InfoIcon-icon"
           onClick={this.toggleInfo}
-          tabindex="0"
+          tabIndex="0"
           role="button"
           aria-pressed={this.state.show}
           onKeyDown={this.toggleInfo}

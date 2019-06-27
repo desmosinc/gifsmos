@@ -115,7 +115,7 @@ class GenerateGifForm extends Component {
           aria-label="pick a caption color"
           role="button"
           aria-pressed={this.state.showColorPicker}
-          tabindex="0"
+          tabIndex="0"
         >
           <p>Pick a Caption Color</p>
         </div>
