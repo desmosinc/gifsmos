@@ -44,3 +44,45 @@
   color: #e79600;
   border-color: #e79600;
 }
+
+.Frame-container {
+  position: relative;
+  height: 300px;
+  width: 300px;
+}
+
+.Frame-container-text {
+  position: absolute;
+}
+
+.Frame-container-text.top-left {
+  top: -15px;
+  left: 0px;
+}
+
+.Frame-container-text.top-center {
+  text-align: center;
+  top: -15px;
+  width: 100%;
+}
+
+.Frame-container-text.top-right {
+  top: -15px;
+  right: 2px;
+}
+
+.Frame-container-text.bottom-left {
+  bottom: -15px;
+  left: 0px;
+}
+
+.Frame-container-text.bottom-center {
+  text-align: center;
+  bottom: -15px;
+  width: 100%;
+}
+
+.Frame-container-text.bottom-right {
+  right: 2px;
+  bottom: -15px;
+}

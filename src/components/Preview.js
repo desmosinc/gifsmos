@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Frame from './Frame';
 import InfoIcon from './InfoIcon';
 import GenerateGifFormContainer from '../containers/GenerateGifFormContainer';
 import './Preview.css';
+import getTextPosition from '../lib/text-preview-helper';
 
 class Preview extends Component {
   constructor(props) {
@@ -83,10 +85,16 @@ class Preview extends Component {
       frames,
       frameIDs,
       gifProgress,
-      playing
+      playing,
+      caption,
+      fontColor,
+      textAlign,
+      textBaseline
     } = this.props;
     const numFrames = frameIDs.length;
     const imageSrc = frames[frameIDs[previewIdx]];
+
+    let textPosition = getTextPosition(textAlign, textBaseline);
 
     if (!expanded) return <div className="Preview" />;
 
@@ -109,6 +117,9 @@ class Preview extends Component {
             imageSrc={imageSrc}
             playing={playing}
             togglePlaying={this.handleTogglePlaying}
+            caption={caption}
+            fontColor={fontColor}
+            textPosition={textPosition}
           />
           <div className="Preview-scrubber" data-testid="Preview-scrubber">
             <input
@@ -164,10 +175,39 @@ class Preview extends Component {
 }
 
 Preview.defaultProps = {
+  expanded: false,
   previewIdx: 0,
+  playing: false,
   frames: {},
   frameIDs: [],
-  gifData: ''
+  gifData: '',
+  gifProgress: 0,
+  width: 300,
+  height: 300,
+  oversample: false,
+  interval: 100,
+  updatePreviewIdx: () => {},
+  generateGIF: () => {},
+  startAnimation: () => {},
+  stopAnimation: () => {}
+};
+
+Preview.propTypes = {
+  expanded: PropTypes.bool.isRequired,
+  previewIdx: PropTypes.number.isRequired,
+  playing: PropTypes.bool.isRequired,
+  frames: PropTypes.object.isRequired,
+  frameIDs: PropTypes.array.isRequired,
+  gifData: PropTypes.string.isRequired,
+  gifProgress: PropTypes.number.isRequired,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  oversample: PropTypes.bool.isRequired,
+  interval: PropTypes.number.isRequired,
+  updatePreviewIdx: PropTypes.func.isRequired,
+  generateGIF: PropTypes.func.isRequired,
+  startAnimation: PropTypes.func.isRequired,
+  stopAnimation: PropTypes.func.isRequired
 };
 
 export default Preview;

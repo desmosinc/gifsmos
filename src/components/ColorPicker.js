@@ -15,7 +15,7 @@ class ColorPicker extends Component {
     return (
       <div>
         <SketchPicker
-          className="ColorPicker-sketchPicker"
+          className="ColorPicker-SketchPicker"
           onChange={this.handleInputUpdate}
           color={this.props.textColor}
         />

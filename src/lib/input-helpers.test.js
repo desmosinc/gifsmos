@@ -22,7 +22,7 @@ describe('input helpers', () => {
   });
 
   it('detects burst input errors', () => {
-    expect(getBurstErrors({ idx: -1, min: -10, max: 10, step: 1 })).toEqual({
+    expect(getBurstErrors({ idx: null, min: -10, max: 10, step: 1 })).toEqual({
       idx: true
     });
     expect(getBurstErrors({ idx: 1, min: 10, max: 10, step: 1 })).toEqual({
