@@ -42,7 +42,6 @@
     "prettier": "1.15.3",
     "pretty-quick": "^1.8.0",
     "prop-types": "^15.7.2",
-    "react-testing-library": "^5.4.2",
     "redux-mock-store": "^1.5.3"
   }
 }

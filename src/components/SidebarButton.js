@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { sidebarButtonDefaults } from '..lib/defaultProps';
-import { sidebarButtonPropsTypes } from '..lib/propTypes';
+import { sidebarButtonDefaults } from '../lib/defaultProps';
+import { sidebarButtonPropTypes } from '../lib/propTypes';
 import classNames from 'classnames';
 import camera from './icons/camera.svg';
 import preview from './icons/preview.svg';
@@ -55,7 +55,7 @@ SidebarButton.defaultProps = {
 };
 
 SidebarButton.propTypes = {
-  ...sidebarButtonPropsTypes,
+  ...sidebarButtonPropTypes,
   expanded: PropTypes.bool
 };
 

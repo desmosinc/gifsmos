@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { sidebarButtonDefaults } from '..lib/defaultProps';
-import { sidebarButtonPropsTypes } from '..lib/propTypes';
+import { sidebarButtonDefaults } from '../lib/defaultProps';
+import { sidebarButtonPropTypes } from '../lib/propTypes';
 import classNames from 'classnames';
 import SidebarButton from './SidebarButton';
 
@@ -30,7 +30,7 @@ SidebarButtonWithBadge.defaultProps = {
 };
 
 SidebarButtonWithBadge.propTypes = {
-  ...sidebarButtonPropsTypes,
+  ...sidebarButtonPropTypes,
   expanded: PropTypes.bool,
   color: PropTypes.string.isRequired,
   showBadge: PropTypes.bool.isRequired,

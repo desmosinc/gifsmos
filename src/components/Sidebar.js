@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { imageSettingsPropTypes } from '../lib/propTypes';
+import { imageSettingPropTypes } from '../lib/propTypes';
 import { imageSettingDefaults } from '../lib/defaultProps';
 import SidebarButton from './SidebarButton';
 import SidebarButtonWithBadge from './SidebarButtonWithBadge';
@@ -117,7 +117,7 @@ class Sidebar extends Component {
 }
 
 Sidebar.propTypes = {
-  ...imageSettingsPropTypes,
+  ...imageSettingPropTypes,
   numFrames: PropTypes.number.isRequired,
   expandedPane: PropTypes.string.isRequired,
   gifData: PropTypes.string.isRequired,

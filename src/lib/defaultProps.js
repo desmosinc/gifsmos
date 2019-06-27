@@ -5,6 +5,6 @@ export const imageSettingDefaults = {
 };
 
 export const sidebarButtonDefaults = {
-  icon: '',
+  icon: 'icon',
   onClick: () => {}
 };

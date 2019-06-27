@@ -6,13 +6,11 @@ afterEach(cleanup);
 
 describe('<SidebarButtonWithBadge/>', () => {
   it('renders without crashing', () => {
-    global.renderWithRedux(<SidebarButtonWithBadge icon="icon" />);
+    global.renderWithRedux(<SidebarButtonWithBadge />);
   });
 
   it('renders appropriate content', () => {
-    const { getByTestId } = global.renderWithRedux(
-      <SidebarButtonWithBadge showBadge={true} color="color" icon="icon" />
-    );
+    const { getByTestId } = global.renderWithRedux(<SidebarButtonWithBadge />);
     // check that badge is present
     expect(getByTestId('SidebarButton-icon-button').lastChild).toBeTruthy();
   });

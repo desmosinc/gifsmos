@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { imageSettingsPropTypes } from '../lib/propTypes';
+import { imageSettingPropTypes } from '../lib/propTypes';
 import { imageSettingDefaults } from '../lib/defaultProps';
 import classNames from 'classnames';
 import { isPositiveInteger, isProperBound } from '../lib/input-helpers';
@@ -180,7 +180,7 @@ Settings.defaultProps = {
 
 Settings.propTypes = {
   expanded: PropTypes.bool.isRequired,
-  ...imageSettingsPropTypes,
+  ...imageSettingPropTypes,
   interval: PropTypes.number.isRequired,
   updateSetting: PropTypes.func.isRequired
 };
