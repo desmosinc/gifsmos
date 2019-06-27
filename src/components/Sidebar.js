@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { imageSettingsPropTypes } from '../lib/propTypes';
+import { imageSettingDefaults } from '../lib/defaultProps';
 import SidebarButton from './SidebarButton';
 import SidebarButtonWithBadge from './SidebarButtonWithBadge';
 import panes from '../constants/pane-types';
@@ -115,12 +117,10 @@ class Sidebar extends Component {
 }
 
 Sidebar.propTypes = {
+  ...imageSettingsPropTypes,
   numFrames: PropTypes.number.isRequired,
   expandedPane: PropTypes.string.isRequired,
   gifData: PropTypes.string.isRequired,
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
-  oversample: PropTypes.bool.isRequired,
   requestFrame: PropTypes.func.isRequired,
   togglePane: PropTypes.func.isRequired,
   reset: PropTypes.func.isRequired
@@ -130,9 +130,7 @@ Sidebar.defaultProps = {
   numFrames: 0,
   expandedPane: 'NONE',
   gifData: '',
-  width: 100,
-  height: 100,
-  oversample: false,
+  ...imageSettingDefaults,
   requestFrame: () => {},
   togglePane: () => {},
   reset: () => {}

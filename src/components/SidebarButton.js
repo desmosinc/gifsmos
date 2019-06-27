@@ -56,8 +56,7 @@ SidebarButton.defaultProps = {
 SidebarButton.propTypes = {
   icon: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
-  expanded: PropTypes.bool,
-  icon: 'icon'
+  expanded: PropTypes.bool
 };
 
 export default SidebarButton;

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { imageSettingsPropTypes } from '../lib/propTypes';
+import { imageSettingDefaults } from '../lib/defaultProps';
 import classNames from 'classnames';
 import { isPositiveInteger, isProperBound } from '../lib/input-helpers';
 import './Settings.css';
@@ -164,18 +166,14 @@ class Settings extends Component {
 
 Settings.defaultProps = {
   expanded: false,
-  width: 300,
-  height: 300,
-  oversample: false,
+  ...imageSettingDefaults,
   interval: 100,
   updateSetting: () => {}
 };
 
 Settings.propTypes = {
   expanded: PropTypes.bool.isRequired,
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
-  oversample: PropTypes.bool.isRequired,
+  ...imageSettingsPropTypes,
   interval: PropTypes.number.isRequired,
   updateSetting: PropTypes.func.isRequired
 };

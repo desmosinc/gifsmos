@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { getCalcState, setCalcState } from '../lib/calc-helpers';
+import { imageSettingsProps } from '../lib/propTypes';
+import { imageSettingDefaults } from '../lib/defaultProps';
 import { getBurstErrors } from '../lib/input-helpers';
 import './Burst.css';
 
@@ -162,18 +164,14 @@ class Burst extends Component {
 }
 
 Burst.defaultProps = {
+  ...imageSettingDefaults,
   expanded: false,
-  width: 300,
-  height: 300,
-  oversample: false,
   requestBurst: () => {}
 };
 
 Burst.propTypes = {
+  ...imageSettingsProps,
   expanded: PropTypes.bool.isRequired,
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
-  oversample: PropTypes.bool.isRequired,
   requestBurst: PropTypes.func.isRequired
 };
 
