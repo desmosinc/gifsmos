@@ -102,15 +102,6 @@ describe('reducers', () => {
       expect(finalState.gifProgress).toEqual(0);
     });
 
-    it('handles UPDATE_GIF_FILENAME', () => {
-      const gifFileName = 'name';
-      const newState = reducer(initialState, {
-        type: UPDATE_GIF_FILENAME,
-        payload: { gifFileName }
-      });
-      expect(newState.gifFileName).toEqual(gifFileName);
-    });
-
     it('handles UPDATE_TEXT', () => {
       const text = 'text';
       const newState = reducer(initialState, {
