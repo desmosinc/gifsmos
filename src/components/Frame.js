@@ -11,10 +11,7 @@ const Frame = ({
   fontColor,
   textPosition
 }) => (
-  <div
-    className={classNames('Frame', { 'Frame-empty': !imageSrc })}
-    data-testid="Frame-container"
-  >
+  <div className={classNames('Frame', { 'Frame-empty': !imageSrc })}>
     {imageSrc && (
       <>
         <div className="Frame-container">

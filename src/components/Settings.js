@@ -57,7 +57,7 @@ class Settings extends Component {
           <h2>Settings</h2>
           <InfoIcon infoText={settingsText} />
         </div>
-        <div data-testid="Settings-image-width-label">Image Width</div>
+        <div>Image Width</div>
         <input
           className={classNames('Settings-input', {
             'Settings-input-error': !isPositiveInteger(width)
@@ -68,7 +68,7 @@ class Settings extends Component {
           value={isNaN(width) ? '' : width}
           onChange={this.handleInputUpdate}
         />
-        <div data-testid="Settings-image-height-label">Image Height</div>
+        <div>Image Height</div>
         <input
           className={classNames('Settings-input', {
             'Settings-input-error': !isPositiveInteger(height)
@@ -79,7 +79,7 @@ class Settings extends Component {
           value={isNaN(height) ? '' : height}
           onChange={this.handleInputUpdate}
         />
-        <div data-testid="Settings-frame-interval-label">Interval (ms)</div>
+        <div>Interval (ms)</div>
         <input
           className={classNames('Settings-input', {
             'Settings-input-error': !isPositiveInteger(interval)

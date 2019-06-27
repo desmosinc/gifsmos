@@ -30,3 +30,5 @@ global.renderWithRedux = (
   ...render(<Provider store={store}>{ui}</Provider>),
   store
 });
+
+global.HTMLCanvasElement.prototype.getContext = jest.fn();

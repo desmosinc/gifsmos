@@ -24,7 +24,6 @@ class Burst extends Component {
       prevCalcState: {},
       errors: {}
     };
-
     this.handleInputUpdate = this.handleInputUpdate.bind(this);
     this.handleRequestBurst = this.handleRequestBurst.bind(this);
     this.handleUndoBurst = this.handleUndoBurst.bind(this);
@@ -137,7 +136,7 @@ class Burst extends Component {
             onClick={getBurstSliders}
           />
         </div>
-        <div data-testid="Burst-slider-min-label">Slider Min</div>
+        <div>Slider Min</div>
         <input
           className={classNames('Burst-input', {
             'Burst-input-error': !!errors.min
@@ -148,7 +147,7 @@ class Burst extends Component {
           value={isNaN(min) ? '' : min}
           onChange={this.handleInputUpdate}
         />
-        <div data-testid="Burst-slider-max-label">Slider Max</div>
+        <div>Slider Max</div>
         <input
           className={classNames('Burst-input', {
             'Burst-input-error': !!errors.max
@@ -159,7 +158,7 @@ class Burst extends Component {
           value={isNaN(max) ? '' : max}
           onChange={this.handleInputUpdate}
         />
-        <div data-testid="Burst-slider-step-label">Slider Step</div>
+        <div>Slider Step</div>
         <input
           className={classNames('Burst-input', {
             'Burst-input-error': !!errors.step
@@ -200,7 +199,8 @@ class Burst extends Component {
 Burst.defaultProps = {
   ...imageSettingDefaults,
   expanded: false,
-  requestBurst: () => {}
+  requestBurst: () => {},
+  burstSliders: []
 };
 
 Burst.propTypes = {
