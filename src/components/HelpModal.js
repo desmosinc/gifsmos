@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
-import './Modal.css';
+import './HelpModal.css';
 
-export default class Modal extends Component {
+export default class HelpModal extends Component {
   render() {
-    let displayClass = this.props.showModal ? 'show' : 'hide';
+    let displayClass = this.props.showHelpModal ? 'show' : 'hide';
 
     return (
-      <div className={`modal ${displayClass}`}>
-        <div className="modal-content">
-          <span onClick={this.props.toggleModal} className="close-btn">
+      <div className={`Help-modal ${displayClass}`}>
+        <div className="Help-modal-content">
+          <span
+            onClick={this.props.toggleHelpModal}
+            className="Help-modal-close-btn"
+          >
             &times;
           </span>
-          <div className="modal-text">
+          <div className="Help-modal-header">
             <h1>Using GIFsmos</h1>
+          </div>
+          <div className="Help-modal-text">
             <h3>Creating, importing and saving graphs</h3>
             <p>
               Start by making something dynamic and awesome in the Desmos

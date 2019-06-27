@@ -6,19 +6,19 @@ import SidebarButton from './SidebarButton';
 import SidebarButtonWithBadge from './SidebarButtonWithBadge';
 import panes from '../constants/pane-types';
 import './Sidebar.css';
-import Modal from './Modal';
+import HelpModal from './HelpModal';
 
 class Sidebar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showModal: false
+      showHelpModal: false
     };
     this.handleTogglePreview = this.handleTogglePreview.bind(this);
     this.handleToggleBurst = this.handleToggleBurst.bind(this);
     this.handleToggleSettings = this.handleToggleSettings.bind(this);
     this.handleRequestFrame = this.handleRequestFrame.bind(this);
-    this.toggleModal = this.toggleModal.bind(this);
+    this.toggleHelpModal = this.toggleHelpModal.bind(this);
     this.handleToggleFiles = this.handleToggleFiles.bind(this);
   }
 
@@ -66,9 +66,9 @@ class Sidebar extends Component {
     requestFrame(imageOpts);
   }
 
-  toggleModal() {
+  toggleHelpModal() {
     this.setState({
-      showModal: !this.state.showModal
+      showHelpModal: !this.state.showHelpModal
     });
   }
 
@@ -113,13 +113,13 @@ class Sidebar extends Component {
 
         {!!numFrames && <SidebarButton icon="reset" onClick={reset} />}
 
-        <div className="Sidebar-help" onClick={this.toggleModal}>
+        <div className="Sidebar-help" onClick={this.toggleHelpModal}>
           <p>Help</p>
         </div>
         <div>
-          <Modal
-            showModal={this.state.showModal}
-            toggleModal={this.toggleModal}
+          <HelpModal
+            showHelpModal={this.state.showHelpModal}
+            toggleHelpModal={this.toggleHelpModal}
           />
         </div>
       </div>
