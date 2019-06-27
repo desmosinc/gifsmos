@@ -12,6 +12,7 @@ import {
   ADD_FRAME,
   UPDATE_GIF_PROGRESS,
   ADD_GIF,
+  UNDO_BURST,
   UPDATE_GIF_FILENAME,
   UPDATE_IMAGE_SETTING,
   UPDATE_BOUNDS_SETTING,
@@ -21,7 +22,6 @@ import {
   UPDATE_TEXT_COLOR,
   UPDATE_TEXT_POSITION
 } from '../constants/action-types';
-import { startTimer } from '../lib/timer';
 
 const initialState = {
   frames: {},
@@ -29,10 +29,10 @@ const initialState = {
   gifProgress: 0,
   gifData: '',
   caption: '',
-  fontColor: '#000',
-  gifFileName: '',
   textAlign: 'center',
-  textBaseline: 'bottom'
+  textBaseline: 'bottom',
+  fontColor: '#000000',
+  gifFileName: ''
 };
 
 const images = (state = initialState, { type, payload }) => {
@@ -63,6 +63,13 @@ const images = (state = initialState, { type, payload }) => {
         gifData: payload.imageData
       };
 
+    case UNDO_BURST:
+      return {
+        ...state,
+        frames: payload.frames,
+        frameIDs: payload.frameIDs
+      };
+
     case UPDATE_IMAGE_SETTING:
     case UPDATE_BOUNDS_SETTING:
     case UPDATE_STRATEGY:
@@ -89,18 +96,14 @@ const images = (state = initialState, { type, payload }) => {
     case UPDATE_GIF_FILENAME:
       return {
         ...state,
-        ...{
-          gifFileName: payload.gifFileName
-        }
+        gifFileName: payload.gifFileName
       };
 
     case UPDATE_TEXT_POSITION:
       return {
         ...state,
-        ...{
-          textAlign: payload.textAlign,
-          textBaseline: payload.textBaseline
-        }
+        textAlign: payload.textAlign,
+        textBaseline: payload.textBaseline
       };
 
     case RESET:

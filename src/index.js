@@ -4,23 +4,19 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
 import rootReducer from './reducers';
-import App from './components/App';
+import AppContainer from './containers/AppContainer';
 import panes from './constants/pane-types';
 import { togglePane } from './actions';
 import greet from './lib/dev-greeting';
 import './index.css';
-import { composeWithDevTools } from 'redux-devtools-extension';
 
-const store = createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(thunkMiddleware))
-);
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
 const closePane = () => store.dispatch(togglePane(panes.NONE));
 
 ReactDOM.render(
   <Provider store={store}>
-    <App onEscape={closePane} />
+    <AppContainer onEscape={closePane} />
   </Provider>,
   document.getElementById('root')
 );

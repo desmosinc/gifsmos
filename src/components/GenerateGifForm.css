@@ -1,3 +1,7 @@
+.GenerateGifForm-form {
+  display: inline-block;
+}
+
 .GenerateGifForm-input {
   display: block;
   height: 20px;
@@ -52,11 +56,12 @@
   text-align: center;
 }
 
-#GenerateGifForm-select {
+.GenerateGifForm-select {
   width: 210px;
   margin: 15px auto 0;
-  height: 30px;
   border: none;
+  height: 33px;
+  font-size: 1em;
 }
 
 .GenerateGifForm-button:hover {
@@ -70,4 +75,28 @@
 .GenerateGifForm-button:focus {
   border-color: #e79600;
   background: #484848;
+}
+
+.ColorPicker:hover {
+  cursor: pointer;
+}
+
+.ColorPicker {
+  display: block;
+  width: 210px;
+  margin: 15px auto 0;
+  color: #fff;
+  font-size: 1em;
+  padding: 1px;
+  border-radius: 5px;
+  text-align: center;
+  border: none;
+}
+
+.ColorPicker-sketchPicker {
+  display: inline-block;
+  margin: 15px auto 0;
+  font-size: 1em;
+  padding: 5px;
+  text-align: center;
 }

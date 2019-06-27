@@ -5,9 +5,8 @@ import ColorPicker from './ColorPicker';
 class GenerateGifForm extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      showColor: false
+      showColorPicker: this.props.showColorPicker
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputUpdate = this.handleInputUpdate.bind(this);
@@ -15,45 +14,48 @@ class GenerateGifForm extends Component {
     this.closeColorPicker = this.closeColorPicker.bind(this);
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.showColorPicker !== prevProps.showColorPicker) {
+      this.setState({ showColorPicker: this.props.showColorPicker });
+    }
+  }
+
   handleSubmit(evt) {
     evt.preventDefault();
     this.props.handleGenerateGIF();
-    localStorage.clear();
   }
 
   handleInputUpdate(evt) {
-    if (evt.target.name === 'caption') {
-      this.props.updateText(evt.target.value);
-    }
+    switch (evt.target.name) {
+      case 'caption':
+        this.props.updateText(evt.target.value);
+        break;
+      case 'fontColor':
+        this.props.updateTextColor(evt.target.value);
+        break;
 
-    if (evt.target.name === 'name') {
-      this.props.updateGIFFileName(evt.target.value);
-    }
+      case 'name':
+        this.props.updateGIFFileName(evt.target.value);
+        break;
 
-    if (evt.target.name === 'placement') {
-      let values = evt.target.value.split('-');
-      let positionObj = {
-        textAlign: values[1],
-        textBaseline: values[0]
-      };
-      let selectValue = document.getElementById('GenerateGifForm-select');
-      selectValue = selectValue.options[selectValue.selectedIndex].value;
+      case 'placement':
+        const [textBaseline, textAlign] = evt.target.value.split('-');
+        this.props.updateTextPosition({ textAlign, textBaseline });
+        localStorage.setItem('selectValue', evt.target.value);
+        break;
 
-      localStorage.setItem('selectValue', selectValue);
-
-      this.props.updateTextPosition(positionObj);
+      default:
+        break;
     }
   }
 
   renderColorPicker() {
-    this.setState(state => ({
-      showColor: !state.showColor,
-      selectField: null
-    }));
+    this.setState({ showColorPicker: !this.state.showColorPicker });
+    this.props.updateColorPicker(!this.state.showColorPicker);
   }
 
   closeColorPicker() {
-    this.setState({ showColor: false });
+    this.setState({ showColorPicker: false });
   }
 
   render() {
@@ -63,35 +65,37 @@ class GenerateGifForm extends Component {
         updateTextColor={this.props.updateTextColor}
         textColor={this.props.fontColor}
         closeColorPicker={this.closeColorPicker}
+        showColorPicker={this.state.showColorPicker}
       />
     );
 
     let colorPickerBg = { backgroundColor: this.props.fontColor };
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className="GenerateGifForm-form" onSubmit={this.handleSubmit}>
         <input
           className="GenerateGifForm-input"
           name="name"
           onChange={this.handleInputUpdate}
-          placeholder="pick a name for your GIF"
+          placeholder="Add a File Name"
           value={this.props.gifFileName}
         />
         <input
           className="GenerateGifForm-input"
           name="caption"
           onChange={this.handleInputUpdate}
-          placeholder="add caption"
+          placeholder="Add a Caption"
           value={this.props.caption}
         />
         <select
           type="select"
           id="GenerateGifForm-select"
           name="placement"
+          className="GenerateGifForm-select"
           onChange={this.handleInputUpdate}
           defaultValue={currentValue}
         >
           <option disabled value="DEFAULT">
-            pick a text position
+            Pick a Text Position
           </option>
           <option value="top-left">Top Left</option>
           <option value="top-center">Top Center</option>
@@ -103,17 +107,17 @@ class GenerateGifForm extends Component {
         <div
           style={colorPickerBg}
           onClick={this.renderColorPicker}
-          className="colorPicker"
+          className="ColorPicker"
         >
-          <p>pick a caption color</p>
+          <p>Pick a Caption Color</p>
         </div>
-        {this.state.showColor ? colorPicker : null}
+        {this.state.showColorPicker ? colorPicker : null}
         <button
           className="GenerateGifForm-button"
           aria-label="generate gif"
           type="submit"
         >
-          Generate!
+          Download GIF
         </button>
       </form>
     );

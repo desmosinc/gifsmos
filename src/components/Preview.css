@@ -1,6 +1,6 @@
 .Preview {
   position: absolute;
-  top: 40px;
+  top: 60px;
   left: 70px;
   right: 0;
   bottom: 0;
@@ -9,12 +9,19 @@
   transition: 0.2s transform;
   margin-bottom: 0;
   overflow: scroll;
+  color: #fff;
 }
 
 .Preview-expanded {
+  z-index: 1;
   transform: translateX(0);
   transition: 0.2s transform;
   min-height: 100vh;
+}
+
+.Preview-muted {
+  opacity: 0.2;
+  pointer-events: none;
 }
 
 .Preview-scrubber {
@@ -32,11 +39,14 @@
   text-align: center;
   color: #fff;
   font-weight: bold;
+  width: 200px;
+  margin: 0 auto;
 }
 
 .Preview-create {
+  width: 200px;
   text-align: center;
-  margin-top: 20px;
+  margin: 20px auto 0;
 }
 
 .Preview-progress-outer {
@@ -56,6 +66,12 @@
   color: #fff;
 }
 
+.Preview-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @keyframes fade-in {
   0% {
     opacity: 0;
@@ -63,4 +79,12 @@
   100% {
     opacity: 1;
   }
+}
+
+.Preview-no-frames {
+  width: 360px;
+  margin: 0 auto;
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
 }
