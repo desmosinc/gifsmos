@@ -36,14 +36,6 @@
   min-height: 100vh;
 }
 
-.sketchPicker {
-  display: block;
-  margin: 15px auto 0;
-  font-size: 1em;
-  padding: 5px;
-  text-align: center;
-}
-
 .GenerateGifForm-select {
   width: 210px;
   margin: 15px auto 0;
@@ -81,7 +73,7 @@
   border: none;
 }
 
-.ColorPicker-sketchPicker {
+.ColorPicker-SketchPicker {
   display: inline-block;
   margin: 15px auto 0;
   font-size: 1em;

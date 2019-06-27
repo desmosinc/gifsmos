@@ -51,14 +51,13 @@
   width: 300px;
 }
 
-.top-left {
-  position: absolute;
-  top: -15px;
-  left: 0px;
-}
-
 .Frame-container-text {
   position: absolute;
+}
+
+.Frame-container-text.top-left {
+  top: -15px;
+  left: 0px;
 }
 
 .Frame-container-text.top-center {
