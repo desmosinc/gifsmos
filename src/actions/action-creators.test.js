@@ -293,7 +293,7 @@ describe('Action creators', () => {
       expect(store.getActions()).toEqual(expectedActions);
     });
 
-    it('return action to generate a GIF via frames in state', () => {
+    it('return actions to generate a GIF via frames in state', () => {
       const opts = {
         gifHeight: 300,
         gifWidth: 300,
