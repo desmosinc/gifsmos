@@ -78,6 +78,13 @@ export const updateGIFProgress = progress => ({
   payload: { progress }
 });
 
+export const updateGIFFileName = name => {
+  return {
+    type: types.UPDATE_GIF_FILENAME,
+    payload: { gifFileName: name }
+  };
+};
+
 export const updateText = text => ({
   type: types.UPDATE_TEXT,
   payload: { text }
@@ -88,16 +95,8 @@ export const updateTextColor = fontColor => ({
   payload: { fontColor }
 });
 
-export const updateGIFFileName = name => {
-  return {
-    type: types.UPDATE_GIF_FILENAME,
-    payload: { gifFileName: name }
-  };
-};
-
 export const updateTextPosition = textOpts => {
   let { textAlign, textBaseline } = textOpts;
-
   return {
     type: types.UPDATE_TEXT_POSITION,
     payload: { textAlign, textBaseline }
