@@ -1,3 +1,7 @@
+.GenerateGifForm-container {
+  min-height: 100vh;
+}
+
 .GenerateGifForm-form {
   display: inline-block;
 }
@@ -12,6 +16,15 @@
   border-radius: 5px;
   padding: 5px;
   outline: none !important;
+  text-align: center;
+}
+
+.GenerateGifForm-select {
+  width: 210px;
+  margin: 15px auto 0;
+  border: none;
+  height: 33px;
+  font-size: 1em;
   text-align: center;
 }
 
@@ -32,18 +45,6 @@
   animation: fade-in 0.5s;
 }
 
-.GenerateGifForm-container {
-  min-height: 100vh;
-}
-
-.GenerateGifForm-select {
-  width: 210px;
-  margin: 15px auto 0;
-  border: none;
-  height: 33px;
-  font-size: 1em;
-}
-
 .GenerateGifForm-button:hover {
   background: #484848;
 }
@@ -57,20 +58,20 @@
   background: #484848;
 }
 
-.ColorPicker:hover {
-  cursor: pointer;
-}
-
 .ColorPicker {
   display: block;
   width: 210px;
   margin: 15px auto 0;
   color: #fff;
   font-size: 1em;
-  padding: 1px;
+  padding: 5px;
   border-radius: 5px;
   text-align: center;
   border: none;
+}
+
+.ColorPicker:hover {
+  cursor: pointer;
 }
 
 .ColorPicker-SketchPicker {

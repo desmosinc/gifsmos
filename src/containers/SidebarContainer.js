@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Sidebar from '../components/Sidebar';
-import { requestFrame, togglePane, reset } from '../actions';
+import { requestFrame, togglePane, reset, getBurstSliders } from '../actions';
 
 const mapStateToProps = (state, ownProps) => {
   const { images, settings, ui } = state;
@@ -29,7 +29,8 @@ const SidebarContainer = connect(
   {
     requestFrame,
     togglePane,
-    reset
+    reset,
+    getBurstSliders
   }
 )(Sidebar);
 

@@ -75,15 +75,17 @@ class GenerateGifForm extends Component {
         <input
           className="GenerateGifForm-input"
           name="name"
-          onChange={this.handleInputUpdate}
+          aria-label="add a file name"
           placeholder="Add a File Name"
+          onChange={this.handleInputUpdate}
           value={this.props.gifFileName}
         />
         <input
           className="GenerateGifForm-input"
           name="caption"
-          onChange={this.handleInputUpdate}
+          aria-label="add a caption"
           placeholder="Add a Caption"
+          onChange={this.handleInputUpdate}
           value={this.props.caption}
         />
         <select
@@ -91,11 +93,12 @@ class GenerateGifForm extends Component {
           id="GenerateGifForm-select"
           name="placement"
           className="GenerateGifForm-select"
+          aria-label="caption position"
           onChange={this.handleInputUpdate}
           defaultValue={currentValue}
         >
           <option disabled value="DEFAULT">
-            Pick a Text Position
+            Select a Caption Position
           </option>
           <option value="top-left">Top Left</option>
           <option value="top-center">Top Center</option>
@@ -107,7 +110,12 @@ class GenerateGifForm extends Component {
         <div
           style={colorPickerBg}
           onClick={this.renderColorPicker}
+          onKeyDown={this.renderColorPicker}
           className="ColorPicker"
+          aria-label="pick a caption color"
+          role="button"
+          aria-pressed={this.state.showColorPicker}
+          tabIndex="0"
         >
           <p>Pick a Caption Color</p>
         </div>

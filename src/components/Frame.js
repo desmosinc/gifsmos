@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import './Frame.css';
 
@@ -38,5 +39,17 @@ const Frame = ({
     )}
   </div>
 );
+
+Frame.defaultProps = {
+  imageSrc: '',
+  playing: false,
+  togglePlaying: () => {}
+};
+
+Frame.propTypes = {
+  imageSrc: PropTypes.string.isRequired,
+  playing: PropTypes.bool.isRequired,
+  togglePlaying: PropTypes.func.isRequired
+};
 
 export default Frame;

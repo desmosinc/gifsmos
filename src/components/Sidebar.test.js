@@ -32,9 +32,14 @@ describe('<Sidebar/>', () => {
     // mock functions
     const requestFrame = jest.fn();
     const togglePane = jest.fn();
+    const getBurstSliders = jest.fn();
     // render
     const { getByTestId } = global.renderWithRedux(
-      <Sidebar requestFrame={requestFrame} togglePane={togglePane} />
+      <Sidebar
+        requestFrame={requestFrame}
+        togglePane={togglePane}
+        getBurstSliders={getBurstSliders}
+      />
     );
     // grab buttons
     const cameraButton = getByTestId('SidebarButton-camera-button');

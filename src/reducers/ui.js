@@ -6,6 +6,7 @@
  * previewIdx: the index of the frame being previewed in the preview pane
  * playing: whether the preview is animating
  * error: currently displayed error message
+ * burstSliders: expressions from the calculator that are valid sliders
  */
 
 import {
@@ -15,7 +16,8 @@ import {
   PAUSE_PREVIEW,
   SET_ERROR,
   CLEAR_ERROR,
-  RESET
+  RESET,
+  UPDATE_BURST_SLIDERS
 } from '../constants/action-types';
 import panes from '../constants/pane-types';
 
@@ -23,7 +25,8 @@ const initialState = {
   expandedPane: panes.NONE,
   previewIdx: 0,
   playing: false,
-  error: ''
+  error: '',
+  burstSliders: []
 };
 
 const ui = (state = initialState, { type, payload }) => {
@@ -87,6 +90,13 @@ const ui = (state = initialState, { type, payload }) => {
           error: ''
         }
       };
+
+    case UPDATE_BURST_SLIDERS: {
+      return {
+        ...state,
+        burstSliders: payload
+      };
+    }
 
     default:
       return state;
