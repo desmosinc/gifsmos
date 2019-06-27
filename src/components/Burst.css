@@ -31,6 +31,16 @@
   text-align: center;
 }
 
+.Burst-dropdown {
+  height: 33px;
+  width: 114px;
+  margin-bottom: 15px;
+  margin-top: 5px;
+  border: 1px solid #000;
+  font-size: 1em;
+  outline: none !important;
+}
+
 .Burst-input-error {
   border-color: #cc0000;
 }
@@ -76,4 +86,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.Burst-refresh-icon {
+  position: absolute;
+  height: 1.25rem;
+  margin: 0.7rem 0.5rem;
+}
+
+.Burst-refresh-icon:hover {
+  cursor: pointer;
 }

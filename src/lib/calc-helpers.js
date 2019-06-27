@@ -46,6 +46,16 @@ export const setSliderByIndex = (idx, val) => {
   calculator.setExpression({ id, latex: `${identifier}=${val}` });
 };
 
+export const getSliderExpressions = () => {
+  return calculator.getExpressions().reduce((acc, exp, i) => {
+    return exp.latex &&
+      exp.latex !== '' &&
+      exp.latex.match(/[a-z]/gi).length === 1
+      ? [...acc, { ...exp, expressionIdx: i + 1 }]
+      : acc;
+  }, []);
+};
+
 export const getCalcState = () => {
   return calculator.getState();
 };
