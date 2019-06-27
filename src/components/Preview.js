@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Frame from './Frame';
+import InfoIcon from './InfoIcon';
 import GenerateGifFormContainer from '../containers/GenerateGifFormContainer';
 import './Preview.css';
 import left from './icons/left.svg';
@@ -120,8 +122,21 @@ class Preview extends Component {
 
     if (!expanded) return <div className="Preview" />;
 
+    const previewText = `Preview allows you to preview your future GIF by 
+                         scrubbing through snapshots with the slider or 
+                         previewing your GIF with the play/pause button.`;
+
     return (
-      <div className={classNames('Preview', { 'Preview-expanded': expanded })}>
+      <div
+        className={classNames('Preview', { 'Preview-expanded': expanded })}
+        data-testid="Preview-container"
+        onClick={this.handleClickContainer}
+      >
+        <div className="Preview-header">
+          <h2>Preview</h2>
+          <InfoIcon infoText={previewText} />
+        </div>
+
         <div className="Frame-section-container">
           <img
             className="directional-icon"
@@ -180,11 +195,13 @@ class Preview extends Component {
           />
         </div>
 
-        <div className="Preview-scrubber-counter">
+        <div
+          className="Preview-scrubber-counter"
+          data-testid="Preview-scrubber-counter"
+        >
           {numFrames ? `${previewIdx + 1} / ${numFrames}` : '0 / 0'}
         </div>
 
-        <div>Pick a frame!!!!</div>
         <div className="Frame-timeline">
           {frameIDs.map((frameID, i) => (
             <img
@@ -196,6 +213,18 @@ class Preview extends Component {
               alt=""
             />
           ))}
+        </div>
+        <div
+          className="Preview-create"
+          data-testid="Preview-create-form-container"
+        >
+          {!!numFrames && this.props.gifData.length === 0 ? (
+            <GenerateGifFormContainer
+              handleGenerateGIF={this.handleGenerateGIF}
+              showColorPicker={this.state.showColorPicker}
+              updateColorPicker={this.updateColorPicker}
+            />
+          ) : null}
         </div>
 
         <div className="Preview-create">
@@ -223,16 +252,51 @@ class Preview extends Component {
         {gifProgress === 1 ? (
           <div className="Preview-progress-success">Download Successful </div>
         ) : null}
+        {!numFrames ? (
+          <div className="Preview-no-frames">
+            No frames have been captured. Use the camera or burst tools to add
+            some!
+          </div>
+        ) : null}
       </div>
     );
   }
 }
 
 Preview.defaultProps = {
+  expanded: false,
   previewIdx: 0,
+  playing: false,
   frames: {},
   frameIDs: [],
-  gifData: ''
+  gifData: '',
+  gifProgress: 0,
+  width: 300,
+  height: 300,
+  oversample: false,
+  interval: 100,
+  updatePreviewIdx: () => {},
+  generateGIF: () => {},
+  startAnimation: () => {},
+  stopAnimation: () => {}
+};
+
+Preview.propTypes = {
+  expanded: PropTypes.bool.isRequired,
+  previewIdx: PropTypes.number.isRequired,
+  playing: PropTypes.bool.isRequired,
+  frames: PropTypes.object.isRequired,
+  frameIDs: PropTypes.array.isRequired,
+  gifData: PropTypes.string.isRequired,
+  gifProgress: PropTypes.number.isRequired,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  oversample: PropTypes.bool.isRequired,
+  interval: PropTypes.number.isRequired,
+  updatePreviewIdx: PropTypes.func.isRequired,
+  generateGIF: PropTypes.func.isRequired,
+  startAnimation: PropTypes.func.isRequired,
+  stopAnimation: PropTypes.func.isRequired
 };
 
 export default Preview;
