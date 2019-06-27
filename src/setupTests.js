@@ -6,7 +6,8 @@ import { render } from '@testing-library/react';
 import rootReducer from './reducers';
 
 global.console = {
-  log: jest.fn()
+  log: jest.fn(),
+  error: jest.fn()
 };
 
 global.Desmos = {

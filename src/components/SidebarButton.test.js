@@ -10,9 +10,7 @@ describe('<SidebarButton/>', () => {
   });
 
   it('renders appropriate content', () => {
-    const { getByTestId } = global.renderWithRedux(
-      <SidebarButton icon="icon" />
-    );
+    const { getByTestId } = global.renderWithRedux(<SidebarButton />);
     expect(getByTestId('SidebarButton-icon-button').firstChild.alt).toBe(
       'icon icon'
     );
