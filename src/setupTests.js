@@ -23,6 +23,13 @@ global.Desmos = {
   })
 };
 
+global.gifshot = {
+  createGIF: (args, cb) => {
+    args.progressCallback(100);
+    return cb({ image: 'test' });
+  }
+};
+
 global.renderWithRedux = (
   ui,
   { initialState, store = createStore(rootReducer, initialState) } = {}
