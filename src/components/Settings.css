@@ -48,3 +48,9 @@
   font-size: 1em;
   outline: none !important;
 }
+
+.Settings-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -5,6 +5,7 @@ import { imageSettingDefaults } from '../lib/defaultProps';
 import classNames from 'classnames';
 import { isPositiveInteger, isProperBound } from '../lib/input-helpers';
 import './Settings.css';
+import InfoIcon from './InfoIcon';
 
 class Settings extends Component {
   constructor(props) {
@@ -46,10 +47,16 @@ class Settings extends Component {
 
     if (!expanded) return <div className="Settings" />;
 
+    const settingsText = `The settings panel allows you to set your desired image dimensions 
+                          as well as the interval between frames in the generated GIF.`;
     return (
       <div
         className={classNames('Settings', { 'Settings-expanded': expanded })}
       >
+        <div className="Settings-header">
+          <h2>Settings</h2>
+          <InfoIcon infoText={settingsText} />
+        </div>
         <div data-testid="Settings-image-width-label">Image Width</div>
         <input
           className={classNames('Settings-input', {

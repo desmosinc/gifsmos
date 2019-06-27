@@ -6,6 +6,7 @@ import { imageSettingsProps } from '../lib/propTypes';
 import { imageSettingDefaults } from '../lib/defaultProps';
 import { getBurstErrors } from '../lib/input-helpers';
 import './Burst.css';
+import InfoIcon from './InfoIcon';
 
 class Burst extends Component {
   constructor(props) {
@@ -87,11 +88,18 @@ class Burst extends Component {
   render() {
     const { idx, min, max, step, errors } = this.state;
     const { expanded } = this.props;
+    const burstInfo = `Burst allows you to generate multiple snapshots
+      of your graph at one time. Enter the relevant info in the input fields
+      and hit capture to watch the magic happen.`;
 
     if (!expanded) return <div className="Burst" />;
 
     return (
       <div className={classNames('Burst', { 'Burst-expanded': expanded })}>
+        <div className="Burst-header">
+          <h2>Burst</h2>
+          <InfoIcon infoText={burstInfo} />
+        </div>
         <div data-testid="Burst-slider-index-label">Slider Index</div>
         <input
           className={classNames('Burst-input', {

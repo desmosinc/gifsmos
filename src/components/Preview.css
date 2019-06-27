@@ -9,6 +9,7 @@
   transition: 0.2s transform;
   margin-bottom: 0;
   overflow: scroll;
+  color: #fff;
 }
 
 .Preview-expanded {
@@ -16,6 +17,11 @@
   transform: translateX(0);
   transition: 0.2s transform;
   min-height: 100vh;
+}
+
+.Preview-muted {
+  opacity: 0.2;
+  pointer-events: none;
 }
 
 .Preview-scrubber {
@@ -60,6 +66,12 @@
   color: #fff;
 }
 
+.Preview-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @keyframes fade-in {
   0% {
     opacity: 0;
@@ -67,4 +79,12 @@
   100% {
     opacity: 1;
   }
+}
+
+.Preview-no-frames {
+  width: 360px;
+  margin: 0 auto;
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
 }

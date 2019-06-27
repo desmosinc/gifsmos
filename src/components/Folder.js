@@ -6,6 +6,7 @@ import {
 } from '../lib/local-storage-helpers';
 import panes from '../constants/pane-types';
 import './Folder.css';
+import InfoIcon from './InfoIcon';
 
 class Folder extends Component {
   constructor(props) {
@@ -101,12 +102,19 @@ class Folder extends Component {
       </div>
     );
 
+    const folderText = `The folder allows you to save your graphs so you 
+                          can come back to them at a later time.`;
+
     return (
       <div
         className={classNames('Folder', {
           'Folder-expanded': expanded
         })}
       >
+        <div className="Folder-header">
+          <h2>Folder</h2>
+          <InfoIcon infoText={folderText} />
+        </div>
         <div>
           <div className="Folder-titles">Name</div>
           <input
