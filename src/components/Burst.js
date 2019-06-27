@@ -31,6 +31,9 @@ class Burst extends Component {
     if (this.props.frameIDs.length !== prevProps.frameIDs.length) {
       this.setState({ canUndo: false });
     }
+    if (this.props.burstSliders.length && prevProps.burstSliders.length === 0) {
+      this.setState({ idx: this.props.burstSliders[0].expressionIdx });
+    }
   }
 
   handleInputUpdate(evt) {
@@ -105,14 +108,19 @@ class Burst extends Component {
           })}
           name="idx"
           aria-label="slider index"
+          value={idx ? idx : null}
           onChange={this.handleInputUpdate}
         >
-          <option value={null}>
-            {burstSliders.length ? 'Pick Slider' : 'No Sliders'}
-          </option>
+          {!burstSliders.length ? (
+            <option value={null}>No Sliders</option>
+          ) : null}
           {burstSliders.map(exp => {
             return (
-              <option key={`slider-${exp.id}`} value={exp.expressionIdx}>
+              <option
+                key={`slider-${exp.id}`}
+                value={exp.expressionIdx}
+                selected={idx === exp.expressionIdx}
+              >
                 {exp.latex.split('=').join(' = ')}
               </option>
             );
