@@ -6,11 +6,21 @@ import { render } from '@testing-library/react';
 import rootReducer from './reducers';
 
 global.console = {
-  log: jest.fn()
+  log: jest.fn(),
+  error: jest.fn()
 };
 
 global.Desmos = {
-  GraphingCalculator: jest.fn()
+  GraphingCalculator: jest.fn(() => {
+    return {
+      asyncScreenshot: (opts, cb) => cb(''),
+      getExpressions: () => [
+        { id: 1, type: 'expression', latex: 'x = 3' },
+        { id: 2, latex: '' }
+      ],
+      setExpression: () => null
+    };
+  })
 };
 
 global.renderWithRedux = (

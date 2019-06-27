@@ -42,9 +42,8 @@ export const badBurstInput = errors => {
       propText = 'input';
   }
 
-  if (propText === propMap.idx) {
-    return `Your ${propText} must be a positive integer.`;
-  }
+  if (propText === propMap.idx)
+    return `Please choose a slider or define an expression.`;
 
   return `Your ${propText} isn't quite right.`;
 };

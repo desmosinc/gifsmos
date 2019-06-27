@@ -18,13 +18,13 @@ describe('<Burst/>', () => {
   it('renders labels/inputs', () => {
     const { getByText } = render(<Burst expanded />);
     // grab labels
-    const sliderIndexLabel = getByText('Slider Index');
+    const sliderIndexLabel = getByText('Slider');
     const sliderMinLabel = getByText('Slider Min');
     const sliderMaxLabel = getByText('Slider Max');
     const sliderStepLabel = getByText('Slider Step');
     // check that labels have correct corresponding inputs
     expect(sliderIndexLabel.nextSibling.name).toBe('idx');
-    expect(sliderIndexLabel.nextSibling.type).toBe('number');
+    expect(sliderIndexLabel.nextSibling.tagName).toBe('SELECT');
 
     expect(sliderMinLabel.nextSibling.name).toBe('min');
     expect(sliderMinLabel.nextSibling.type).toBe('number');

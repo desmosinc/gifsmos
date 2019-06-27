@@ -21,7 +21,7 @@ describe('<Sidebar/>', () => {
       container.querySelector('button[aria-label="preview panel"]')
     ).toBeTruthy();
     expect(
-      container.querySelector('button[aria-label="folder-graphs panel"]')
+      container.querySelector('button[aria-label="saved-graphs panel"]')
     ).toBeTruthy();
     expect(
       container.querySelector('button[aria-label="settings panel"]')
@@ -31,10 +31,10 @@ describe('<Sidebar/>', () => {
     ).toBeTruthy();
   });
 
-  it('renders help link', () => {
+  it('renders help button', () => {
     const { container, getByText } = render(<Sidebar />);
     expect(container.querySelector('.Sidebar-help')).toBeTruthy();
-    expect(getByText('Help').getAttribute('href')).toMatch('http');
+    // expect(getByText('Help').getAttribute('href')).toMatch('http');
   });
 
   it('checks that buttons call appropriate functions when clicked', () => {
@@ -54,7 +54,7 @@ describe('<Sidebar/>', () => {
       container.querySelector('button[aria-label="preview panel"]')
     );
     fireEvent.click(
-      container.querySelector('button[aria-label="folder-graphs panel"]')
+      container.querySelector('button[aria-label="saved-graphs panel"]')
     );
     fireEvent.click(
       container.querySelector('button[aria-label="settings panel"]')

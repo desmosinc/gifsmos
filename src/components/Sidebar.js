@@ -1,16 +1,24 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { imageSettingPropTypes } from '../lib/propTypes';
+import { imageSettingDefaults } from '../lib/defaultProps';
 import SidebarButton from './SidebarButton';
 import SidebarButtonWithBadge from './SidebarButtonWithBadge';
 import panes from '../constants/pane-types';
 import './Sidebar.css';
+import HelpModal from './HelpModal';
 
 class Sidebar extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      showHelpModal: false
+    };
     this.handleTogglePreview = this.handleTogglePreview.bind(this);
     this.handleToggleBurst = this.handleToggleBurst.bind(this);
     this.handleToggleSettings = this.handleToggleSettings.bind(this);
     this.handleRequestFrame = this.handleRequestFrame.bind(this);
+    this.toggleHelpModal = this.toggleHelpModal.bind(this);
     this.handleToggleFiles = this.handleToggleFiles.bind(this);
   }
 
@@ -20,8 +28,9 @@ class Sidebar extends Component {
   }
 
   handleToggleBurst() {
-    const { togglePane } = this.props;
+    const { togglePane, getBurstSliders, expandedPane } = this.props;
     togglePane(panes.BURST);
+    if (expandedPane !== 'BURST') getBurstSliders();
   }
 
   handleToggleSettings() {
@@ -57,6 +66,12 @@ class Sidebar extends Component {
     requestFrame(imageOpts);
   }
 
+  toggleHelpModal() {
+    this.setState({
+      showHelpModal: !this.state.showHelpModal
+    });
+  }
+
   handleToggleFiles() {
     const { togglePane } = this.props;
     togglePane(panes.FILES);
@@ -85,7 +100,7 @@ class Sidebar extends Component {
         />
 
         <SidebarButton
-          icon="folder"
+          icon="saved"
           expanded={expandedPane === panes.FILES}
           onClick={this.handleToggleFiles}
         />
@@ -98,22 +113,39 @@ class Sidebar extends Component {
 
         {!!numFrames && <SidebarButton icon="reset" onClick={reset} />}
 
-        <div className="Sidebar-help">
-          <a
-            href="https://github.com/ctlusto/gifsmos/blob/master/README.md"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Help
-          </a>
+        <div className="Sidebar-help" onClick={this.toggleHelpModal}>
+          <p>Help</p>
+        </div>
+        <div>
+          <HelpModal
+            showHelpModal={this.state.showHelpModal}
+            toggleHelpModal={this.toggleHelpModal}
+          />
         </div>
       </div>
     );
   }
 }
 
+Sidebar.propTypes = {
+  ...imageSettingPropTypes,
+  numFrames: PropTypes.number.isRequired,
+  expandedPane: PropTypes.string.isRequired,
+  gifData: PropTypes.string.isRequired,
+  requestFrame: PropTypes.func.isRequired,
+  togglePane: PropTypes.func.isRequired,
+  reset: PropTypes.func.isRequired
+};
+
 Sidebar.defaultProps = {
-  gifData: ''
+  numFrames: 0,
+  expandedPane: 'NONE',
+  gifData: '',
+  ...imageSettingDefaults,
+  requestFrame: () => {},
+  togglePane: () => {},
+  reset: () => {},
+  getBurstSliders: () => {}
 };
 
 export default Sidebar;

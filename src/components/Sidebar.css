@@ -17,12 +17,23 @@
   position: fixed;
 }
 
-.Sidebar-help a {
+.Sidebar-help p {
   color: #fff;
   text-decoration: none;
 }
 
-.Sidebar-help a:hover {
+.Sidebar-help p:hover {
+  cursor: pointer;
   color: #fff;
   text-decoration: underline;
+}
+
+@media (max-height: 480px) {
+  .Sidebar-help {
+    display: none;
+  }
+
+  .Sidebar {
+    overflow: auto;
+  }
 }

@@ -11,8 +11,10 @@ describe('<Frame/>', () => {
 
   it('renders appropriate content', () => {
     const { container } = render(<Frame imageSrc="test" />);
-    expect(container.querySelector('.Frame').firstChild.tagName).toBe('IMG');
-    expect(container.querySelector('.Frame').firstChild.alt).toBe(
+    expect(container.querySelector('.Frame-container').firstChild.tagName).toBe(
+      'IMG'
+    );
+    expect(container.querySelector('.Frame-container').firstChild.alt).toBe(
       'current frame'
     );
   });
