@@ -27,14 +27,31 @@
  */
 
 import * as types from '../constants/action-types';
-import { setSliderByIndex, getImageData } from '../lib/calc-helpers';
+import {
+  setSliderByIndex,
+  getImageData,
+  loadSavedGraph,
+  saveCurrentGraph
+} from '../lib/calc-helpers';
+
 import { startTimer, clearTimer } from '../lib/timer';
+
 import {
   gifCreationProblem,
   badBurstInput,
-  badSettingsInput
+  badSettingsInput,
+  invalidBounds,
+  badNameInput
 } from '../lib/error-messages';
-import { getBurstErrors, getSettingsErrors } from '../lib/input-helpers';
+
+import download from 'downloadjs';
+
+import {
+  getBoundErrors,
+  getBurstErrors,
+  getSettingsErrors,
+  getSaveGraphErrors
+} from '../lib/input-helpers';
 
 const ERROR_DELAY = 3000;
 let nextFrameID = 0;
@@ -48,14 +65,53 @@ export const addFrame = imageData => ({
   }
 });
 
+export const addSavedFrame = (imageData, id) => ({
+  type: types.ADD_FRAME,
+  payload: {
+    id,
+    imageData
+  }
+});
+
 export const updateGIFProgress = progress => ({
   type: types.UPDATE_GIF_PROGRESS,
   payload: { progress }
 });
 
+export const updateText = text => ({
+  type: types.UPDATE_TEXT,
+  payload: { text }
+});
+
+export const updateTextColor = fontColor => ({
+  type: types.UPDATE_TEXT_COLOR,
+  payload: { fontColor }
+});
+
+export const updateGIFFileName = name => {
+  return {
+    type: types.UPDATE_GIF_FILENAME,
+    payload: { gifFileName: name }
+  };
+};
+
+export const updateTextPosition = textOpts => {
+  let { textAlign, textBaseline } = textOpts;
+
+  return {
+    type: types.UPDATE_TEXT_POSITION,
+    payload: { textAlign, textBaseline }
+  };
+};
+
 export const addGIF = imageData => ({
   type: types.ADD_GIF,
   payload: { imageData }
+});
+
+export const undoBurst = (frames, frameIDs) => ({
+  type: types.UNDO_BURST,
+  payload: { frames, frameIDs }
 });
 
 export const togglePane = pane => {
@@ -116,6 +172,7 @@ export const clearError = () => ({ type: types.CLEAR_ERROR });
 
 export const reset = () => {
   clearTimer();
+  localStorage.removeItem('selectValue');
   return { type: types.RESET };
 };
 
@@ -128,10 +185,17 @@ export const flashError = message => dispatch => {
 
 export const requestFrame = opts => async dispatch => {
   const { width, height } = opts;
+  const { left, right, top, bottom } = opts.mathBounds;
 
   const settingsErrors = getSettingsErrors({ width, height });
   if (Object.keys(settingsErrors).length) {
     dispatch(flashError(badSettingsInput(settingsErrors)));
+    return;
+  }
+
+  const boundErrors = getBoundErrors({ left, right, top, bottom });
+  if (Object.keys(boundErrors).length) {
+    dispatch(flashError(invalidBounds(boundErrors)));
     return;
   }
 
@@ -140,10 +204,32 @@ export const requestFrame = opts => async dispatch => {
 };
 
 export const requestBurst = opts => async (dispatch, getState) => {
-  const { idx, min, max, step, width, height, oversample } = opts;
+  const {
+    idx,
+    min,
+    max,
+    step,
+    width,
+    height,
+    oversample,
+    frames,
+    frameIDs,
+    left,
+    right,
+    top,
+    bottom,
+    strategy
+  } = opts;
   const imageOpts = {
     width,
     height,
+    mathBounds: {
+      top,
+      bottom,
+      left,
+      right
+    },
+    mode: strategy,
     targetPixelRatio: oversample ? 2 : 1
   };
 
@@ -160,7 +246,13 @@ export const requestBurst = opts => async (dispatch, getState) => {
     dispatch(flashError(badSettingsInput(settingsErrors)));
     return;
   }
-
+  const prevFrames = { ...frames };
+  const prevFrameIDs = [...frameIDs];
+  const boundErrors = getBoundErrors({ top, bottom, left, right });
+  if (Object.keys(boundErrors).length) {
+    dispatch(flashError(invalidBounds(boundErrors)));
+    return;
+  }
   let imageData;
   let sliderErrorMessage;
   for (let val = min; val <= max; val += step) {
@@ -173,6 +265,8 @@ export const requestBurst = opts => async (dispatch, getState) => {
     imageData = await getImageData(imageOpts);
     dispatch(addFrame(imageData));
   }
+
+  return { prevFrames, prevFrameIDs };
 };
 
 export const startAnimation = () => (dispatch, getState) => {
@@ -195,9 +289,15 @@ export const startAnimation = () => (dispatch, getState) => {
 
 // The gifshot library is loaded in index.html
 const gifshot = window.gifshot;
-export const generateGIF = (images, opts) => (dispatch, getState) => {
+export const generateGIF = (
+  images,
+  opts,
+  gifMaker = gifshot,
+  downloadFn = download
+) => (dispatch, getState) => {
   // Have to check state interval and not opts because opts is in seconds
   const { interval } = getState().settings.image;
+  const { gifFileName } = getState().images;
   const settingsErrors = getSettingsErrors({ interval });
   if (Object.keys(settingsErrors).length) {
     dispatch(flashError(badSettingsInput(settingsErrors)));
@@ -209,11 +309,34 @@ export const generateGIF = (images, opts) => (dispatch, getState) => {
     ...opts,
     progressCallback: progress => dispatch(updateGIFProgress(progress))
   };
-  gifshot.createGIF(gifshotArgs, data => {
+
+  gifMaker.createGIF(gifshotArgs, data => {
     if (data.error) {
       dispatch(flashError(gifCreationProblem()));
     } else {
       dispatch(addGIF(data.image));
+      downloadFn(data.image, gifFileName || 'gifsmos.gif', 'image/gif');
     }
   });
+};
+
+export const loadFramesFromLocal = dateString => (dispatch, getState) => {
+  dispatch(reset());
+  const { frameIDs, frames } = loadSavedGraph(dateString);
+  for (let val = 0; val < frameIDs.length; val += 1) {
+    // get corresponding image
+    const id = frameIDs[val];
+    const imageData = frames[id];
+    dispatch(addSavedFrame(imageData, id));
+  }
+};
+
+export const saveGraph = (name, frames, frameIDs) => async dispatch => {
+  const saveErrors = getSaveGraphErrors(name);
+  if (saveErrors.name) {
+    dispatch(flashError(badNameInput(saveErrors.name)));
+    return;
+  }
+  const newGraph = await saveCurrentGraph(name, frames, frameIDs);
+  return newGraph;
 };
