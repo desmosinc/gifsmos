@@ -108,11 +108,11 @@ class Burst extends Component {
           })}
           name="idx"
           aria-label="slider index"
-          value={idx ? idx : null}
+          value={idx ? idx : undefined}
           onChange={this.handleInputUpdate}
         >
           {!burstSliders.length ? (
-            <option value={null}>No Sliders</option>
+            <option value={undefined}>No Sliders</option>
           ) : null}
           {burstSliders.map(exp => {
             return (
