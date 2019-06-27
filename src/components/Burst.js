@@ -101,32 +101,32 @@ class Burst extends Component {
           <h2>Burst</h2>
           <InfoIcon infoText={burstInfo} />
         </div>
-        <div data-testid="Burst-slider-index-label">Slider</div>
-        <select
-          className={classNames('Burst-dropdown', {
-            'Burst-input-error': !!errors.idx
-          })}
-          name="idx"
-          aria-label="slider index"
-          value={idx ? idx : undefined}
-          onChange={this.handleInputUpdate}
-        >
-          {!burstSliders.length ? (
-            <option value={undefined}>No Sliders</option>
-          ) : null}
-          {burstSliders.map(exp => {
-            return (
-              <option
-                key={`slider-${exp.id}`}
-                value={exp.expressionIdx}
-                defaultValue={idx === exp.expressionIdx}
-              >
-                {exp.latex.split('=').join(' = ')}
-              </option>
-            );
-          })}
-        </select>
-        <div className="Burst-slider-icon-container">
+        <div className="Burst-dropdown-container">
+          <div data-testid="Burst-slider-index-label">Slider</div>
+          <select
+            className={classNames('Burst-dropdown', {
+              'Burst-input-error': !!errors.idx
+            })}
+            name="idx"
+            aria-label="slider index"
+            value={idx ? idx : undefined}
+            onChange={this.handleInputUpdate}
+          >
+            {!burstSliders.length ? (
+              <option value={undefined}>No Sliders</option>
+            ) : null}
+            {burstSliders.map(exp => {
+              return (
+                <option
+                  key={`slider-${exp.id}`}
+                  value={exp.expressionIdx}
+                  defaultValue={idx === exp.expressionIdx}
+                >
+                  {exp.latex.split('=').join(' = ')}
+                </option>
+              );
+            })}
+          </select>
           <img
             src={refresh}
             alt="refresh sliders icon"

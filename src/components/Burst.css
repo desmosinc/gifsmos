@@ -93,13 +93,11 @@
 }
 
 .Burst-refresh-icon {
-  position: relative;
-  right: -70px;
-  top: -52px;
-  height: 25px;
-  width: 25px;
-  margin-left: 10px;
-  margin-top: 7px;
+  position: absolute;
+  top: 108px;
+  left: 155px;
+  height: 1.25rem;
+  margin: 0.7rem 0.5rem;
 }
 
 .Burst-refresh-icon:hover {
