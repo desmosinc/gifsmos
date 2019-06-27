@@ -8,7 +8,7 @@
   transform: translateX(-100%);
   transition: 0.2s transform;
   margin-bottom: 0;
-  overflow: scroll;
+  overflow: auto;
   color: #fff;
 }
 
