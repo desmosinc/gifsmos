@@ -89,7 +89,7 @@ class Sidebar extends Component {
         />
 
         <SidebarButton
-          icon="folder"
+          icon="saved"
           expanded={expandedPane === panes.FILES}
           onClick={this.handleToggleFiles}
         />
