@@ -5,11 +5,11 @@ import { cleanup } from '@testing-library/react';
 afterEach(cleanup);
 
 describe('<Preview/>', () => {
-  it('renders without crashing', () => {
+  xit('renders without crashing', () => {
     global.renderWithRedux(<Preview />);
   });
 
-  it('renders appropriate content', () => {
+  xit('renders appropriate content', () => {
     const { getByTestId } = global.renderWithRedux(
       <Preview expanded previewIdx={0} frames={{ 1: 'test' }} frameIDs={[1]} />
     );

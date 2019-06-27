@@ -5,11 +5,11 @@ import { cleanup } from '@testing-library/react';
 afterEach(cleanup);
 
 describe('<Settings/>', () => {
-  it('renders without crashing', () => {
+  xit('renders without crashing', () => {
     global.renderWithRedux(<Settings />);
   });
 
-  it('renders appropriate content', () => {
+  xit('renders appropriate content', () => {
     // render
     const { getByTestId, getByText } = global.renderWithRedux(
       <Settings expanded={true} />
