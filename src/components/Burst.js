@@ -119,7 +119,7 @@ class Burst extends Component {
               <option
                 key={`slider-${exp.id}`}
                 value={exp.expressionIdx}
-                selected={idx === exp.expressionIdx}
+                defaultValue={idx === exp.expressionIdx}
               >
                 {exp.latex.split('=').join(' = ')}
               </option>
