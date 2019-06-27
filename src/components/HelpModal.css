@@ -1,4 +1,4 @@
-.Help-modal {
+.HelpModal {
   position: fixed;
   z-index: 1;
   left: 0;
@@ -9,7 +9,7 @@
   background-color: rgb(0, 0, 0, 0.75);
 }
 
-.Help-modal-content {
+.HelpModal-content {
   background-color: rgba(0, 0, 0, 0.8);
   position: absolute;
   top: 50%;
@@ -26,25 +26,25 @@
   border-radius: 0.25rem;
 }
 
-.Help-modal-text {
+.HelpModal-text {
   height: 80%;
   overflow: scroll;
 }
 
-.Help-modal-header h1 {
+.HelpModal-header h1 {
   padding-bottom: 1rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-.Help-modal.show {
+.HelpModal.show {
   display: block;
 }
 
-.Help-modal.hide {
+.HelpModal.hide {
   display: none;
 }
 
-.Help-modal-close-btn {
+.HelpModal-close-btn {
   position: absolute;
   top: 0.5rem;
   right: 1rem;
@@ -52,7 +52,7 @@
   color: rgba(255, 255, 255, 0.5);
 }
 
-.Help-modal-close-btn:hover {
+.HelpModal-close-btn:hover {
   cursor: pointer;
   color: #fff;
 }

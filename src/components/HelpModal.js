@@ -6,18 +6,18 @@ export default class HelpModal extends Component {
     let displayClass = this.props.showHelpModal ? 'show' : 'hide';
 
     return (
-      <div className={`Help-modal ${displayClass}`}>
-        <div className="Help-modal-content">
+      <div className={`HelpModal ${displayClass}`}>
+        <div className="HelpModal-content">
           <span
             onClick={this.props.toggleHelpModal}
-            className="Help-modal-close-btn"
+            className="HelpModal-close-btn"
           >
             &times;
           </span>
-          <div className="Help-modal-header">
+          <div className="HelpModal-header">
             <h1>Using GIFsmos</h1>
           </div>
-          <div className="Help-modal-text">
+          <div className="HelpModal-text">
             <h3>Creating, importing and saving graphs</h3>
             <p>
               Start by making something dynamic and awesome in the Desmos
