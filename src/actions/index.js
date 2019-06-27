@@ -294,12 +294,10 @@ export const startAnimation = () => (dispatch, getState) => {
 
 // The gifshot library is loaded in index.html
 const gifshot = window.gifshot;
-export const generateGIF = (
-  images,
-  opts,
-  gifMaker = gifshot,
-  downloadFn = download
-) => (dispatch, getState) => {
+export const generateGIF = (images, opts, gifMaker = gifshot) => (
+  dispatch,
+  getState
+) => {
   // Have to check state interval and not opts because opts is in seconds
   const { interval } = getState().settings.image;
   const { gifFileName } = getState().images;
@@ -320,7 +318,7 @@ export const generateGIF = (
       dispatch(flashError(gifCreationProblem()));
     } else {
       dispatch(addGIF(data.image));
-      downloadFn(data.image, gifFileName || 'gifsmos.gif', 'image/gif');
+      download(data.image, gifFileName || 'gifsmos.gif', 'image/gif');
     }
   });
 };

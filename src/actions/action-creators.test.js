@@ -293,7 +293,7 @@ describe('Action creators', () => {
       expect(store.getActions()).toEqual(expectedActions);
     });
 
-    it('return actions to generate a GIF via frames in state', () => {
+    it('return action to generate a GIF via frames in state', () => {
       const opts = {
         gifHeight: 300,
         gifWidth: 300,
@@ -301,21 +301,13 @@ describe('Action creators', () => {
         interval: 0.1,
         progressCallback: jest.fn()
       };
-      // gifshot mock
-      const gifshot = {
-        createGIF: (args, cb) => {
-          args.progressCallback(100);
-          return cb({ image: 'test' });
-        }
-      };
-      // download mock
-      const download = () => null;
 
       const expectedActions = [
         { type: types.UPDATE_GIF_PROGRESS, payload: { progress: 100 } },
         { type: types.ADD_GIF, payload: { imageData: expect.any(String) } }
       ];
-      store.dispatch(actions.generateGIF([], opts, gifshot, download));
+
+      store.dispatch(actions.generateGIF([], opts, global.gifshot));
       expect(store.getActions()).toEqual(expectedActions);
     });
 
