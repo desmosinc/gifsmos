@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import SidebarContainer from '../containers/SidebarContainer';
 import PreviewContainer from '../containers/PreviewContainer';
@@ -47,5 +48,13 @@ class App extends Component {
     );
   }
 }
+
+App.defaultProps = {
+  onEscape: () => {}
+};
+
+App.propTypes = {
+  onEscape: PropTypes.func.isRequired
+};
 
 export default App;

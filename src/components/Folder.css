@@ -10,6 +10,7 @@
   transform: translateX(-100%);
   transition: 0.2s transform;
   color: #fff;
+  min-height: 100vh;
 }
 
 .Folder-expanded {
@@ -71,11 +72,7 @@
 }
 
 .Folder-previous-items {
-  height: calc(88vh - 175px);
   margin-top: 15px;
-  overflow: scroll;
-  overflow: -moz-scrollbars-none;
-  -ms-overflow-style: none;
 }
 
 .Folder-previous-items::-webkit-scrollbar {
@@ -138,6 +135,12 @@
 .Folder-button:focus {
   background: #484848;
   border-color: #e79600;
+}
+
+.Folder-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (max-width: 448px) {

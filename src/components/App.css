@@ -1,9 +1,9 @@
 .calculator {
-  z-index: 1;
   position: absolute;
   top: 60px;
   right: 0;
   bottom: 0;
+  min-height: 100vh;
 }
 
 .calculator-burst,

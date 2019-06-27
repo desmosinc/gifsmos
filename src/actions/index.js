@@ -30,6 +30,7 @@ import * as types from '../constants/action-types';
 import {
   setSliderByIndex,
   getImageData,
+  getSliderExpressions,
   loadSavedGraph,
   saveCurrentGraph
 } from '../lib/calc-helpers';
@@ -78,6 +79,13 @@ export const updateGIFProgress = progress => ({
   payload: { progress }
 });
 
+export const updateGIFFileName = name => {
+  return {
+    type: types.UPDATE_GIF_FILENAME,
+    payload: { gifFileName: name }
+  };
+};
+
 export const updateText = text => ({
   type: types.UPDATE_TEXT,
   payload: { text }
@@ -88,16 +96,8 @@ export const updateTextColor = fontColor => ({
   payload: { fontColor }
 });
 
-export const updateGIFFileName = name => {
-  return {
-    type: types.UPDATE_GIF_FILENAME,
-    payload: { gifFileName: name }
-  };
-};
-
 export const updateTextPosition = textOpts => {
   let { textAlign, textBaseline } = textOpts;
-
   return {
     type: types.UPDATE_TEXT_POSITION,
     payload: { textAlign, textBaseline }
@@ -175,6 +175,11 @@ export const reset = () => {
   localStorage.removeItem('selectValue');
   return { type: types.RESET };
 };
+
+const updateBurstSliders = sliders => ({
+  type: types.UPDATE_BURST_SLIDERS,
+  payload: sliders
+});
 
 // Thunks
 export const flashError = message => dispatch => {
@@ -318,6 +323,11 @@ export const generateGIF = (
       downloadFn(data.image, gifFileName || 'gifsmos.gif', 'image/gif');
     }
   });
+};
+
+export const getBurstSliders = () => dispatch => {
+  const sliders = getSliderExpressions();
+  dispatch(updateBurstSliders(sliders));
 };
 
 export const loadFramesFromLocal = dateString => (dispatch, getState) => {

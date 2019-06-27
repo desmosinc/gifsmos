@@ -11,7 +11,7 @@ describe('<Preview/>', () => {
 
   it('renders appropriate content', () => {
     const { getByTestId } = global.renderWithRedux(
-      <Preview expanded previewIdx={0} frames={{ 1: 'test' }} frameIDs={[1]} />
+      <Preview expanded frameIDs={[1]} />
     );
     expect(getByTestId('Preview-scrubber').firstChild.type).toBe('range');
     expect(getByTestId('Preview-scrubber-counter').textContent).toBe('1 / 1');

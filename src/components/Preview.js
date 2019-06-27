@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Frame from './Frame';
+import InfoIcon from './InfoIcon';
 import GenerateGifFormContainer from '../containers/GenerateGifFormContainer';
 import './Preview.css';
+import getTextPosition from '../lib/text-preview-helper';
 
 class Preview extends Component {
   constructor(props) {
@@ -82,12 +85,22 @@ class Preview extends Component {
       frames,
       frameIDs,
       gifProgress,
-      playing
+      playing,
+      caption,
+      fontColor,
+      textAlign,
+      textBaseline
     } = this.props;
     const numFrames = frameIDs.length;
     const imageSrc = frames[frameIDs[previewIdx]];
 
+    let textPosition = getTextPosition(textAlign, textBaseline);
+
     if (!expanded) return <div className="Preview" />;
+
+    const previewText = `Preview allows you to preview your future GIF by 
+                         scrubbing through snapshots with the slider or 
+                         previewing your GIF with the play/pause button.`;
 
     return (
       <div
@@ -95,27 +108,36 @@ class Preview extends Component {
         data-testid="Preview-container"
         onClick={this.handleClickContainer}
       >
-        <Frame
-          imageSrc={imageSrc}
-          playing={playing}
-          togglePlaying={this.handleTogglePlaying}
-        />
-        <div className="Preview-scrubber" data-testid="Preview-scrubber">
-          <input
-            type="range"
-            min="0"
-            max={numFrames - 1}
-            value={previewIdx}
-            onChange={this.handlePreviewUpdate}
-            disabled={!numFrames}
-            aria-label="preview frame index"
-          />
+        <div className="Preview-header">
+          <h2>Preview</h2>
+          <InfoIcon infoText={previewText} />
         </div>
-        <div
-          className="Preview-scrubber-counter"
-          data-testid="Preview-scrubber-counter"
-        >
-          {numFrames ? `${previewIdx + 1} / ${numFrames}` : '0 / 0'}
+        <div className={classNames({ 'Preview-muted': !numFrames })}>
+          <Frame
+            imageSrc={imageSrc}
+            playing={playing}
+            togglePlaying={this.handleTogglePlaying}
+            caption={caption}
+            fontColor={fontColor}
+            textPosition={textPosition}
+          />
+          <div className="Preview-scrubber" data-testid="Preview-scrubber">
+            <input
+              type="range"
+              min="0"
+              max={numFrames - 1}
+              value={previewIdx}
+              onChange={this.handlePreviewUpdate}
+              disabled={!numFrames}
+              aria-label="preview frame index"
+            />
+          </div>
+          <div
+            className="Preview-scrubber-counter"
+            data-testid="Preview-scrubber-counter"
+          >
+            {numFrames ? `${previewIdx + 1} / ${numFrames}` : '0 / 0'}
+          </div>
         </div>
         <div
           className="Preview-create"
@@ -141,16 +163,51 @@ class Preview extends Component {
         {gifProgress === 1 ? (
           <div className="Preview-progress-success">Download Successful</div>
         ) : null}
+        {!numFrames ? (
+          <div className="Preview-no-frames">
+            No frames have been captured. Use the camera or burst tools to add
+            some!
+          </div>
+        ) : null}
       </div>
     );
   }
 }
 
 Preview.defaultProps = {
+  expanded: false,
   previewIdx: 0,
+  playing: false,
   frames: {},
   frameIDs: [],
-  gifData: ''
+  gifData: '',
+  gifProgress: 0,
+  width: 300,
+  height: 300,
+  oversample: false,
+  interval: 100,
+  updatePreviewIdx: () => {},
+  generateGIF: () => {},
+  startAnimation: () => {},
+  stopAnimation: () => {}
+};
+
+Preview.propTypes = {
+  expanded: PropTypes.bool.isRequired,
+  previewIdx: PropTypes.number.isRequired,
+  playing: PropTypes.bool.isRequired,
+  frames: PropTypes.object.isRequired,
+  frameIDs: PropTypes.array.isRequired,
+  gifData: PropTypes.string.isRequired,
+  gifProgress: PropTypes.number.isRequired,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  oversample: PropTypes.bool.isRequired,
+  interval: PropTypes.number.isRequired,
+  updatePreviewIdx: PropTypes.func.isRequired,
+  generateGIF: PropTypes.func.isRequired,
+  startAnimation: PropTypes.func.isRequired,
+  stopAnimation: PropTypes.func.isRequired
 };
 
 export default Preview;
