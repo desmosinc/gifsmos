@@ -12,8 +12,6 @@
   color: #fff;
   min-height: 100vh;
   overflow-y: auto;
-  overflow: -moz-scrollbars-none;
-  -ms-overflow-style: none;
 }
 
 .Burst-expanded {

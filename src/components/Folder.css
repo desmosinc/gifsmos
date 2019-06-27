@@ -73,8 +73,6 @@
 
 .Folder-previous-items {
   margin-top: 15px;
-  overflow: -moz-scrollbars-none;
-  -ms-overflow-style: none;
 }
 
 .Folder-previous-items::-webkit-scrollbar {
