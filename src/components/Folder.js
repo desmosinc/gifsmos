@@ -87,6 +87,7 @@ class Folder extends Component {
                 </div>
               </div>
               <button
+                aria-label="delete"
                 onClick={() => this.handleDeleteSavedGraph(date)}
                 className="Folder-button Folder-delete-graph"
               >
