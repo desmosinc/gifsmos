@@ -6,4 +6,7 @@ export const imageSettingsPropTypes = {
   oversample: PropTypes.bool.isRequired
 };
 
-export const sidebarProps = {};
+export const sidebarButtonPropsTypes = {
+  icon: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired
+};

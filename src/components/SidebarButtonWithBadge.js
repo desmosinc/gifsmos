@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { sidebarButtonDefaults } from '..lib/defaultProps';
+import { sidebarButtonPropsTypes } from '..lib/propTypes';
 import classNames from 'classnames';
 import SidebarButton from './SidebarButton';
 
@@ -20,8 +22,7 @@ const SidebarButtonWithBadge = ({ showBadge, value, color, ...props }) => (
 );
 
 SidebarButtonWithBadge.defaultProps = {
-  icon: '',
-  onClick: () => {},
+  ...sidebarButtonDefaults,
   expanded: false,
   color: '',
   showBadge: false,
@@ -29,8 +30,7 @@ SidebarButtonWithBadge.defaultProps = {
 };
 
 SidebarButtonWithBadge.propTypes = {
-  icon: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  ...sidebarButtonPropsTypes,
   expanded: PropTypes.bool,
   color: PropTypes.string.isRequired,
   showBadge: PropTypes.bool.isRequired,

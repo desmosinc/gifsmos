@@ -11,12 +11,12 @@ const ErrorToast = ({ message }) => {
   );
 };
 
-ErrorToast.propTypes = {
-  message: PropTypes.string.isRequired
-};
-
 ErrorToast.defaultProps = {
   message: ''
+};
+
+ErrorToast.propTypes = {
+  message: PropTypes.string.isRequired
 };
 
 export default ErrorToast;
