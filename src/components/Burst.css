@@ -88,13 +88,9 @@
   align-items: center;
 }
 
-.Burst-slider-icon-container {
-  height: 0px;
-}
-
 .Burst-refresh-icon {
   position: absolute;
-  top: 108px;
+  top: 107px;
   left: 155px;
   height: 1.25rem;
   margin: 0.7rem 0.5rem;
