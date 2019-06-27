@@ -12,7 +12,7 @@ describe('<Settings/>', () => {
   it('renders appropriate content', () => {
     // render
     const { getByTestId, getByText } = global.renderWithRedux(
-      <Settings expanded={true} />
+      <Settings expanded />
     );
     // grab labels
     const widthLabel = getByTestId('Settings-image-width-label');

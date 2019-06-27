@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Burst from '../components/Burst';
-import { requestBurst, undoBurst } from '../actions';
+import { requestBurst, undoBurst, getBurstSliders } from '../actions';
 import panes from '../constants/pane-types';
 
 const mapStateToProps = (state, ownProps) => {
@@ -15,6 +15,7 @@ const mapStateToProps = (state, ownProps) => {
     width,
     height,
     oversample,
+    burstSliders: ui.burstSliders,
     frames,
     frameIDs,
     left,
@@ -27,7 +28,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const BurstContainer = connect(
   mapStateToProps,
-  { requestBurst, undoBurst }
+  { requestBurst, undoBurst, getBurstSliders }
 )(Burst);
 
 export default BurstContainer;

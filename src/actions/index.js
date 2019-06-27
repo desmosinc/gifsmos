@@ -30,6 +30,7 @@ import * as types from '../constants/action-types';
 import {
   setSliderByIndex,
   getImageData,
+  getSliderExpressions,
   loadSavedGraph,
   saveCurrentGraph
 } from '../lib/calc-helpers';
@@ -189,6 +190,11 @@ export const reset = () => {
   return { type: types.RESET };
 };
 
+const updateBurstSliders = sliders => ({
+  type: types.UPDATE_BURST_SLIDERS,
+  payload: sliders
+});
+
 // Thunks
 export const flashError = message => dispatch => {
   clearTimeout(errorTimeout);
@@ -331,6 +337,11 @@ export const generateGIF = (
       downloadFn(data.image, gifFileName || 'gifsmos.gif', 'image/gif');
     }
   });
+};
+
+export const getBurstSliders = () => dispatch => {
+  const sliders = getSliderExpressions();
+  dispatch(updateBurstSliders(sliders));
 };
 
 export const loadFramesFromLocal = dateString => (dispatch, getState) => {

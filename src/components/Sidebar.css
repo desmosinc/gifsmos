@@ -26,3 +26,13 @@
   color: #fff;
   text-decoration: underline;
 }
+
+@media (max-height: 480px) {
+  .Sidebar-help {
+    display: none;
+  }
+
+  .Sidebar {
+    overflow: auto;
+  }
+}

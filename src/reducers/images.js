@@ -115,6 +115,12 @@ const images = (state = initialState, { type, payload }) => {
         gifProgress: payload.progress
       };
 
+    case UPDATE_GIF_FILENAME:
+      return {
+        ...state,
+        gifFileName: payload.gifFileName
+      };
+
     case ADD_GIF:
       return {
         ...state,
@@ -149,12 +155,6 @@ const images = (state = initialState, { type, payload }) => {
       return {
         ...state,
         fontColor: payload.fontColor
-      };
-
-    case UPDATE_GIF_FILENAME:
-      return {
-        ...state,
-        gifFileName: payload.gifFileName
       };
 
     case UPDATE_TEXT_POSITION:

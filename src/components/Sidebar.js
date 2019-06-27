@@ -23,8 +23,9 @@ class Sidebar extends Component {
   }
 
   handleToggleBurst() {
-    const { togglePane } = this.props;
+    const { togglePane, getBurstSliders, expandedPane } = this.props;
     togglePane(panes.BURST);
+    if (expandedPane !== 'BURST') getBurstSliders();
   }
 
   handleToggleSettings() {
@@ -88,7 +89,7 @@ class Sidebar extends Component {
         />
 
         <SidebarButton
-          icon="folder"
+          icon="saved"
           expanded={expandedPane === panes.FILES}
           onClick={this.handleToggleFiles}
         />
