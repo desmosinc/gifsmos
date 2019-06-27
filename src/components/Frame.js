@@ -16,9 +16,12 @@ const Frame = ({
   >
     {imageSrc && (
       <>
-        <div className="frame-container">
+        <div className="Frame-container">
           <img src={imageSrc} alt="current frame" />
-          <p className={textPosition} style={{ color: fontColor }}>
+          <p
+            className={`Frame-container-text ${textPosition}`}
+            style={{ color: fontColor }}
+          >
             {caption}
           </p>
         </div>

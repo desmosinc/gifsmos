@@ -36,18 +36,6 @@
   min-height: 100vh;
 }
 
-.colorPicker {
-  display: block;
-  width: 210px;
-  margin: 15px auto 0;
-  color: #fff;
-  font-size: 1em;
-  padding: 1px;
-  border-radius: 5px;
-  text-align: center;
-  border: none;
-}
-
 .sketchPicker {
   display: block;
   margin: 15px auto 0;
