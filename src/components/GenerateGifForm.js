@@ -90,8 +90,9 @@ class GenerateGifForm extends Component {
         />
         <select
           type="select"
-          className="GenerateGifForm-select"
+          id="GenerateGifForm-select"
           name="placement"
+          className="GenerateGifForm-select"
           aria-label="caption position"
           onChange={this.handleInputUpdate}
           defaultValue={currentValue}
