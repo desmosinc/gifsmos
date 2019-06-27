@@ -4,33 +4,30 @@ import { render, fireEvent, cleanup } from '@testing-library/react';
 
 afterEach(cleanup);
 
-const onSubmit = jest.fn();
-const updateGIFFileName = jest.fn();
-const updateText = jest.fn();
-const updateTextPosition = jest.fn();
-const updateTextColor = jest.fn();
-
 describe('<GenerateGifForm/>', () => {
-  xit('renders without crashing', () => {
+  it('renders without crashing', () => {
     render(<GenerateGifForm />);
   });
 
-  xit('renders appropriate content', () => {
-    const { container } = render(<GenerateGifForm />);
-    expect(container.querySelectorAll('input').length).toBe(3);
+  it('renders appropriate content', () => {
+    const { container, getByText } = render(<GenerateGifForm />);
+    expect(container.querySelectorAll('input').length).toBe(2);
     expect(container.querySelector('input[name="name"]')).toBeTruthy();
     expect(container.querySelector('input[name="caption"]')).toBeTruthy();
-    expect(container.querySelector('input[name="fontColor"]')).toBeTruthy();
-    expect(container.querySelector('button').textContent).toBe('Download GIF');
+    expect(container.querySelector('select[name="placement"]')).toBeTruthy();
+    expect(getByText('Pick a Caption Color')).toBeTruthy();
+    expect(getByText('Download GIF')).toBeTruthy();
   });
 
-  xit('has functioning inputs', () => {
+  it('has functioning inputs', () => {
+    const updateGIFFileName = jest.fn();
+    const updateText = jest.fn();
+    const updateTextPosition = jest.fn();
     const { container } = render(
       <GenerateGifForm
         updateGIFFileName={updateGIFFileName}
         updateText={updateText}
         updateTextPosition={updateTextPosition}
-        updateTextColor={updateTextColor}
       />
     );
     // change input values
@@ -40,7 +37,7 @@ describe('<GenerateGifForm/>', () => {
     fireEvent.change(container.querySelector('input[name="caption"]'), {
       target: { value: 'caption' }
     });
-    fireEvent.change(container.querySelector('input[name="placement"]'), {
+    fireEvent.change(container.querySelector('select[name="placement"]'), {
       target: { value: 'top-left' }
     });
 
@@ -50,7 +47,20 @@ describe('<GenerateGifForm/>', () => {
     expect(updateTextPosition).toHaveBeenCalled();
   });
 
-  xit('has a functioning submit button', () => {
+  it('allows user to show and hide color picker', () => {
+    const updateColorPicker = jest.fn();
+    const { container, getByText } = render(
+      <GenerateGifForm updateColorPicker={updateColorPicker} />
+    );
+    expect(container.querySelector('.sketch-picker')).toBeFalsy();
+    fireEvent.click(getByText('Pick a Caption Color'));
+    expect(container.querySelector('.sketch-picker')).toBeTruthy();
+    fireEvent.click(getByText('Pick a Caption Color'));
+    expect(container.querySelector('.sketch-picker')).toBeFalsy();
+  });
+
+  it('has a functioning submit button', () => {
+    const onSubmit = jest.fn();
     const { getByText } = render(
       <GenerateGifForm handleGenerateGIF={onSubmit} />
     );

@@ -5,11 +5,11 @@ import { render, cleanup } from '@testing-library/react';
 afterEach(cleanup);
 
 describe('<Frame/>', () => {
-  xit('renders without crashing', () => {
+  it('renders without crashing', () => {
     render(<Frame />);
   });
 
-  xit('renders appropriate content', () => {
+  it('renders appropriate content', () => {
     const { container } = render(<Frame imageSrc="test" />);
     expect(container.querySelector('.Frame').firstChild.tagName).toBe('IMG');
     expect(container.querySelector('.Frame').firstChild.alt).toBe(
@@ -17,14 +17,14 @@ describe('<Frame/>', () => {
     );
   });
 
-  xit('shows play symbol when playing', () => {
+  it('shows play symbol when playing', () => {
     const { container } = render(<Frame imageSrc="test" playing />);
     expect(
       container.querySelector('.Frame').firstChild.nextSibling.textContent
     ).toBe('\u275a \u275a');
   });
 
-  xit('shows pause symbol when paused', () => {
+  it('shows pause symbol when paused', () => {
     const { container } = render(<Frame imageSrc="test" playing={false} />);
     expect(
       container.querySelector('.Frame').firstChild.nextSibling.textContent

@@ -5,9 +5,9 @@ import { Provider } from 'react-redux';
 import { render } from '@testing-library/react';
 import rootReducer from './reducers';
 
-// global.console = {
-//   log: jest.fn()
-// };
+global.console = {
+  log: jest.fn()
+};
 
 global.Desmos = {
   GraphingCalculator: jest.fn()
@@ -20,3 +20,5 @@ global.renderWithRedux = (
   ...render(<Provider store={store}>{ui}</Provider>),
   store
 });
+
+global.HTMLCanvasElement.prototype.getContext = jest.fn();

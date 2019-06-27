@@ -23,11 +23,11 @@ const initialState = {
 
 describe('reducers', () => {
   describe('settings', () => {
-    xit('returns the correct initial state', () => {
+    it('returns the correct initial state', () => {
       expect(reducer(undefined, {})).toEqual(initialState);
     });
 
-    xit('handles UPDATE_IMAGE_SETTING', () => {
+    it('handles UPDATE_IMAGE_SETTING', () => {
       const width = 100;
       const newState = reducer(initialState, {
         type: UPDATE_IMAGE_SETTING,
@@ -36,7 +36,7 @@ describe('reducers', () => {
       expect(newState.image.width).toEqual(width);
     });
 
-    xit('handles UPDATE_BOUNDS_SETTING', () => {
+    it('handles UPDATE_BOUNDS_SETTING', () => {
       const bottom = -20;
       const newState = reducer(initialState, {
         type: UPDATE_BOUNDS_SETTING,
@@ -45,7 +45,7 @@ describe('reducers', () => {
       expect(newState.bounds.bottom).toEqual(bottom);
     });
 
-    xit('handles UPDATE_STRATEGY', () => {
+    it('handles UPDATE_STRATEGY', () => {
       const strategy = 'stretch';
       const newState = reducer(initialState, {
         type: UPDATE_STRATEGY,

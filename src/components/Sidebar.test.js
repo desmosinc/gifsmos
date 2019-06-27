@@ -1,52 +1,71 @@
 import React from 'react';
 import Sidebar from './Sidebar';
-import { cleanup, fireEvent } from '@testing-library/react';
+import { render, fireEvent, wait, cleanup } from '@testing-library/react';
 
 afterEach(cleanup);
 
 describe('<Sidebar/>', () => {
-  xit('renders without crashing', () => {
-    global.renderWithRedux(<Sidebar />);
+  it('renders without crashing', () => {
+    render(<Sidebar />);
   });
 
-  xit('renders appropriate content', () => {
-    const { getByTestId } = global.renderWithRedux(<Sidebar />);
-    // check that all 4 buttons render icons as children
-    expect(getByTestId('SidebarButton-camera-button').firstChild.alt).toBe(
-      'camera icon'
-    );
-    expect(getByTestId('SidebarButton-burst-button').firstChild.alt).toBe(
-      'burst icon'
-    );
-    expect(getByTestId('SidebarButton-preview-button').firstChild.alt).toBe(
-      'preview icon'
-    );
-    expect(getByTestId('SidebarButton-settings-button').firstChild.alt).toBe(
-      'settings icon'
-    );
-    // help link
-    expect(getByTestId('Sidebar-help-link').textContent).toBe('Help');
+  it('renders tool buttons', () => {
+    const { container } = render(<Sidebar numFrames={1} />);
+    expect(
+      container.querySelector('button[aria-label="capture frame"]')
+    ).toBeTruthy();
+    expect(
+      container.querySelector('button[aria-label="multi-capture panel"]')
+    ).toBeTruthy();
+    expect(
+      container.querySelector('button[aria-label="preview panel"]')
+    ).toBeTruthy();
+    expect(
+      container.querySelector('button[aria-label="folder-graphs panel"]')
+    ).toBeTruthy();
+    expect(
+      container.querySelector('button[aria-label="settings panel"]')
+    ).toBeTruthy();
+    expect(
+      container.querySelector('button[aria-label="reset images"]')
+    ).toBeTruthy();
   });
 
-  xit('checks that buttons call appropriate functions when clicked', () => {
-    // mock functions
+  it('renders help link', () => {
+    const { container, getByText } = render(<Sidebar />);
+    expect(container.querySelector('.Sidebar-help')).toBeTruthy();
+    expect(getByText('Help').getAttribute('href')).toMatch('http');
+  });
+
+  it('checks that buttons call appropriate functions when clicked', () => {
     const requestFrame = jest.fn();
     const togglePane = jest.fn();
-    // render
-    const { getByTestId } = global.renderWithRedux(
+    const { container } = render(
       <Sidebar requestFrame={requestFrame} togglePane={togglePane} />
     );
-    // grab buttons
-    const cameraButton = getByTestId('SidebarButton-camera-button');
-    const burstButton = getByTestId('SidebarButton-burst-button');
-    const previewButton = getByTestId('SidebarButton-preview-button');
-    const settingsButton = getByTestId('SidebarButton-settings-button');
-    // click buttons and check event counts
-    fireEvent.click(cameraButton);
+    fireEvent.click(
+      container.querySelector('button[aria-label="capture frame"]')
+    );
     expect(requestFrame).toHaveBeenCalledTimes(1);
-    fireEvent.click(burstButton);
-    fireEvent.click(previewButton);
-    fireEvent.click(settingsButton);
-    expect(togglePane).toHaveBeenCalledTimes(3);
+    fireEvent.click(
+      container.querySelector('button[aria-label="multi-capture panel"]')
+    );
+    fireEvent.click(
+      container.querySelector('button[aria-label="preview panel"]')
+    );
+    fireEvent.click(
+      container.querySelector('button[aria-label="folder-graphs panel"]')
+    );
+    fireEvent.click(
+      container.querySelector('button[aria-label="settings panel"]')
+    );
+    expect(togglePane).toHaveBeenCalledTimes(4);
+  });
+
+  it('checks that reset button is hidden when no frames are in state', async () => {
+    const { container } = render(<Sidebar />);
+    expect(
+      container.querySelector('button[aria-label="reset images"]')
+    ).toBeFalsy();
   });
 });

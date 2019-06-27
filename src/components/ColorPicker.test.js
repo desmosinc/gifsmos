@@ -5,11 +5,11 @@ import { render, fireEvent, wait, cleanup } from '@testing-library/react';
 afterEach(cleanup);
 
 describe('<ColorPicker/>', () => {
-  xit('renders without crashing', () => {
+  it('renders without crashing', () => {
     render(<ColorPicker />);
   });
 
-  xit('renders separate sections of picker', () => {
+  it('renders separate sections of picker', () => {
     const { container } = render(<ColorPicker />);
     expect(container.querySelector('.sketch-picker')).toBeTruthy();
     expect(container.querySelector('.saturation-white')).toBeTruthy();

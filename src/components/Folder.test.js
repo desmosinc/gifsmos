@@ -5,16 +5,16 @@ import { render, fireEvent, cleanup } from '@testing-library/react';
 afterEach(cleanup);
 
 describe('<Folder/>', () => {
-  xit('renders without crashing', () => {
+  it('renders without crashing', () => {
     render(<Folder />);
   });
 
-  xit('renders tool title', () => {
+  it('renders tool title', () => {
     const { getByText } = render(<Folder expanded />);
     expect(getByText('Folder')).toBeTruthy();
   });
 
-  xit('renders appropriate content', () => {
+  it('renders appropriate content', () => {
     const { container, getByText } = render(<Folder expanded />);
     expect(getByText('Name').nextSibling.getAttribute('placeholder')).toBe(
       'Graph name'
@@ -23,7 +23,7 @@ describe('<Folder/>', () => {
     expect(getByText('Saved Graphs')).toBeTruthy();
   });
 
-  xit('has a functional save button', async () => {
+  it('has a functional save button', async () => {
     const images = { frames: {}, frameIDs: [] };
     const saveGraph = jest.fn();
     const { getByText } = render(

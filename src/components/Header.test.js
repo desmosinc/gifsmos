@@ -1,19 +1,24 @@
 import React from 'react';
 import Header from './Header';
-import { cleanup } from '@testing-library/react';
+import { render, cleanup } from '@testing-library/react';
 
 afterEach(cleanup);
 
 describe('<Header/>', () => {
-  xit('renders without crashing', () => {
-    global.renderWithRedux(<Header />);
+  it('renders without crashing', () => {
+    render(<Header />);
   });
 
-  xit('renders appropriate content', () => {
-    const { getByTestId } = global.renderWithRedux(<Header />);
-    expect(getByTestId('Header-logo').firstChild.src).toContain(
-      'gifsmos-logo.svg'
+  it('renders appropriate content', () => {
+    const { container } = render(<Header />);
+    expect(container.querySelector('.Header-logo').firstChild.tagName).toBe(
+      'IMG'
     );
-    expect(getByTestId('Header-help').textContent).toMatch('Paste');
+    expect(container.querySelector('.Header-logo').firstChild.alt).toBe(
+      'GIFsmos logo'
+    );
+    expect(container.querySelector('.Header-help').textContent).toMatch(
+      'Paste a Desmos link'
+    );
   });
 });

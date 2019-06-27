@@ -1,25 +1,25 @@
 import * as errors from './error-messages';
 
 describe('error messages', () => {
-  xit('return a message for an invalid expression index', () => {
+  it('return a message for an invalid expression index', () => {
     expect(errors.noSuchExpression(42)).toEqual(
       'There is no expression at position 42.'
     );
   });
 
-  xit('return a message for an expression without a slider', () => {
+  it('return a message for an expression without a slider', () => {
     expect(errors.notASlider(42)).toEqual(
       "Looks like expression 42 doesn't define a slider."
     );
   });
 
-  xit('return a message for a GIF creation problem', () => {
+  it('return a message for a GIF creation problem', () => {
     expect(errors.gifCreationProblem()).toEqual(
       'There was a problem creating your GIF. :('
     );
   });
 
-  xit('return a message for a burst input errors', () => {
+  it('return a message for a burst input errors', () => {
     expect(errors.badBurstInput({ min: true })).toEqual(
       "Your Slider Min isn't quite right."
     );
@@ -37,7 +37,7 @@ describe('error messages', () => {
     );
   });
 
-  xit('return a message for a settings input errors', () => {
+  it('return a message for a settings input errors', () => {
     expect(errors.badSettingsInput({ width: true })).toEqual(
       'The Image Width setting must be a positive integer.'
     );
@@ -52,7 +52,7 @@ describe('error messages', () => {
     );
   });
 
-  xit('return a message for an invalid bounds errors', () => {
+  it('return a message for an invalid bounds errors', () => {
     expect(errors.invalidBounds({ leftless: true })).toEqual(
       'Left Bound must be less than Right Bound to create a snapshot.'
     );

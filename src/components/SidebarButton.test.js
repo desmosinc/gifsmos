@@ -1,20 +1,25 @@
 import React from 'react';
 import SidebarButton from './SidebarButton';
-import { cleanup } from '@testing-library/react';
+import { render, fireEvent, cleanup } from '@testing-library/react';
 
 afterEach(cleanup);
 
 describe('<SidebarButton/>', () => {
-  xit('renders without crashing', () => {
-    global.renderWithRedux(<SidebarButton />);
+  it('renders without crashing', () => {
+    render(<SidebarButton />);
   });
 
-  xit('renders appropriate content', () => {
-    const { getByTestId } = global.renderWithRedux(
-      <SidebarButton icon="icon" />
-    );
-    expect(getByTestId('SidebarButton-icon-button').firstChild.alt).toBe(
-      'icon icon'
-    );
+  it('renders appropriate content', () => {
+    const { container } = render(<SidebarButton icon="icon" />);
+    expect(container.querySelector('.SidebarButton-tooltiptext')).toBeTruthy();
+    expect(container.querySelector('button.SidebarButton')).toBeTruthy();
+    expect(container.querySelector('img[alt="icon icon"]')).toBeTruthy();
+  });
+
+  it('runs appropriate logic on click', () => {
+    const onClick = jest.fn();
+    const { container } = render(<SidebarButton onClick={onClick} />);
+    fireEvent.click(container.querySelector('button'));
+    expect(onClick).toHaveBeenCalled();
   });
 });
