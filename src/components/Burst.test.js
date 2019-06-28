@@ -40,7 +40,7 @@ describe('<Burst/>', () => {
     calcHelpers.getCalcState = jest.fn();
     const requestBurst = jest.fn();
     const { getByText } = render(
-      <Burst expanded frameIDs={[]} requestBurst={requestBurst} />
+      <Burst expanded requestBurst={requestBurst} />
     );
     fireEvent.click(getByText('Capture'));
     await wait();
