@@ -2,7 +2,6 @@
   position: relative;
   width: 300px;
   height: 300px;
-  margin: 50px 10px auto;
 }
 
 .Frame-empty {
@@ -40,4 +39,47 @@
 .Frame-animation-button:focus {
   color: #e79600;
   border-color: #e79600;
+}
+
+.Frame-delete {
+  text-align: center;
+  margin-top: 3vw;
+}
+
+.Frame-redo {
+  text-align: center;
+  margin-top: 3vw;
+}
+
+.Frame-delete-redo-button {
+  width: 210px;
+  height: 35px;
+  margin: 10px 10px 0;
+  font-size: 1em;
+  background: transparent;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  outline: none !important;
+  animation: fade-in 0.5s;
+}
+
+.Frame-delete-redo-button:hover {
+  background: #484848;
+}
+
+.Frame-delete-redo-button:active {
+  background: #3b3b3b;
+}
+
+.Frame-delete-redo-button:focus {
+  background: #484848;
+}
+
+.Frame-section-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }

@@ -91,7 +91,6 @@ class Preview extends Component {
   }
 
   handleChangePreviewIdx(newIdx) {
-    // refactor to take an index...
     const { updatePreviewIdx } = this.props;
     updatePreviewIdx(newIdx);
   }
@@ -138,7 +137,7 @@ class Preview extends Component {
         </div>
         <div className="Frame-section-container">
           <img
-            className="directional-icon"
+            className="Frame-directional-icon"
             src={left}
             onClick={() =>
               this.handleChangePreviewIdx(Math.max(previewIdx - 1, 0))
@@ -151,7 +150,7 @@ class Preview extends Component {
             togglePlaying={this.handleTogglePlaying}
           />
           <img
-            className="directional-icon"
+            className="Frame-directional-icon"
             src={right}
             onClick={() =>
               this.handleChangePreviewIdx(
@@ -162,7 +161,7 @@ class Preview extends Component {
           />
         </div>
         <div className="Frame-delete">
-          {!!numFrames ? (
+          {numFrames ? (
             <button
               className="Frame-delete-redo-button"
               aria-label="delete this frame"
@@ -171,13 +170,13 @@ class Preview extends Component {
               Delete this Frame
             </button>
           ) : null}
-          {!!redoFrames.length ? (
+          {redoFrames.length ? (
             <button
               className="Frame-delete-redo-button"
               aria-label="redo last frame"
               onClick={this.handleRedoFrame}
             >
-              Redo Last Delete
+              Undo Delete
             </button>
           ) : null}
         </div>
