@@ -55,7 +55,7 @@
   align-items: center;
 }
 
-.Options-container {
+.Settings-options-container {
   overflow: auto;
   max-height: calc(100vh - 70px);
   background: #2e2e2e;

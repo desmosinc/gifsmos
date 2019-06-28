@@ -57,7 +57,7 @@ class Settings extends Component {
           <h2>Settings</h2>
           <InfoIcon infoText={settingsText} />
         </div>
-        <div className="Options-container">
+        <div className="Settings-options-container">
           <div>Image Width</div>
           <input
             className={classNames('Settings-input', {

@@ -103,7 +103,7 @@ class Burst extends Component {
           <h2>Burst</h2>
           <InfoIcon infoText={burstInfo} />
         </div>
-        <div className="Options-container">
+        <div className="Burst-options-container">
           <div className="Burst-dropdown-container">
             <div data-testid="Burst-slider-index-label">Slider</div>
             <select
