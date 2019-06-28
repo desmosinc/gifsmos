@@ -17,6 +17,7 @@ import {
 const initialState = {
   frames: {},
   frameIDs: [],
+  redoFrames: [],
   gifProgress: 0,
   gifData: '',
   caption: '',
