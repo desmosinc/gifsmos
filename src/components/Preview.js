@@ -136,7 +136,6 @@ class Preview extends Component {
           <h2>Preview</h2>
           <InfoIcon infoText={previewText} />
         </div>
-
         <div className="Frame-section-container">
           <img
             className="directional-icon"
@@ -162,7 +161,6 @@ class Preview extends Component {
             alt=""
           />
         </div>
-
         <div className="Frame-delete">
           {!!numFrames ? (
             <button
@@ -194,14 +192,12 @@ class Preview extends Component {
             aria-label="preview frame index"
           />
         </div>
-
         <div
           className="Preview-scrubber-counter"
           data-testid="Preview-scrubber-counter"
         >
           {numFrames ? `${previewIdx + 1} / ${numFrames}` : '0 / 0'}
         </div>
-
         <div className="Frame-timeline">
           {frameIDs.map((frameID, i) => (
             <img
@@ -211,6 +207,7 @@ class Preview extends Component {
               src={frames[frameID]}
               onClick={() => this.handleChangePreviewIdx(i)}
               alt=""
+              key={`frame-id-${frameID}`}
             />
           ))}
         </div>
@@ -226,19 +223,6 @@ class Preview extends Component {
             />
           ) : null}
         </div>
-
-        <div className="Preview-create">
-          {!!numFrames && (
-            <button
-              className="Preview-create-button"
-              onClick={this.handleGenerateGIF}
-              aria-label="generate gif"
-            >
-              Generate GIF
-            </button>
-          )}
-        </div>
-
         <div className="Preview-progress-outer">
           <div
             className="Preview-progress-inner"
@@ -248,7 +232,6 @@ class Preview extends Component {
             }}
           />
         </div>
-
         {gifProgress === 1 ? (
           <div className="Preview-progress-success">Download Successful </div>
         ) : null}

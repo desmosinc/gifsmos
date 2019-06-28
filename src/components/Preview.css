@@ -89,7 +89,7 @@
 .Frame-delete-redo-button {
   width: 210px;
   height: 35px;
-  margin-top: 10px;
+  margin: 10px 10 px 0;
   font-size: 1em;
   background: transparent;
   border-radius: 5px;
@@ -138,8 +138,9 @@
 }
 
 .Frame-timeline {
-  /* width: 95vw; */
   display: flex;
+  /* justify-content: center; */
+  /* width: 100%; */
   overflow: scroll;
   margin: 20px 15px 10px;
 }
