@@ -51,7 +51,8 @@
 .Frame-timeline {
   display: flex;
   overflow: scroll;
-  margin: 20px 15px 10px;
+  width: 80%;
+  margin: 1rem auto;
 }
 
 .Frame-scroll {

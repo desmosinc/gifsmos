@@ -169,6 +169,23 @@ class Preview extends Component {
             alt=""
           />
         </div>
+        <div className="Preview-scrubber" data-testid="Preview-scrubber">
+          <input
+            type="range"
+            min="0"
+            max={numFrames - 1}
+            value={previewIdx}
+            onChange={this.handlePreviewUpdate}
+            disabled={!numFrames}
+            aria-label="preview frame index"
+          />
+          <div
+            className="Preview-scrubber-counter"
+            data-testid="Preview-scrubber-counter"
+          >
+            {numFrames ? `${previewIdx + 1} / ${numFrames}` : '0 / 0'}
+          </div>
+        </div>
         <div className="Frame-delete">
           {numFrames ? (
             <button
@@ -188,23 +205,6 @@ class Preview extends Component {
               Undo Delete
             </button>
           ) : null}
-        </div>
-        <div className="Preview-scrubber" data-testid="Preview-scrubber">
-          <input
-            type="range"
-            min="0"
-            max={numFrames - 1}
-            value={previewIdx}
-            onChange={this.handlePreviewUpdate}
-            disabled={!numFrames}
-            aria-label="preview frame index"
-          />
-        </div>
-        <div
-          className="Preview-scrubber-counter"
-          data-testid="Preview-scrubber-counter"
-        >
-          {numFrames ? `${previewIdx + 1} / ${numFrames}` : '0 / 0'}
         </div>
         <div className="Frame-timeline">
           {frameIDs.map((frameID, i) => (
@@ -263,6 +263,7 @@ Preview.defaultProps = {
   height: 300,
   oversample: false,
   interval: 100,
+  redoFrames: [],
   updatePreviewIdx: () => {},
   generateGIF: () => {},
   startAnimation: () => {},
@@ -281,6 +282,7 @@ Preview.propTypes = {
   height: PropTypes.number.isRequired,
   oversample: PropTypes.bool.isRequired,
   interval: PropTypes.number.isRequired,
+  redoFrames: PropTypes.array.isRequired,
   updatePreviewIdx: PropTypes.func.isRequired,
   generateGIF: PropTypes.func.isRequired,
   startAnimation: PropTypes.func.isRequired,
