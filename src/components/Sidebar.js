@@ -144,7 +144,8 @@ Sidebar.defaultProps = {
   ...imageSettingDefaults,
   requestFrame: () => {},
   togglePane: () => {},
-  reset: () => {}
+  reset: () => {},
+  getBurstSliders: () => {}
 };
 
 export default Sidebar;

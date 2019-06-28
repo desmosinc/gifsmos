@@ -105,7 +105,6 @@ class Preview extends Component {
     return (
       <div
         className={classNames('Preview', { 'Preview-expanded': expanded })}
-        data-testid="Preview-container"
         onClick={this.handleClickContainer}
       >
         <div className="Preview-header">
@@ -121,7 +120,7 @@ class Preview extends Component {
             fontColor={fontColor}
             textPosition={textPosition}
           />
-          <div className="Preview-scrubber" data-testid="Preview-scrubber">
+          <div className="Preview-scrubber">
             <input
               type="range"
               min="0"
@@ -132,17 +131,11 @@ class Preview extends Component {
               aria-label="preview frame index"
             />
           </div>
-          <div
-            className="Preview-scrubber-counter"
-            data-testid="Preview-scrubber-counter"
-          >
+          <div className="Preview-scrubber-counter">
             {numFrames ? `${previewIdx + 1} / ${numFrames}` : '0 / 0'}
           </div>
         </div>
-        <div
-          className="Preview-create"
-          data-testid="Preview-create-form-container"
-        >
+        <div className="Preview-create">
           {!!numFrames && this.props.gifData.length === 0 ? (
             <GenerateGifFormContainer
               handleGenerateGIF={this.handleGenerateGIF}

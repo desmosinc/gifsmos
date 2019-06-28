@@ -24,7 +24,6 @@ class Burst extends Component {
       prevCalcState: {},
       errors: {}
     };
-
     this.handleInputUpdate = this.handleInputUpdate.bind(this);
     this.handleRequestBurst = this.handleRequestBurst.bind(this);
     this.handleUndoBurst = this.handleUndoBurst.bind(this);
@@ -202,7 +201,8 @@ class Burst extends Component {
 Burst.defaultProps = {
   ...imageSettingDefaults,
   expanded: false,
-  requestBurst: () => {}
+  requestBurst: () => {},
+  burstSliders: []
 };
 
 Burst.propTypes = {
