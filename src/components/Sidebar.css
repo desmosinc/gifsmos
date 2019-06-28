@@ -17,12 +17,13 @@
   position: fixed;
 }
 
-.Sidebar-help a {
+.Sidebar-help p {
   color: #fff;
   text-decoration: none;
 }
 
-.Sidebar-help a:hover {
+.Sidebar-help p:hover {
+  cursor: pointer;
   color: #fff;
   text-decoration: underline;
 }

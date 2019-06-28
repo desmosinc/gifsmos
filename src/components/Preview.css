@@ -27,7 +27,7 @@
 .Preview-scrubber {
   text-align: center;
   width: 340px;
-  margin: 20px auto 0;
+  margin: 1rem auto;
 }
 
 .Preview-scrubber input {
@@ -47,6 +47,33 @@
   width: 200px;
   text-align: center;
   margin: 20px auto 0;
+}
+
+.Preview-create-button {
+  width: 210px;
+  height: 35px;
+  margin-top: 10px;
+  font-size: 1em;
+  background: transparent;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  outline: none !important;
+  animation: fade-in 0.5s;
+}
+
+.Preview-create-button:hover {
+  background: #484848;
+}
+
+.Preview-create-button:active {
+  background: #3b3b3b;
+}
+
+.Preview-create-button:focus {
+  border-color: #e79600;
+  background: #484848;
 }
 
 .Preview-progress-outer {

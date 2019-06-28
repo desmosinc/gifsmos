@@ -5,10 +5,10 @@ import { sidebarButtonPropTypes } from '../lib/propTypes';
 import classNames from 'classnames';
 import camera from './icons/camera.svg';
 import preview from './icons/preview.svg';
+import reset from './icons/reset.svg';
 import burst from './icons/burst.svg';
 import saved from './icons/saved.svg';
 import settings from './icons/settings.svg';
-import reset from './icons/reset.svg';
 import './SidebarButton.css';
 
 const iconMap = {
@@ -41,7 +41,6 @@ const SidebarButton = ({ children, icon, onClick, expanded }) => (
       onClick={onClick}
       aria-label={ariaMap[icon]}
       aria-expanded={expanded}
-      data-testid={`SidebarButton-${icon}-button`}
     >
       <img src={iconMap[icon]} alt={`${icon} icon`} />
       {children}
