@@ -3,14 +3,26 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import './Frame.css';
 
-const Frame = ({ imageSrc, playing, togglePlaying }) => (
-  <div
-    className={classNames('Frame', { 'Frame-empty': !imageSrc })}
-    data-testid="Frame-container"
-  >
+const Frame = ({
+  imageSrc,
+  playing,
+  togglePlaying,
+  caption,
+  fontColor,
+  textPosition
+}) => (
+  <div className={classNames('Frame', { 'Frame-empty': !imageSrc })}>
     {imageSrc && (
       <>
-        <img src={imageSrc} alt="current frame" />
+        <div className="Frame-container">
+          <img src={imageSrc} alt="current frame" />
+          <p
+            className={`Frame-container-text ${textPosition}`}
+            style={{ color: fontColor }}
+          >
+            {caption}
+          </p>
+        </div>
         <button
           className="Frame-animation-button"
           onClick={togglePlaying}

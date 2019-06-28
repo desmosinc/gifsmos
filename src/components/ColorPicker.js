@@ -13,11 +13,13 @@ class ColorPicker extends Component {
 
   render() {
     return (
-      <SketchPicker
-        className="ColorPicker-sketchPicker"
-        onChange={this.handleInputUpdate}
-        color={this.props.textColor}
-      />
+      <div>
+        <SketchPicker
+          className="ColorPicker-SketchPicker"
+          onChange={this.handleInputUpdate}
+          color={this.props.textColor}
+        />
+      </div>
     );
   }
 }

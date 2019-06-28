@@ -28,18 +28,6 @@
   text-align: center;
 }
 
-.ColorPicker {
-  display: block;
-  width: 210px;
-  margin: 15px auto 0;
-  color: #fff;
-  font-size: 1em;
-  padding: 5px;
-  border-radius: 5px;
-  text-align: center;
-  border: none;
-}
-
 .GenerateGifForm-input-error {
   border-color: #cc0000;
 }
@@ -70,11 +58,23 @@
   background: #484848;
 }
 
+.ColorPicker {
+  display: block;
+  width: 210px;
+  margin: 15px auto 0;
+  color: #fff;
+  font-size: 1em;
+  padding: 5px;
+  border-radius: 5px;
+  text-align: center;
+  border: none;
+}
+
 .ColorPicker:hover {
   cursor: pointer;
 }
 
-.ColorPicker-sketchPicker {
+.ColorPicker-SketchPicker {
   display: inline-block;
   margin: 15px auto 0;
   font-size: 1em;

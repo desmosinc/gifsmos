@@ -7,6 +7,7 @@ import GenerateGifFormContainer from '../containers/GenerateGifFormContainer';
 import './Preview.css';
 import left from './icons/left.svg';
 import right from './icons/right.svg';
+import getTextPosition from '../lib/text-preview-helper';
 
 class Preview extends Component {
   constructor(props) {
@@ -113,11 +114,17 @@ class Preview extends Component {
       frameIDs,
       gifProgress,
       playing,
-      redoFrames
+      redoFrames,
+      caption,
+      fontColor,
+      textAlign,
+      textBaseline
     } = this.props;
 
     const numFrames = frameIDs.length;
     const imageSrc = frames[frameIDs[previewIdx]];
+
+    let textPosition = getTextPosition(textAlign, textBaseline);
 
     if (!expanded) return <div className="Preview" />;
 
@@ -128,7 +135,6 @@ class Preview extends Component {
     return (
       <div
         className={classNames('Preview', { 'Preview-expanded': expanded })}
-        data-testid="Preview-container"
         onClick={this.handleClickContainer}
       >
         <div className="Preview-header">
@@ -148,6 +154,9 @@ class Preview extends Component {
             imageSrc={imageSrc}
             playing={playing}
             togglePlaying={this.handleTogglePlaying}
+            caption={caption}
+            fontColor={fontColor}
+            textPosition={textPosition}
           />
           <img
             className="Frame-directional-icon"
@@ -210,10 +219,7 @@ class Preview extends Component {
             />
           ))}
         </div>
-        <div
-          className="Preview-create"
-          data-testid="Preview-create-form-container"
-        >
+        <div className="Preview-create">
           {!!numFrames && this.props.gifData.length === 0 ? (
             <GenerateGifFormContainer
               handleGenerateGIF={this.handleGenerateGIF}

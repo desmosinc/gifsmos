@@ -86,39 +86,6 @@
   border-radius: 3px;
 }
 
-.Frame-directional-icon {
-  width: 100px;
-  height: 100px;
-  margin: 5px;
-  position: relative;
-}
-
-.Frame-timeline {
-  display: flex;
-  overflow: scroll;
-  margin: 20px 15px 10px;
-}
-
-.Frame-scroll {
-  position: relative;
-  display: inline-block;
-  width: 150px;
-  height: 150px;
-  margin: 5px;
-  left: 50px;
-  opacity: 0.75;
-}
-
-.Frame-scroll-active {
-  outline: 5px solid #e79600;
-  opacity: 1;
-}
-
-.Frame-scroll:hover {
-  cursor: pointer;
-  opacity: 1;
-}
-
 .Preview-progress-success {
   width: 200px;
   margin: 15px auto 0;

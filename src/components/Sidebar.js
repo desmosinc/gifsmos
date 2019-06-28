@@ -6,14 +6,19 @@ import SidebarButton from './SidebarButton';
 import SidebarButtonWithBadge from './SidebarButtonWithBadge';
 import panes from '../constants/pane-types';
 import './Sidebar.css';
+import HelpModal from './HelpModal';
 
 class Sidebar extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      showHelpModal: false
+    };
     this.handleTogglePreview = this.handleTogglePreview.bind(this);
     this.handleToggleBurst = this.handleToggleBurst.bind(this);
     this.handleToggleSettings = this.handleToggleSettings.bind(this);
     this.handleRequestFrame = this.handleRequestFrame.bind(this);
+    this.toggleHelpModal = this.toggleHelpModal.bind(this);
     this.handleToggleFiles = this.handleToggleFiles.bind(this);
   }
 
@@ -61,6 +66,12 @@ class Sidebar extends Component {
     requestFrame(imageOpts);
   }
 
+  toggleHelpModal() {
+    this.setState({
+      showHelpModal: !this.state.showHelpModal
+    });
+  }
+
   handleToggleFiles() {
     const { togglePane } = this.props;
     togglePane(panes.FILES);
@@ -102,15 +113,14 @@ class Sidebar extends Component {
 
         {!!numFrames && <SidebarButton icon="reset" onClick={reset} />}
 
-        <div className="Sidebar-help">
-          <a
-            href="https://github.com/ctlusto/gifsmos/blob/master/README.md"
-            target="_blank"
-            rel="noopener noreferrer"
-            data-testid="Sidebar-help-link"
-          >
-            Help
-          </a>
+        <div className="Sidebar-help" onClick={this.toggleHelpModal}>
+          <p>Help</p>
+        </div>
+        <div>
+          <HelpModal
+            showHelpModal={this.state.showHelpModal}
+            toggleHelpModal={this.toggleHelpModal}
+          />
         </div>
       </div>
     );
@@ -134,7 +144,8 @@ Sidebar.defaultProps = {
   ...imageSettingDefaults,
   requestFrame: () => {},
   togglePane: () => {},
-  reset: () => {}
+  reset: () => {},
+  getBurstSliders: () => {}
 };
 
 export default Sidebar;
