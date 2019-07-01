@@ -15,7 +15,7 @@ describe('<Settings/>', () => {
   });
 
   it('renders labels/inputs', () => {
-    const { getByText } = render(<Settings expanded={true} />);
+    const { getByText } = render(<Settings expanded />);
 
     // grab labels
     const widthLabel = getByText('Image Width');
@@ -60,7 +60,7 @@ describe('<Settings/>', () => {
   it('updates state on input change', () => {
     const updateSetting = jest.fn();
     const { container } = render(
-      <Settings expanded={true} updateSetting={updateSetting} />
+      <Settings expanded updateSetting={updateSetting} />
     );
 
     fireEvent.change(container.querySelector('input[name="width"]'), {
