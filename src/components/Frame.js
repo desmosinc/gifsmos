@@ -7,7 +7,7 @@ const Frame = ({
   imageSrc,
   playing,
   togglePlaying,
-  caption,
+  gifText,
   fontColor,
   textPosition
 }) => (
@@ -20,7 +20,7 @@ const Frame = ({
             className={`Frame-container-text ${textPosition}`}
             style={{ color: fontColor }}
           >
-            {caption}
+            {gifText}
           </p>
         </div>
         <button

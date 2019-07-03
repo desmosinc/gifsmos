@@ -42,7 +42,7 @@ class Preview extends Component {
       oversample,
       interval,
       generateGIF,
-      caption,
+      gifText,
       fontColor,
       textAlign,
       textBaseline
@@ -54,7 +54,7 @@ class Preview extends Component {
       gifWidth: width * multiplier,
       gifHeight: height * multiplier,
       interval: interval / 1000,
-      text: caption,
+      text: gifText,
       fontColor: fontColor,
       textAlign: textAlign,
       textBaseline: textBaseline
@@ -115,7 +115,7 @@ class Preview extends Component {
       gifProgress,
       playing,
       redoFrames,
-      caption,
+      gifText,
       fontColor,
       textAlign,
       textBaseline
@@ -155,7 +155,7 @@ class Preview extends Component {
               imageSrc={imageSrc}
               playing={playing}
               togglePlaying={this.handleTogglePlaying}
-              caption={caption}
+              gifText={gifText}
               fontColor={fontColor}
               textPosition={textPosition}
             />
@@ -187,44 +187,43 @@ class Preview extends Component {
               {numFrames ? `${previewIdx + 1} / ${numFrames}` : '0 / 0'}
             </div>
           </div>
-          <div className="Frame-delete">
-            {numFrames ? (
-              <button
-                className="Frame-delete-redo-button"
-                aria-label="delete this frame"
-                onClick={() => this.handleDeleteFrame(previewIdx)}
-              >
-                Delete this Frame
-              </button>
-            ) : null}
-            {redoFrames.length ? (
-              <button
-                className="Frame-delete-redo-button"
-                aria-label="redo last frame"
-                onClick={this.handleRedoFrame}
-              >
-                Undo Delete
-              </button>
-            ) : null}
-          </div>
-          <div className="Frame-timeline">
-            {frameIDs.map((frameID, i) => (
-              <img
-                className={classNames('Frame-scroll', {
-                  'Frame-scroll-active': previewIdx === i
-                })}
-                src={frames[frameID]}
-                onClick={() => this.handleChangePreviewIdx(i)}
-                alt=""
-                key={`frame-id-${frameID}`}
-              />
-            ))}
-          </div>
+        </div>
+        <div className="Frame-delete">
+          {numFrames ? (
+            <button
+              className="Frame-delete-redo-button"
+              aria-label="delete this frame"
+              onClick={() => this.handleDeleteFrame(previewIdx)}
+            >
+              Delete this Frame
+            </button>
+          ) : null}
+          {redoFrames.length ? (
+            <button
+              className="Frame-delete-redo-button"
+              aria-label="redo last frame"
+              onClick={this.handleRedoFrame}
+            >
+              Undo Delete
+            </button>
+          ) : null}
+        </div>
+        <div className="Frame-timeline">
+          {frameIDs.map((frameID, i) => (
+            <img
+              className={classNames('Frame-scroll', {
+                'Frame-scroll-active': previewIdx === i
+              })}
+              src={frames[frameID]}
+              onClick={() => this.handleChangePreviewIdx(i)}
+              alt=""
+              key={`frame-id-${frameID}`}
+            />
+          ))}
         </div>
         {!numFrames ? (
           <div className="Preview-no-frames">
-            No frames have been captured. Use the camera or burst tools to add
-            some!
+            No frames have been captured...
           </div>
         ) : null}
         <div className="Preview-create">

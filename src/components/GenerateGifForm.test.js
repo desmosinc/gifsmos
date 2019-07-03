@@ -13,9 +13,9 @@ describe('<GenerateGifForm/>', () => {
     const { container, getByText } = render(<GenerateGifForm />);
     expect(container.querySelectorAll('input').length).toBe(2);
     expect(container.querySelector('input[name="name"]')).toBeTruthy();
-    expect(container.querySelector('input[name="caption"]')).toBeTruthy();
+    expect(container.querySelector('input[name="gifText"]')).toBeTruthy();
     expect(container.querySelector('select[name="placement"]')).toBeTruthy();
-    expect(getByText('Pick a Caption Color')).toBeTruthy();
+    expect(getByText('Pick GIF Text Color')).toBeTruthy();
     expect(getByText('Download GIF')).toBeTruthy();
   });
 
@@ -34,8 +34,8 @@ describe('<GenerateGifForm/>', () => {
     fireEvent.change(container.querySelector('input[name="name"]'), {
       target: { value: 'name' }
     });
-    fireEvent.change(container.querySelector('input[name="caption"]'), {
-      target: { value: 'caption' }
+    fireEvent.change(container.querySelector('input[name="gifText"]'), {
+      target: { value: 'gifText' }
     });
     fireEvent.change(container.querySelector('select[name="placement"]'), {
       target: { value: 'top-left' }
@@ -53,9 +53,9 @@ describe('<GenerateGifForm/>', () => {
       <GenerateGifForm updateColorPicker={updateColorPicker} />
     );
     expect(container.querySelector('.sketch-picker')).toBeFalsy();
-    fireEvent.click(getByText('Pick a Caption Color'));
+    fireEvent.click(getByText('Pick GIF Text Color'));
     expect(container.querySelector('.sketch-picker')).toBeTruthy();
-    fireEvent.click(getByText('Pick a Caption Color'));
+    fireEvent.click(getByText('Pick GIF Text Color'));
     expect(container.querySelector('.sketch-picker')).toBeFalsy();
   });
 
