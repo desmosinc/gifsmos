@@ -223,7 +223,8 @@ class Preview extends Component {
         </div>
         {!numFrames ? (
           <div className="Preview-no-frames">
-            No frames have been captured...
+            No frames have been captured. Use the camera or burst tools to add
+            some!
           </div>
         ) : null}
         <div className="Preview-create">
