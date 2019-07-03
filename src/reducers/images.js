@@ -31,7 +31,7 @@ const initialState = {
   redoFrames: [],
   gifProgress: 0,
   gifData: '',
-  caption: '',
+  gifText: '',
   textAlign: 'center',
   textBaseline: 'bottom',
   fontColor: '#000000',
@@ -148,7 +148,7 @@ const images = (state = initialState, { type, payload }) => {
     case UPDATE_TEXT:
       return {
         ...state,
-        caption: payload.text
+        gifText: payload.text
       };
 
     case UPDATE_TEXT_COLOR:

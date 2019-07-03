@@ -20,7 +20,7 @@ const initialState = {
   redoFrames: [],
   gifProgress: 0,
   gifData: '',
-  caption: '',
+  gifText: '',
   fontColor: '#000000',
   gifFileName: '',
   textAlign: 'center',
@@ -109,7 +109,7 @@ describe('reducers', () => {
         type: UPDATE_TEXT,
         payload: { text }
       });
-      expect(newState.caption).toEqual(text);
+      expect(newState.gifText).toEqual(text);
     });
 
     it('handles UPDATE_TEXT_COLOR', () => {

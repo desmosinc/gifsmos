@@ -10,11 +10,11 @@ import {
 
 const mapStateToProps = (state, ownProps) => {
   const { images } = state;
-  const { caption, fontColor, gifFileName, textAlign, textBaseline } = images;
+  const { gifText, fontColor, gifFileName, textAlign, textBaseline } = images;
 
   return {
     handleGenerateGIF: ownProps.handleGenerateGIF,
-    caption,
+    gifText,
     fontColor,
     gifFileName,
     textAlign,

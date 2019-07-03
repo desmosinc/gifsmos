@@ -16,7 +16,7 @@ const initialState = {
     frameIDs: [],
     gifProgress: 0,
     gifData: '',
-    caption: '',
+    gifText: '',
     fontColor: '#000000',
     gifFileName: ''
   },
