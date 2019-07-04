@@ -22,10 +22,6 @@ describe('<Settings/>', () => {
     const heightLabel = getByText('Image Height');
     const intervalLabel = getByText('Interval (ms)');
     const oversampleLabel = getByText('Oversample');
-    const topBoundLabel = getByText('Top Bound');
-    const bottomBoundLabel = getByText('Bottom Bound');
-    const leftBoundLabel = getByText('Left Bound');
-    const rightBoundLabel = getByText('Right Bound');
     const strategyBoundLabel = getByText('Strategy');
 
     // check that labels have correct corresponding inputs
@@ -40,18 +36,6 @@ describe('<Settings/>', () => {
 
     expect(oversampleLabel.previousSibling.name).toBe('oversample');
     expect(oversampleLabel.previousSibling.type).toBe('checkbox');
-
-    expect(topBoundLabel.nextSibling.name).toBe('top');
-    expect(topBoundLabel.nextSibling.type).toBe('number');
-
-    expect(bottomBoundLabel.nextSibling.name).toBe('bottom');
-    expect(bottomBoundLabel.nextSibling.type).toBe('number');
-
-    expect(leftBoundLabel.nextSibling.name).toBe('left');
-    expect(leftBoundLabel.nextSibling.type).toBe('number');
-
-    expect(rightBoundLabel.nextSibling.name).toBe('right');
-    expect(rightBoundLabel.nextSibling.type).toBe('number');
 
     expect(strategyBoundLabel.nextSibling.name).toBe('strategy');
     expect(strategyBoundLabel.nextSibling.className).toBe('Settings-dropdown');

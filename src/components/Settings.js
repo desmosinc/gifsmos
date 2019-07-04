@@ -33,17 +33,7 @@ class Settings extends Component {
   }
 
   render() {
-    const {
-      expanded,
-      width,
-      height,
-      oversample,
-      interval,
-      left,
-      right,
-      top,
-      bottom
-    } = this.props;
+    const { expanded, width, height, oversample, interval } = this.props;
 
     if (!expanded) return <div className="Settings" />;
 
@@ -95,67 +85,6 @@ class Settings extends Component {
             onChange={this.handleInputUpdate}
           />
 
-          <div>
-            <input
-              type="checkbox"
-              name="oversample"
-              aria-label="oversample image"
-              checked={oversample}
-              onChange={this.handleInputUpdate}
-            />
-            <span>Oversample</span>
-          </div>
-
-          <hr style={{ margin: '1rem' }} />
-
-          <div>Top Bound</div>
-          <input
-            className={classNames('Settings-input', {
-              'Settings-input-error': !isProperBound(bottom, top, top)
-            })}
-            type="number"
-            name="top"
-            aria-label="top bound"
-            value={isNaN(top) ? '' : top}
-            onChange={this.handleInputUpdate}
-          />
-
-          <div>Bottom Bound</div>
-          <input
-            className={classNames('Settings-input', {
-              'Settings-input-error': !isProperBound(bottom, top, bottom)
-            })}
-            type="number"
-            name="bottom"
-            aria-label="bottom bound"
-            value={isNaN(bottom) ? '' : bottom}
-            onChange={this.handleInputUpdate}
-          />
-
-          <div>Left Bound</div>
-          <input
-            className={classNames('Settings-input', {
-              'Settings-input-error': !isProperBound(left, right, left)
-            })}
-            type="number"
-            name="left"
-            aria-label="left bound"
-            value={isNaN(left) ? '' : left}
-            onChange={this.handleInputUpdate}
-          />
-
-          <div>Right Bound</div>
-          <input
-            className={classNames('Settings-input', {
-              'Settings-input-error': !isProperBound(left, right, right)
-            })}
-            type="number"
-            name="right"
-            aria-label="right bound"
-            value={isNaN(right) ? '' : right}
-            onChange={this.handleInputUpdate}
-          />
-
           <div>Strategy</div>
           <select
             className="Settings-dropdown"
@@ -170,6 +99,17 @@ class Settings extends Component {
             <option value="preserveX">PreserveX</option>
             <option value="preserveY">PreserveY</option>
           </select>
+        </div>
+
+        <div>
+          <input
+            type="checkbox"
+            name="oversample"
+            aria-label="oversample image"
+            checked={oversample}
+            onChange={this.handleInputUpdate}
+          />
+          <span>Oversample</span>
         </div>
       </div>
     );

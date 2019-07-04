@@ -27,12 +27,6 @@ const initialState = {
       interval: 100,
       oversample: false
     },
-    bounds: {
-      left: -10,
-      right: 10,
-      bottom: -10,
-      top: 10
-    },
     strategy: 'contain'
   },
   ui: {

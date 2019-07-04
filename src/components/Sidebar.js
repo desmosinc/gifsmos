@@ -39,26 +39,10 @@ class Sidebar extends Component {
   }
 
   handleRequestFrame() {
-    const {
-      requestFrame,
-      width,
-      height,
-      oversample,
-      left,
-      right,
-      top,
-      bottom,
-      strategy
-    } = this.props;
+    const { requestFrame, width, height, oversample, strategy } = this.props;
     const imageOpts = {
       width,
       height,
-      mathBounds: {
-        left,
-        right,
-        top,
-        bottom
-      },
       mode: strategy,
       targetPixelRatio: oversample ? 2 : 1
     };
