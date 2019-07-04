@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { imageSettingPropTypes } from '../lib/propTypes';
 import { imageSettingDefaults } from '../lib/defaultProps';
 import classNames from 'classnames';
-import { isPositiveInteger, isProperBound } from '../lib/input-helpers';
+import { isPositiveInteger } from '../lib/input-helpers';
 import './Settings.css';
 import InfoIcon from './InfoIcon';
 

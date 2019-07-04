@@ -47,7 +47,6 @@ import {
 import download from 'downloadjs';
 
 import {
-  getBoundErrors,
   getBurstErrors,
   getSettingsErrors,
   getSaveGraphErrors
