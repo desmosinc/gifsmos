@@ -57,22 +57,10 @@ describe('<Settings/>', () => {
       target: { value: '200' }
     });
     fireEvent.click(container.querySelector('input[name="oversample"]'));
-    fireEvent.change(container.querySelector('input[name="top"]'), {
-      target: { value: '20' }
-    });
-    fireEvent.change(container.querySelector('input[name="bottom"]'), {
-      target: { value: '20' }
-    });
-    fireEvent.change(container.querySelector('input[name="left"]'), {
-      target: { value: '20' }
-    });
-    fireEvent.change(container.querySelector('input[name="right"]'), {
-      target: { value: '20' }
-    });
     fireEvent.change(container.querySelector('select[name="strategy"]'), {
       target: { value: 'stretch' }
     });
 
-    expect(updateSetting).toHaveBeenCalledTimes(9);
+    expect(updateSetting).toHaveBeenCalledTimes(5);
   });
 });
