@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './ErrorToast.css';
 
 const ErrorToast = ({ message }) => {
@@ -8,6 +9,14 @@ const ErrorToast = ({ message }) => {
       {message}
     </div>
   );
+};
+
+ErrorToast.defaultProps = {
+  message: ''
+};
+
+ErrorToast.propTypes = {
+  message: PropTypes.string.isRequired
 };
 
 export default ErrorToast;

@@ -1,16 +1,16 @@
 .Settings {
   position: absolute;
-  top: 40px;
+  top: 60px;
   left: 70px;
   bottom: 0;
-  width: 200px;
-  padding-top: 20px;
+  min-width: 200px;
   background: #2e2e2e;
   border-right: 1px solid black;
   text-align: center;
   transform: translateX(-100%);
   transition: 0.2s transform;
   color: #fff;
+  min-height: 100vh;
 }
 
 .Settings input[type='checkbox'] {
@@ -37,4 +37,26 @@
 
 .Settings-input-error {
   border-color: #cc0000;
+}
+
+.Settings-dropdown {
+  height: 33px;
+  width: 114px;
+  margin-bottom: 15px;
+  margin-top: 5px;
+  border: 1px solid #000;
+  font-size: 1em;
+  outline: none !important;
+}
+
+.Settings-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Settings-options-container {
+  overflow: auto;
+  max-height: calc(100vh - 70px);
+  background: #2e2e2e;
 }

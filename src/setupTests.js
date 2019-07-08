@@ -1,17 +1,33 @@
 import 'jest-dom/extend-expect';
-import 'react-testing-library/cleanup-after-each';
 import React from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 import rootReducer from './reducers';
 
 global.console = {
-  log: jest.fn()
+  log: jest.fn(),
+  error: jest.fn()
 };
 
 global.Desmos = {
-  GraphingCalculator: jest.fn()
+  GraphingCalculator: jest.fn(() => {
+    return {
+      asyncScreenshot: (opts, cb) => cb(''),
+      getExpressions: () => [
+        { id: 1, type: 'expression', latex: 'x = 3' },
+        { id: 2, latex: '' }
+      ],
+      setExpression: () => null
+    };
+  })
+};
+
+global.gifshot = {
+  createGIF: (args, cb) => {
+    args.progressCallback(100);
+    return cb({ image: 'test' });
+  }
 };
 
 global.renderWithRedux = (
@@ -21,3 +37,5 @@ global.renderWithRedux = (
   ...render(<Provider store={store}>{ui}</Provider>),
   store
 });
+
+global.HTMLCanvasElement.prototype.getContext = jest.fn();

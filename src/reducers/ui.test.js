@@ -14,7 +14,8 @@ const initialState = {
   expandedPane: panes.NONE,
   previewIdx: 0,
   playing: false,
-  error: ''
+  error: '',
+  burstSliders: []
 };
 
 describe('reducers', () => {

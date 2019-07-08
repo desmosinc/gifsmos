@@ -11,14 +11,22 @@
 export const ADD_FRAME = 'ADD_FRAME';
 export const UPDATE_GIF_PROGRESS = 'UPDATE_GIF_PROGRESS';
 export const ADD_GIF = 'ADD_GIF';
+export const UNDO_BURST = 'UNDO_BURST';
+export const REDO_FRAME = 'REDO_FRAME';
+export const UPDATE_TEXT = 'UPDATE_TEXT';
+export const UPDATE_TEXT_COLOR = 'UPDATE_TEXT_COLOR';
+export const UPDATE_GIF_FILENAME = 'UPDATE_GIF_FILENAME';
+export const UPDATE_TEXT_POSITION = 'UPDATE_TEXT_POSITION';
 
 // UI
 export const UPDATE_PREVIEW_IDX = 'UPDATE_PREVIEW_IDX';
+export const DELETE_FRAME_IDX = 'DELETE_FRAME_IDX';
 export const TOGGLE_PANE = 'TOGGLE_PANE';
 export const PLAY_PREVIEW = 'PLAY_PREVIEW';
 export const PAUSE_PREVIEW = 'PAUSE_PREVIEW';
 export const SET_ERROR = 'SET_ERROR';
 export const CLEAR_ERROR = 'CLEAR_ERROR';
+export const UPDATE_BURST_SLIDERS = 'UPDATE_BURST_SLIDERS';
 
 // Settings
 export const UPDATE_IMAGE_SETTING = 'UPDATE_IMAGE_SETTING';

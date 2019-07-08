@@ -1,16 +1,16 @@
 .Burst {
   position: absolute;
-  top: 40px;
+  top: 60px;
   left: 70px;
   bottom: 0;
   width: 200px;
-  padding-top: 20px;
   background: #2e2e2e;
   border-right: 1px solid black;
   text-align: center;
   transform: translateX(-100%);
   transition: 0.2s transform;
   color: #fff;
+  min-height: 100vh;
 }
 
 .Burst-expanded {
@@ -29,6 +29,16 @@
   padding: 5px;
   outline: none !important;
   text-align: center;
+}
+
+.Burst-dropdown {
+  height: 33px;
+  width: 114px;
+  margin-bottom: 15px;
+  margin-top: 5px;
+  border: 1px solid #000;
+  font-size: 1em;
+  outline: none !important;
 }
 
 .Burst-input-error {
@@ -59,4 +69,37 @@
 .Burst-button:focus {
   background: #484848;
   border-color: #e79600;
+}
+
+.capturing {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.Bound-text {
+  margin: 1rem;
+  font-size: 17px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.Burst-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Burst-refresh-icon {
+  position: absolute;
+  height: 1.25rem;
+  margin: 0.7rem 0.5rem;
+}
+
+.Burst-refresh-icon:hover {
+  cursor: pointer;
+}
+
+.Burst-options-container {
+  overflow: auto;
+  max-height: calc(100vh - 70px);
+  background: #2e2e2e;
 }

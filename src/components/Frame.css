@@ -1,11 +1,7 @@
 .Frame {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 300px;
   height: 300px;
-  margin: 50px auto 0 auto;
 }
 
 .Frame-empty {
@@ -43,4 +39,123 @@
 .Frame-animation-button:focus {
   color: #e79600;
   border-color: #e79600;
+}
+
+.Frame-directional-icon {
+  width: 100px;
+  height: 100px;
+  margin: 5px;
+  position: relative;
+}
+
+.Frame-timeline {
+  display: flex;
+  overflow: scroll;
+  width: 80%;
+  margin: 1rem auto;
+}
+
+.Frame-scroll {
+  position: relative;
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  margin: 5px;
+  left: 50px;
+  opacity: 0.75;
+}
+
+.Frame-scroll-active {
+  outline: 5px solid #e79600;
+  opacity: 1;
+}
+
+.Frame-scroll:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.Frame-delete {
+  text-align: center;
+  margin-top: 3vw;
+}
+
+.Frame-redo {
+  text-align: center;
+  margin-top: 3vw;
+}
+
+.Frame-delete-redo-button {
+  width: 210px;
+  height: 35px;
+  margin: 10px 10px 0;
+  font-size: 1em;
+  background: transparent;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  outline: none !important;
+  animation: fade-in 0.5s;
+}
+
+.Frame-delete-redo-button:hover {
+  background: #484848;
+}
+
+.Frame-delete-redo-button:active {
+  background: #3b3b3b;
+}
+
+.Frame-delete-redo-button:focus {
+  background: #484848;
+}
+
+.Frame-section-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.Frame-container {
+  position: relative;
+  height: 300px;
+  width: 300px;
+}
+
+.Frame-container-text {
+  position: absolute;
+}
+
+.Frame-container-text.top-left {
+  top: -15px;
+  left: 0px;
+}
+
+.Frame-container-text.top-center {
+  text-align: center;
+  top: -15px;
+  width: 100%;
+}
+
+.Frame-container-text.top-right {
+  top: -15px;
+  right: 2px;
+}
+
+.Frame-container-text.bottom-left {
+  bottom: -15px;
+  left: 0px;
+}
+
+.Frame-container-text.bottom-center {
+  text-align: center;
+  bottom: -15px;
+  width: 100%;
+}
+
+.Frame-container-text.bottom-right {
+  right: 2px;
+  bottom: -15px;
 }

@@ -30,14 +30,14 @@ describe('error messages', () => {
       "Your Slider Step isn't quite right."
     );
     expect(errors.badBurstInput({ idx: true, max: true })).toEqual(
-      'Your Slider Index must be a positive integer.'
+      'Please choose a slider or define an expression.'
     );
     expect(errors.badBurstInput({ min: true, max: true })).toEqual(
       "Your input isn't quite right."
     );
   });
 
-  it('return a message for a setings input errors', () => {
+  it('return a message for a settings input errors', () => {
     expect(errors.badSettingsInput({ width: true })).toEqual(
       'The Image Width setting must be a positive integer.'
     );

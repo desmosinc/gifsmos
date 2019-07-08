@@ -16,7 +16,7 @@ export const getBurstErrors = inputs => {
     if (isNaN(inputs[prop])) errors[prop] = true;
   }
 
-  if (!isPositiveInteger(idx)) errors.idx = true;
+  if (!idx) errors.idx = true;
   if (min >= max) {
     errors.min = true;
     errors.max = true;
@@ -33,5 +33,28 @@ export const getSettingsErrors = inputs => {
     if (!isPositiveInteger(inputs[prop])) errors[prop] = true;
   }
 
+  return errors;
+};
+
+export const getBoundErrors = inputs => {
+  const errors = {};
+  const { left, right, top, bottom } = inputs;
+
+  if (left >= right) errors['leftless'] = true;
+  if (bottom >= top) errors['bottomless'] = true;
+  for (let cur in inputs) {
+    if (isNaN(inputs[cur])) errors[cur] = true;
+  }
+
+  return errors;
+};
+
+export const getSaveGraphErrors = name => {
+  const errors = {};
+  if (!name.length) {
+    errors.name = 'Name required';
+  } else if (name.length > 255) {
+    errors.name = `Name cannot be longer than 255 characters`;
+  }
   return errors;
 };
