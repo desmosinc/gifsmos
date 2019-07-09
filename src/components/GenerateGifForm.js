@@ -27,7 +27,7 @@ class GenerateGifForm extends Component {
 
   handleInputUpdate(evt) {
     switch (evt.target.name) {
-      case 'caption':
+      case 'gifText':
         this.props.updateText(evt.target.value);
         break;
       case 'fontColor':
@@ -82,23 +82,23 @@ class GenerateGifForm extends Component {
         />
         <input
           className="GenerateGifForm-input"
-          name="caption"
-          aria-label="add a caption"
-          placeholder="Add a Caption"
+          name="gifText"
+          aria-label="add GIF text"
+          placeholder="Add GIF Text"
           onChange={this.handleInputUpdate}
-          value={this.props.caption}
+          value={this.props.gifText}
         />
         <select
           type="select"
           id="GenerateGifForm-select"
           name="placement"
           className="GenerateGifForm-select"
-          aria-label="caption position"
+          aria-label="GIF text position"
           onChange={this.handleInputUpdate}
           defaultValue={currentValue}
         >
           <option disabled value="DEFAULT">
-            Select a Caption Position
+            Select GIF Text Position
           </option>
           <option value="top-left">Top Left</option>
           <option value="top-center">Top Center</option>
@@ -112,12 +112,12 @@ class GenerateGifForm extends Component {
           onClick={this.renderColorPicker}
           onKeyDown={this.renderColorPicker}
           className="ColorPicker"
-          aria-label="pick a caption color"
+          aria-label="pick GIF text color"
           role="button"
           aria-pressed={this.state.showColorPicker}
           tabIndex="0"
         >
-          <p>Pick a Caption Color</p>
+          <p>Pick GIF Text Color</p>
         </div>
         {this.state.showColorPicker ? colorPicker : null}
         <button

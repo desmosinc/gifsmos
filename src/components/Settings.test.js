@@ -15,17 +15,13 @@ describe('<Settings/>', () => {
   });
 
   it('renders labels/inputs', () => {
-    const { getByText } = render(<Settings expanded={true} />);
+    const { getByText } = render(<Settings expanded />);
 
     // grab labels
     const widthLabel = getByText('Image Width');
     const heightLabel = getByText('Image Height');
     const intervalLabel = getByText('Interval (ms)');
     const oversampleLabel = getByText('Oversample');
-    const topBoundLabel = getByText('Top Bound');
-    const bottomBoundLabel = getByText('Bottom Bound');
-    const leftBoundLabel = getByText('Left Bound');
-    const rightBoundLabel = getByText('Right Bound');
     const strategyBoundLabel = getByText('Strategy');
 
     // check that labels have correct corresponding inputs
@@ -41,18 +37,6 @@ describe('<Settings/>', () => {
     expect(oversampleLabel.previousSibling.name).toBe('oversample');
     expect(oversampleLabel.previousSibling.type).toBe('checkbox');
 
-    expect(topBoundLabel.nextSibling.name).toBe('top');
-    expect(topBoundLabel.nextSibling.type).toBe('number');
-
-    expect(bottomBoundLabel.nextSibling.name).toBe('bottom');
-    expect(bottomBoundLabel.nextSibling.type).toBe('number');
-
-    expect(leftBoundLabel.nextSibling.name).toBe('left');
-    expect(leftBoundLabel.nextSibling.type).toBe('number');
-
-    expect(rightBoundLabel.nextSibling.name).toBe('right');
-    expect(rightBoundLabel.nextSibling.type).toBe('number');
-
     expect(strategyBoundLabel.nextSibling.name).toBe('strategy');
     expect(strategyBoundLabel.nextSibling.className).toBe('Settings-dropdown');
   });
@@ -60,7 +44,7 @@ describe('<Settings/>', () => {
   it('updates state on input change', () => {
     const updateSetting = jest.fn();
     const { container } = render(
-      <Settings expanded={true} updateSetting={updateSetting} />
+      <Settings expanded updateSetting={updateSetting} />
     );
 
     fireEvent.change(container.querySelector('input[name="width"]'), {
@@ -73,22 +57,10 @@ describe('<Settings/>', () => {
       target: { value: '200' }
     });
     fireEvent.click(container.querySelector('input[name="oversample"]'));
-    fireEvent.change(container.querySelector('input[name="top"]'), {
-      target: { value: '20' }
-    });
-    fireEvent.change(container.querySelector('input[name="bottom"]'), {
-      target: { value: '20' }
-    });
-    fireEvent.change(container.querySelector('input[name="left"]'), {
-      target: { value: '20' }
-    });
-    fireEvent.change(container.querySelector('input[name="right"]'), {
-      target: { value: '20' }
-    });
     fireEvent.change(container.querySelector('select[name="strategy"]'), {
       target: { value: 'stretch' }
     });
 
-    expect(updateSetting).toHaveBeenCalledTimes(9);
+    expect(updateSetting).toHaveBeenCalledTimes(5);
   });
 });

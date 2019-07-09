@@ -202,13 +202,16 @@ Burst.defaultProps = {
   ...imageSettingDefaults,
   expanded: false,
   requestBurst: () => {},
-  burstSliders: []
+  burstSliders: [],
+  frameIDs: []
 };
 
 Burst.propTypes = {
   ...imageSettingPropTypes,
   expanded: PropTypes.bool.isRequired,
-  requestBurst: PropTypes.func.isRequired
+  requestBurst: PropTypes.func.isRequired,
+  burstSliders: PropTypes.array.isRequired,
+  frameIDs: PropTypes.array.isRequired
 };
 
 export default Burst;

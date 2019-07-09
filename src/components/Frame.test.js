@@ -19,14 +19,14 @@ describe('<Frame/>', () => {
     );
   });
 
-  it('shows play symbol when playing', () => {
+  it('shows pause symbol when playing', () => {
     const { container } = render(<Frame imageSrc="test" playing />);
     expect(
       container.querySelector('.Frame').firstChild.nextSibling.textContent
     ).toBe('\u275a \u275a');
   });
 
-  it('shows pause symbol when paused', () => {
+  it('shows play symbol when paused', () => {
     const { container } = render(<Frame imageSrc="test" playing={false} />);
     expect(
       container.querySelector('.Frame').firstChild.nextSibling.textContent

@@ -31,10 +31,14 @@ describe('<Sidebar/>', () => {
     ).toBeTruthy();
   });
 
-  it('renders help button', () => {
+  it('has a functional help button, shows help modal', () => {
     const { container, getByText } = render(<Sidebar />);
     expect(container.querySelector('.Sidebar-help')).toBeTruthy();
-    // expect(getByText('Help').getAttribute('href')).toMatch('http');
+    expect(container.querySelector('.show')).toBeFalsy();
+    expect(container.querySelector('.hide')).toBeTruthy();
+    fireEvent.click(getByText('Help'));
+    expect(container.querySelector('.show')).toBeTruthy();
+    expect(container.querySelector('.hide')).toBeFalsy();
   });
 
   it('checks that buttons call appropriate functions when clicked', () => {

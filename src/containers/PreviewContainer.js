@@ -18,7 +18,7 @@ const mapStateToProps = (state, ownProps) => {
     frameIDs,
     gifProgress,
     gifData,
-    caption,
+    gifText,
     fontColor,
     redoFrames,
     textAlign,
@@ -39,7 +39,7 @@ const mapStateToProps = (state, ownProps) => {
     oversample,
     interval,
     redoFrames,
-    caption,
+    gifText,
     fontColor,
     textAlign,
     textBaseline

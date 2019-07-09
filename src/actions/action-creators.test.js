@@ -16,7 +16,7 @@ const initialState = {
     frameIDs: [],
     gifProgress: 0,
     gifData: '',
-    caption: '',
+    gifText: '',
     fontColor: '#000000',
     gifFileName: ''
   },
@@ -26,12 +26,6 @@ const initialState = {
       height: 300,
       interval: 100,
       oversample: false
-    },
-    bounds: {
-      left: -10,
-      right: 10,
-      bottom: -10,
-      top: 10
     },
     strategy: 'contain'
   },
