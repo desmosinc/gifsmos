@@ -27,7 +27,13 @@ class App extends Component {
   }
 
   componentDidMount() {
-    initializeCalculator(Desmos, calcContainer, CALCULATOR_OPTIONS);
+    const { getBurstSliders } = this.props;
+    const calculator = initializeCalculator(
+      Desmos,
+      calcContainer,
+      CALCULATOR_OPTIONS
+    );
+    calculator.observeEvent('change', getBurstSliders);
     window.addEventListener('keydown', this.handleKeyDown);
   }
 

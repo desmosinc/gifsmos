@@ -1,14 +1,19 @@
 import { connect } from 'react-redux';
 import App from '../components/App';
+import { getBurstSliders } from '../actions';
 
 const mapStateToProps = (state, ownProps) => {
-  const { expandedPane } = state.ui;
+  const { expandedPane, burstSliders } = state.ui;
 
   return {
-    pane: expandedPane.toLowerCase()
+    pane: expandedPane.toLowerCase(),
+    burstSliders: burstSliders
   };
 };
 
-const AppContainer = connect(mapStateToProps)(App);
+const AppContainer = connect(
+  mapStateToProps,
+  { getBurstSliders }
+)(App);
 
 export default AppContainer;
