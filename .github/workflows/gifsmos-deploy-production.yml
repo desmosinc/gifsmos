@@ -1,12 +1,6 @@
 name: gifsmos deploy production
-env:
-    # For AWS user "github-actions-knox"
-    AWS_ACCESS_KEY_ID: ${{ vars.AWS_ACCESS_KEY_ID }}
-    AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-    AWS_DEFAULT_REGION: 'us-east-1'
 on:
-  push:
-    branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   build:
